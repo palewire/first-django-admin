@@ -16,9 +16,9 @@ the 2015 conference of the National Institute for Computer-Assisted Reporting.
 What you will make
 ------------------
 
-This tutorial will guide you through the creating a custom Django administration panel where reporters can inspect, edit and augment a list of inductees to the Academy of Motion Picture Arts and Sciences, the elite organization that decides the Oscars.
+This tutorial will guide you through the creating a custom Django administration panel where reporters can inspect, edit and augment a list of invitees to the Academy of Motion Picture Arts and Sciences, the elite organization that decides the Oscars.
 
-In 2012, `a study by the Los Angeles Times <http://www.latimes.com/entertainment/movies/academy/la-et-unmasking-oscar-academy-project-html-htmlstory.html>`_ found the group is overwhelmingly white and male, which led to renewed calls to diversify the Oscar voting pool. By following the steps below, you will repeat The Times' work using the Academy's 2014 list of new members, creating a system to share the load of producing a follow-up story in `this vein <http://www.latimes.com/entertainment/envelope/moviesnow/la-et-mn-diversity-oscar-academy-members-20131221-story.html>`_.
+In 2012, `a study by the Los Angeles Times <http://www.latimes.com/entertainment/movies/academy/la-et-unmasking-oscar-academy-project-html-htmlstory.html>`_ found the group is overwhelmingly white and male, which led to renewed calls to diversify the Oscar voting pool. By following the steps below, you will repeat The Times' work using the Academy's 2014 list of new invitees, creating a system to share the load of producing a follow-up story in `the vein of this story <http://www.latimes.com/entertainment/envelope/moviesnow/la-et-mn-diversity-oscar-academy-members-20131221-story.html>`_.
 
 Prelude: Prerequisites
 ----------------------
