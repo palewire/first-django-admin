@@ -5,8 +5,8 @@ First django admin
 
 A step-by-step guide to creating a simple web application that empowers you to enlist reporters in data entry and refinement.
 
-This guide in currently being developed by `Ben Welsh <http://palewi.re/who-is-ben-welsh/>`_ and Ken Schwencke for a workshop scheduled for
-the 2015 conference of the National Institute for Computer-Assisted Reporting. 
+This guide in currently being developed by `Ben Welsh <http://palewi.re/who-is-ben-welsh/>`_ and Ken Schwencke for a workshop `scheduled for March 8 <http://ire.org/conferences/nicar2015/hands-on-training/>`_ at
+the 2015 conference of the National Institute for Computer-Assisted Reporting in Atlanta.
 
 -  Code repository:
    `github.com/ireapps/first-django-admin/ <https://github.com/ireapps/first-django-admin>`__
