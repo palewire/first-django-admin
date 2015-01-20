@@ -1,0 +1,242 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>First django admin &mdash; First Django Admin 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="First Django Admin 0.1 documentation" href="#" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li><a href="#">First Django Admin 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="first-django-admin">
+<h1>First django admin<a class="headerlink" href="#first-django-admin" title="Permalink to this headline">¶</a></h1>
+<p>A step-by-step guide to creating a simple web application that empowers you to enlist reporters in data entry and refinement.</p>
+<p>This guide in currently being developed by <a class="reference external" href="http://palewi.re/who-is-ben-welsh/">Ben Welsh</a> and Ken Schwencke for a workshop <a class="reference external" href="http://ire.org/conferences/nicar2015/hands-on-training/">scheduled for March 8</a> at
+the 2015 conference of the National Institute for Computer-Assisted Reporting in Atlanta.</p>
+<ul class="simple">
+<li>Code repository:
+<a class="reference external" href="https://github.com/ireapps/first-django-admin">github.com/ireapps/first-django-admin/</a></li>
+<li>Issues:
+<a class="reference external" href="https://github.com/ireapps/first-django-admin/issues">github.com/ireapps/first-django-admin/issues/</a></li>
+</ul>
+<div class="section" id="what-you-will-make">
+<h2>What you will make<a class="headerlink" href="#what-you-will-make" title="Permalink to this headline">¶</a></h2>
+<p>This tutorial will guide you through creating a custom Django administration panel where reporters can inspect, edit and augment a list of invitees to the Academy of Motion Picture Arts and Sciences, the elite organization that decides the Oscars.</p>
+<p>In 2012, <a class="reference external" href="http://www.latimes.com/entertainment/movies/academy/la-et-unmasking-oscar-academy-project-html-htmlstory.html">a study by the Los Angeles Times</a> found the group is overwhelmingly white and male, which led to renewed calls to diversify the Oscar voting pool. By following the steps below, you will repeat The Times&#8217; work using the Academy&#8217;s 2014 list of new invitees, creating a system to share the load of producing a follow-up story in <a class="reference external" href="http://www.latimes.com/entertainment/envelope/moviesnow/la-et-mn-diversity-oscar-academy-members-20131221-story.html">this vein</a>.</p>
+</div>
+<div class="section" id="prelude-prerequisites">
+<h2>Prelude: Prerequisites<a class="headerlink" href="#prelude-prerequisites" title="Permalink to this headline">¶</a></h2>
+<p>Before you can begin, your computer needs the following tools installed
+and working to participate.</p>
+<ol class="arabic simple">
+<li>A <a class="reference external" href="https://en.wikipedia.org/wiki/Command-line_interface">command-line
+interface</a>
+to interact with your computer</li>
+<li>A <a class="reference external" href="https://en.wikipedia.org/wiki/Text_editor">text editor</a> to work
+with plain text files</li>
+<li>Version 2.7 of the
+<a class="reference external" href="http://python.org/download/releases/2.7.6/">Python</a> programming
+language</li>
+<li>The <a class="reference external" href="https://pip.pypa.io/en/latest/installing.html">pip</a>
+package manager for Python</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Depending on your experience and operating system, you might
+already be ready to go with everything above. If so, move on to the next
+chapter. If not, don&#8217;t worry. And don&#8217;t give up! It will be a bit of a
+slog but the instructions below will point you in the right direction.</p>
+</div>
+<div class="section" id="command-line-interface">
+<span id="command-line-prereq"></span><h3>Command-line interface<a class="headerlink" href="#command-line-interface" title="Permalink to this headline">¶</a></h3>
+<p>Unless something is wrong with your computer, there should be a way to
+open a window that lets you type in commands. Different operating
+systems give this tool slightly different names, but they all have some
+form of it, and there are alternative programs you can install as well.</p>
+<p>On Windows you can find the command-line interface by opening the
+&#8220;command prompt.&#8221; Here are instructions for <a class="reference external" href="http://windows.microsoft.com/en-us/windows/command-prompt-faq#1TC=windows-8">Windows
+8</a>
+and <a class="reference external" href="http://windows.microsoft.com/en-us/windows-vista/open-a-command-prompt-window">earlier
+versions</a>. On Apple computers, you open the <a class="reference external" href="http://blog.teamtreehouse.com/introduction-to-the-mac-os-x-command-line">&#8220;Terminal&#8221;
+application</a>. Ubuntu Linux comes with a program of the <a class="reference external" href="http://askubuntu.com/questions/38162/what-is-a-terminal-and-how-do-i-open-and-use-it">same
+name</a>.</p>
+</div>
+<div class="section" id="text-editor">
+<h3>Text editor<a class="headerlink" href="#text-editor" title="Permalink to this headline">¶</a></h3>
+<p>A program like Microsoft Word, which can do all sorts of text formatting
+like change the size and color of words, is not what you need. Do not
+try to use it below.</p>
+<p>You need a program that works with simple <a class="reference external" href="https://en.wikipedia.org/wiki/Text_file">&#8220;plain text&#8221;
+files</a>, and is therefore
+capable of editing documents containing Python code, HTML markup and
+other languages without dressing them up by adding anything extra. Such
+programs are easy to find and some of the best ones are free, including
+those below.</p>
+<p>For Windows, I recommend installing
+<a class="reference external" href="http://notepad-plus-plus.org/">Notepad++</a>. For Apple computers, try
+<a class="reference external" href="http://www.barebones.com/products/textwrangler/download.html">TextWrangler</a>.
+In Ubuntu Linux you can stick with the pre-installed
+<a class="reference external" href="https://help.ubuntu.com/community/gedit">gedit</a> text editor.</p>
+</div>
+<div class="section" id="python">
+<h3>Python<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h3>
+<p>If you are using Mac OSX or a common flavor of Linux, Python is probably
+already installed and you can test to see what version, if any, is there
+waiting for you by typing the following into your terminal.</p>
+<div class="code bash highlight-python"><div class="highlight"><pre>$ python -V
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You don&#8217;t have to type the &#8220;$&#8221; It&#8217;s just a generic symbol
+geeks use to show they&#8217;re working on the command line.</p>
+</div>
+<p>If you don&#8217;t have Python installed (a more likely fate for Windows
+users) try downloading and installing it from
+<a class="reference external" href="http://www.python.org/download/releases/2.7.6/">here</a>.</p>
+<p>In Windows, it&#8217;s also crucial to make sure that the Python program is
+available on your system&#8217;s <tt class="docutils literal"><span class="pre">PATH</span></tt> so it can be called from anywhere on
+the command line. <a class="reference external" href="http://showmedo.com/videotutorials/video?name=960000&amp;fromSeriesID=96">This
+screencast</a>
+can guide you through that process.</p>
+<p>Python 2.7 is preferred but you can probably find a way to make most of
+this tutorial work with other versions if you futz a little.</p>
+</div>
+<div class="section" id="pip">
+<span id="command-line-pip"></span><h3>pip<a class="headerlink" href="#pip" title="Permalink to this headline">¶</a></h3>
+<p>The <a class="reference external" href="https://pip.pypa.io/en/latest/">pip package
+manager</a> makes it
+easy to install open-source libraries that expand what you&#8217;re able to do
+with Python. Later, we will use it to install everything needed to
+create a working web application.</p>
+<p>If you don&#8217;t have it already, you can get pip by following <a class="reference external" href="https://pip.pypa.io/en/latest/installing.html">these
+instructions</a>.
+In Windows, it&#8217;s necessary to make sure that the Python <tt class="docutils literal"><span class="pre">Scripts</span></tt>
+directory is available on your system&#8217;s <tt class="docutils literal"><span class="pre">PATH</span></tt> so it can be called
+from anywhere on the command line. <a class="reference external" href="http://showmedo.com/videotutorials/video?name=960000&amp;fromSeriesID=96">This
+screencast</a>
+can help.</p>
+<p>Verify pip is installed with the following.</p>
+<div class="code bash highlight-python"><div class="highlight"><pre>$ pip -V
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="act-1-hello-django">
+<h2>Act 1: Hello Django<a class="headerlink" href="#act-1-hello-django" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Create a new Django project</li>
+<li>Configure the settings</li>
+<li>Create an app</li>
+<li>Fire up the runserver for the first time to look at default admin</li>
+</ul>
+</div>
+<div class="section" id="act-2-hello-models">
+<h2>Act 2: Hello models<a class="headerlink" href="#act-2-hello-models" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Draft a model to match our source CSV</li>
+<li>Write a management command that will load the CSV into the model</li>
+</ul>
+</div>
+<div class="section" id="act-3-hello-admin">
+<h2>Act 3: Hello admin<a class="headerlink" href="#act-3-hello-admin" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Create an admin to access and edit the new model</li>
+<li>Gradually refine it so it&#8217;s better</li>
+</ul>
+</div>
+<div class="section" id="afterparty-hello-internet">
+<h2>Afterparty: Hello internet<a class="headerlink" href="#afterparty-hello-internet" title="Permalink to this headline">¶</a></h2>
+<p>Instructions for after you get home about how to host it on Amazon or something like that.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">First django admin</a><ul>
+<li><a class="reference internal" href="#what-you-will-make">What you will make</a></li>
+<li><a class="reference internal" href="#prelude-prerequisites">Prelude: Prerequisites</a></li>
+<li><a class="reference internal" href="#act-1-hello-django">Act 1: Hello Django</a></li>
+<li><a class="reference internal" href="#act-2-hello-models">Act 2: Hello models</a></li>
+<li><a class="reference internal" href="#act-3-hello-admin">Act 3: Hello admin</a></li>
+<li><a class="reference internal" href="#afterparty-hello-internet">Afterparty: Hello internet</a></li>
+</ul>
+</li>
+</ul>
+
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/index.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li><a href="#">First Django Admin 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2015, Investigative Reporters and Editors.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>
