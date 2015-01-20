@@ -193,10 +193,6 @@ inside its sealed space. You only need to create the virtualenv once, but you&#8
 </pre></div>
 </div>
 <p>Make a new directory and move into it.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>mkdir code
-<span class="nv">$ </span><span class="nb">cd </span>code
-</pre></div>
-</div>
 <p>Use <tt class="docutils literal"><span class="pre">pip</span></tt> on the command line to install <a class="reference external" href="https://www.djangoproject.com/">Djang</a>, a Python &#8220;framework&#8221;
 we&#8217;ll use to put together our website.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>pip install Django
@@ -205,6 +201,14 @@ we&#8217;ll use to put together our website.</p>
 <p>Now use Django&#8217;s <tt class="docutils literal"><span class="pre">django-admin.py</span></tt> command to create a new &#8220;project&#8221; that will be organized according to the framework&#8217;s rules.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>django-admin.py startproject project
 </pre></div>
+</div>
+<p>Now jump into the project and we&#8217;ll start setting it up.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">cd </span>project
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Wonder what all those weird files are in your new directory? Read all about them in the <a class="reference external" href="https://docs.djangoproject.com/en/1.7/intro/tutorial01/#creating-a-project">official Django documentation</a>.</p>
 </div>
 <ul class="simple">
 <li>Configure the settings</li>

@@ -194,11 +194,6 @@ inside its sealed space. You only need to create the virtualenv once, but you'll
 
 Make a new directory and move into it.
 
-.. code-block:: bash
-
-    $ mkdir code
-    $ cd code
-
 Use ``pip`` on the command line to install `Djang <https://www.djangoproject.com/>`_, a Python "framework"
 we'll use to put together our website.
 
@@ -211,6 +206,16 @@ Now use Django's ``django-admin.py`` command to create a new "project" that will
 .. code-block:: bash
 
     $ django-admin.py startproject project
+
+Now jump into the project and we'll start setting it up. 
+
+.. code-block:: bash
+
+    $ cd project
+
+.. note::
+
+    Wonder what all those weird files are in your new directory? Read all about them in the `official Django documentation <https://docs.djangoproject.com/en/1.7/intro/tutorial01/#creating-a-project>`_.
 
 - Configure the settings
 - Create an app
