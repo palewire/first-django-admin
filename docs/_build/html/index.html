@@ -71,8 +71,7 @@ with plain text files</li>
 <li>Version 2.7 of the
 <a class="reference external" href="http://python.org/download/releases/2.7.6/">Python</a> programming
 language</li>
-<li>The <a class="reference external" href="https://pip.pypa.io/en/latest/installing.html">pip</a>
-package manager for Python</li>
+<li>The <a class="reference external" href="https://pip.pypa.io/en/latest/installing.html">pip</a> package manager and <a class="reference external" href="http://www.virtualenv.org/en/latest/">virtualenv</a> environment manager for Python</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -136,30 +135,78 @@ can guide you through that process.</p>
 <p>Python 2.7 is preferred but you can probably find a way to make most of
 this tutorial work with other versions if you futz a little.</p>
 </div>
-<div class="section" id="pip">
-<span id="command-line-pip"></span><h3>pip<a class="headerlink" href="#pip" title="Permalink to this headline">¶</a></h3>
-<p>The <a class="reference external" href="https://pip.pypa.io/en/latest/">pip package
-manager</a> makes it
-easy to install open-source libraries that expand what you&#8217;re able to do
-with Python. Later, we will use it to install everything needed to
-create a working web application.</p>
-<p>If you don&#8217;t have it already, you can get pip by following <a class="reference external" href="https://pip.pypa.io/en/latest/installing.html">these
-instructions</a>.
-In Windows, it&#8217;s necessary to make sure that the Python <tt class="docutils literal"><span class="pre">Scripts</span></tt>
-directory is available on your system&#8217;s <tt class="docutils literal"><span class="pre">PATH</span></tt> so it can be called
-from anywhere on the command line. <a class="reference external" href="http://showmedo.com/videotutorials/video?name=960000&amp;fromSeriesID=96">This
-screencast</a>
-can help.</p>
+</div>
+<div class="section" id="pip-and-virtualenv">
+<span id="command-line-pip"></span><h2>pip and virtualenv<a class="headerlink" href="#pip-and-virtualenv" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="https://pip.pypa.io/en/latest/">pip package manager</a>
+makes it easy to install open-source libraries that
+expand what you&#8217;re able to do with Python. Later, we will use it to install everything
+needed to create a working web application.</p>
+<p>If you don&#8217;t have it already, you can get pip by following
+<a class="reference external" href="https://pip.pypa.io/en/latest/installing.html">these instructions</a>. In Windows, it&#8217;s necessary to make sure that the
+Python <tt class="docutils literal"><span class="pre">Scripts</span></tt> directory is available on your system&#8217;s <tt class="docutils literal"><span class="pre">PATH</span></tt> so it can be called from anywhere on the command line. <a class="reference external" href="http://showmedo.com/videotutorials/video?name=960000&amp;fromSeriesID=96">This screencast</a> can help.</p>
 <p>Verify pip is installed with the following.</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ pip -V
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>pip -V
 </pre></div>
 </div>
+<p>The <a class="reference external" href="http://www.virtualenv.org/en/latest/">virtualenv environment manager</a>
+makes it possible to create an isolated corner of your computer where all the different
+tools you use to build an application are sealed off.</p>
+<p>It might not be obvious why you need this, but it quickly becomes important when you need to juggle different tools
+for different projects on one computer. By developing your applications inside separate
+virtualenv environments, you can use different versions of the same third-party Python libraries without a conflict.
+You can also more easily recreate your project on another machine, handy when
+you want to copy your code to a server that publishes pages on the Internet.</p>
+<p>You can check if virtualenv is installed with the following.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>virtualenv --version
+</pre></div>
 </div>
+<p>If you don&#8217;t have it, install it with pip.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>pip install virtualenv
+<span class="c"># If you&#39;re on a Mac or Linux and get an error saying you lack the right permissions, try it again as a superuser.</span>
+<span class="nv">$ </span>sudo pip install virtualenv
+</pre></div>
+</div>
+<p>If that doesn&#8217;t work, <a class="reference external" href="http://www.virtualenv.org/en/latest/virtualenv.html#installation">try following this advice</a>.</p>
 </div>
 <div class="section" id="act-1-hello-django">
-<h2>Act 1: Hello Django<a class="headerlink" href="#act-1-hello-django" title="Permalink to this headline">¶</a></h2>
+<span id="activate"></span><h2>Act 1: Hello Django<a class="headerlink" href="#act-1-hello-django" title="Permalink to this headline">¶</a></h2>
+<p>Start by creating a new development environment with virtualenv. Name it after our application.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="c"># You don&#39;t have to type the &quot;$&quot; It&#39;s just a generic symbol</span>
+<span class="c"># geeks use to show they&#39;re working on the command line.</span>
+<span class="nv">$ </span>virtualenv first-django-admin
+</pre></div>
+</div>
+<p>Jump into the directory it created.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">cd </span>first-django-admin
+</pre></div>
+</div>
+<p>Turn on the new virtualenv, which will instruct your terminal to only use those libraries installed
+inside its sealed space. You only need to create the virtualenv once, but you&#8217;ll need to repeat these
+&#8220;activation&#8221; steps each time you return to working on this project.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="c"># In Linux or Mac OSX try this...</span>
+<span class="nv">$ </span>. bin/activate
+<span class="c"># In Windows it might take something more like...</span>
+<span class="nv">$ </span><span class="nb">cd </span>Scripts
+<span class="nv">$ </span>activate
+<span class="nv">$ </span><span class="nb">cd</span> ..
+</pre></div>
+</div>
+<p>Make a new directory and move into it.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>mkdir code
+<span class="nv">$ </span><span class="nb">cd </span>code
+</pre></div>
+</div>
+<p>Use <tt class="docutils literal"><span class="pre">pip</span></tt> on the command line to install <a class="reference external" href="https://www.djangoproject.com/">Djang</a>, a Python &#8220;framework&#8221;
+we&#8217;ll use to put together our website.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>pip install Django
+</pre></div>
+</div>
+<p>Now use Django&#8217;s <tt class="docutils literal"><span class="pre">django-admin.py</span></tt> command to create a new &#8220;project&#8221; that will be organized according to the framework&#8217;s rules.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>django-admin.py startproject project
+</pre></div>
+</div>
 <ul class="simple">
-<li>Create a new Django project</li>
 <li>Configure the settings</li>
 <li>Create an app</li>
 <li>Fire up the runserver for the first time to look at default admin</li>
@@ -196,6 +243,7 @@ can help.</p>
 <li><a class="reference internal" href="#">First Django admin</a><ul>
 <li><a class="reference internal" href="#what-you-will-make">What you will make</a></li>
 <li><a class="reference internal" href="#prelude-prerequisites">Prelude: Prerequisites</a></li>
+<li><a class="reference internal" href="#pip-and-virtualenv">pip and virtualenv</a></li>
 <li><a class="reference internal" href="#act-1-hello-django">Act 1: Hello Django</a></li>
 <li><a class="reference internal" href="#act-2-hello-models">Act 2: Hello models</a></li>
 <li><a class="reference internal" href="#act-3-hello-admin">Act 3: Hello admin</a></li>

@@ -36,8 +36,8 @@ and working to participate.
 3. Version 2.7 of the
    `Python <http://python.org/download/releases/2.7.6/>`__ programming
    language
-4. The `pip <https://pip.pypa.io/en/latest/installing.html>`__
-   package manager for Python
+4. The `pip <https://pip.pypa.io/en/latest/installing.html>`_ package manager and `virtualenv <http://www.virtualenv.org/en/latest/>`_ environment manager for Python
+
 
 .. note::
 
@@ -115,34 +115,103 @@ this tutorial work with other versions if you futz a little.
 
 .. _command-line-pip:
 
-pip
-~~~
+pip and virtualenv
+------------------
 
-The `pip package
-manager <https://pip.pypa.io/en/latest/>`__ makes it
-easy to install open-source libraries that expand what you're able to do
-with Python. Later, we will use it to install everything needed to
-create a working web application.
+The `pip package manager <https://pip.pypa.io/en/latest/>`_
+makes it easy to install open-source libraries that 
+expand what you're able to do with Python. Later, we will use it to install everything
+needed to create a working web application. 
 
-If you don't have it already, you can get pip by following `these
-instructions <https://pip.pypa.io/en/latest/installing.html>`__.
-In Windows, it's necessary to make sure that the Python ``Scripts``
-directory is available on your system's ``PATH`` so it can be called
-from anywhere on the command line. `This
-screencast <http://showmedo.com/videotutorials/video?name=960000&fromSeriesID=96>`__
-can help.
+If you don't have it already, you can get pip by following 
+`these instructions <https://pip.pypa.io/en/latest/installing.html>`_. In Windows, it's necessary to make sure that the 
+Python ``Scripts`` directory is available on your system's ``PATH`` so it can be called from anywhere on the command line. `This screencast <http://showmedo.com/videotutorials/video?name=960000&fromSeriesID=96>`_ can help.
 
 Verify pip is installed with the following.
 
-.. code:: bash
+.. code-block:: bash
 
     $ pip -V
+
+The `virtualenv environment manager <http://www.virtualenv.org/en/latest/>`_
+makes it possible to create an isolated corner of your computer where all the different
+tools you use to build an application are sealed off. 
+
+It might not be obvious why you need this, but it quickly becomes important when you need to juggle different tools
+for different projects on one computer. By developing your applications inside separate
+virtualenv environments, you can use different versions of the same third-party Python libraries without a conflict.
+You can also more easily recreate your project on another machine, handy when
+you want to copy your code to a server that publishes pages on the Internet.
+
+You can check if virtualenv is installed with the following.
+
+.. code-block:: bash
+
+    $ virtualenv --version
+
+If you don't have it, install it with pip.
+
+.. code-block:: bash
+
+    $ pip install virtualenv
+    # If you're on a Mac or Linux and get an error saying you lack the right permissions, try it again as a superuser.
+    $ sudo pip install virtualenv
+
+If that doesn't work, `try following this advice <http://www.virtualenv.org/en/latest/virtualenv.html#installation>`_.
+
+.. _activate:
 
 
 Act 1: Hello Django
 -------------------
 
-- Create a new Django project
+Start by creating a new development environment with virtualenv. Name it after our application.
+
+.. code-block:: bash
+
+    # You don't have to type the "$" It's just a generic symbol 
+    # geeks use to show they're working on the command line.
+    $ virtualenv first-django-admin
+
+Jump into the directory it created.
+
+.. code-block:: bash
+
+    $ cd first-django-admin
+
+Turn on the new virtualenv, which will instruct your terminal to only use those libraries installed
+inside its sealed space. You only need to create the virtualenv once, but you'll need to repeat these
+"activation" steps each time you return to working on this project.
+
+.. code-block:: bash
+
+    # In Linux or Mac OSX try this...
+    $ . bin/activate
+    # In Windows it might take something more like...
+    $ cd Scripts
+    $ activate
+    $ cd ..
+
+Make a new directory and move into it.
+
+.. code-block:: bash
+
+    $ mkdir code
+    $ cd code
+
+Use ``pip`` on the command line to install `Djang <https://www.djangoproject.com/>`_, a Python "framework"
+we'll use to put together our website.
+
+.. code-block:: bash
+
+    $ pip install Django
+
+Now use Django's ``django-admin.py`` command to create a new "project" that will be organized according to the framework's rules.
+
+.. code-block:: bash
+
+    $ django-admin.py startproject project
+
 - Configure the settings
 - Create an app
 - Fire up the runserver for the first time to look at default admin
