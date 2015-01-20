@@ -1,6 +1,6 @@
 :tocdepth: 2
 
-First django admin
+First Django admin
 ==================
 
 A step-by-step guide to creating a simple web application that empowers you to enlist reporters in data entry and refinement.
@@ -8,7 +8,7 @@ A step-by-step guide to creating a simple web application that empowers you to e
 This guide in currently being developed by `Ben Welsh <http://palewi.re/who-is-ben-welsh/>`_ and Ken Schwencke for a workshop `scheduled for March 8 <http://ire.org/conferences/nicar2015/hands-on-training/>`_ at
 the 2015 conference of the National Institute for Computer-Assisted Reporting in Atlanta.
 
--  Code repository:
+-  Code:
    `github.com/ireapps/first-django-admin/ <https://github.com/ireapps/first-django-admin>`__
 -  Issues:
    `github.com/ireapps/first-django-admin/issues/ <https://github.com/ireapps/first-django-admin/issues>`__
@@ -16,9 +16,11 @@ the 2015 conference of the National Institute for Computer-Assisted Reporting in
 What you will make
 ------------------
 
-This tutorial will guide you through creating a custom Django administration panel where reporters can inspect, edit and augment a list of invitees to the Academy of Motion Picture Arts and Sciences, the elite organization that decides the Oscars.
+This tutorial will guide you through creating a custom Django administration panel where reporters can inspect, edit and augment a list of invitees to the `Academy of Motion Picture Arts and Sciences <http://www.oscars.org/>`_, the elite organization that decides the Oscars.
 
-In 2012, `a study by the Los Angeles Times <http://www.latimes.com/entertainment/movies/academy/la-et-unmasking-oscar-academy-project-html-htmlstory.html>`_ found the group is overwhelmingly white and male, which led to renewed calls to diversify the Oscar voting pool. By following the steps below, you will repeat The Times' work using the Academy's 2014 list of new invitees, creating a system to share the load of producing a follow-up story in `this vein <http://www.latimes.com/entertainment/envelope/moviesnow/la-et-mn-diversity-oscar-academy-members-20131221-story.html>`_.
+In 2012, `a study by the Los Angeles Times <http://www.latimes.com/entertainment/movies/academy/la-et-unmasking-oscar-academy-project-html-htmlstory.html>`_ found the group is overwhelmingly white and male, which led to renewed calls to diversify the Oscar voting pool. A new list was used to write `a follow-up story <http://www.latimes.com/entertainment/envelope/moviesnow/la-et-mn-diversity-oscar-academy-members-20131221-story.html>`_ in 2013. The analysis appeared on the front page `again in early 2015 <http://www.latimes.com/entertainment/movies/la-et-mn-oscar-nominations-diversity-20150116-story.html#page=1>`_ when the academy was criticized after announcing a `virtually all-white slate <http://graphics.latimes.com/oscar-nominees-2015/>`_ of nominees.
+
+By following the steps below, you will repeat The Times' work using the academy's 2014 list of new invitees, creating a system to share the load of producing a follow-up story in `this vein <http://www.latimes.com/entertainment/envelope/moviesnow/la-et-mn-diversity-oscar-academy-members-20131221-story.html>`_.
 
 Prelude: Prerequisites
 ----------------------
