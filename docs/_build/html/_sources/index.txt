@@ -215,7 +215,7 @@ Now jump into the project and we'll start setting it up.
 
 .. note::
 
-    Wonder what all those weird files are in your new directory? Read all about them in the `official Django documentation <https://docs.djangoproject.com/en/1.7/intro/tutorial01/#creating-a-project>`_.
+    Wonder what all those weird files are in your new directory? We'll only need a couple for this tutorial, but you can read about all of them in the `official Django documentation <https://docs.djangoproject.com/en/1.7/intro/tutorial01/#creating-a-project>`_.
 
 - Configure the settings
 - Create an app
