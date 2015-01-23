@@ -198,8 +198,8 @@ we&#8217;ll use to put together our website.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>pip install Django
 </pre></div>
 </div>
-<p>Now use Django&#8217;s <tt class="docutils literal"><span class="pre">django-admin.py</span></tt> command to create a new &#8220;project&#8221; that will be organized according to the framework&#8217;s rules.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>django-admin.py startproject project
+<p>Now use Django&#8217;s <tt class="docutils literal"><span class="pre">django-admin</span></tt> command to create a new &#8220;project&#8221; that will be organized according to the framework&#8217;s rules.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>django-admin startproject project
 </pre></div>
 </div>
 <p>Now jump into the project and we&#8217;ll start setting it up.</p>
@@ -208,11 +208,25 @@ we&#8217;ll use to put together our website.</p>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Wonder what all those weird files are in your new directory? We&#8217;ll only need a couple for this tutorial, but you can read about all of them in the <a class="reference external" href="https://docs.djangoproject.com/en/1.7/intro/tutorial01/#creating-a-project">official Django documentation</a>.</p>
+<p class="last">Run the <tt class="docutils literal"><span class="pre">ls</span></tt> command, which lists the files in your current location. Wonder what all those weird files are in your new directory? We&#8217;ll only need a couple for this tutorial, but you can read about all of them in the <a class="reference external" href="https://docs.djangoproject.com/en/1.7/intro/tutorial01/#creating-a-project">official Django documentation</a>.</p>
 </div>
 <ul class="simple">
-<li>Configure the settings</li>
-<li>Create an app</li>
+<li>Configure the settings (How much do we explain?)</li>
+</ul>
+<p>Go back one directory before you create your app, which should exist alongside the project folder.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">cd</span> ..
+</pre></div>
+</div>
+<p>Now let&#8217;s create the app. In Django terms, an &#8220;app&#8221; is a group of code files that describe the information in your database and how it functions in the Django admin. Optionally, it describes how you output the information into web pages or APIs.</p>
+<p>Your app will have simple models to encapsulate the data in the Academy CSV, as well as fields we are interested in filling later for data collection</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>django-admin startapp academy
+</pre></div>
+</div>
+<p>The startapp command just created a barebones Django app for you. Jump in and let&#8217;s see what files are there.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">cd </span>academy
+</pre></div>
+</div>
+<ul class="simple">
 <li>Fire up the runserver for the first time to look at default admin</li>
 </ul>
 </div>

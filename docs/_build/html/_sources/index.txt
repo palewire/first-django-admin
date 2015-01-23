@@ -201,11 +201,11 @@ we'll use to put together our website.
 
     $ pip install Django
 
-Now use Django's ``django-admin.py`` command to create a new "project" that will be organized according to the framework's rules.
+Now use Django's ``django-admin`` command to create a new "project" that will be organized according to the framework's rules.
 
 .. code-block:: bash
 
-    $ django-admin.py startproject project
+    $ django-admin startproject project
 
 Now jump into the project and we'll start setting it up. 
 
@@ -215,10 +215,30 @@ Now jump into the project and we'll start setting it up.
 
 .. note::
 
-    Wonder what all those weird files are in your new directory? We'll only need a couple for this tutorial, but you can read about all of them in the `official Django documentation <https://docs.djangoproject.com/en/1.7/intro/tutorial01/#creating-a-project>`_.
+    Run the ``ls`` command, which lists the files in your current location. Wonder what all those weird files are in your new directory? We'll only need a couple for this tutorial, but you can read about all of them in the `official Django documentation <https://docs.djangoproject.com/en/1.7/intro/tutorial01/#creating-a-project>`_.
 
-- Configure the settings
-- Create an app
+- Configure the settings (How much do we explain?) 
+
+Go back one directory before you create your app, which should exist alongside the project folder.
+
+.. code-block:: bash
+
+    $ cd ..
+
+Now let's create the app. In Django terms, an "app" is a group of code files that describe the information in your database and how it functions in the Django admin. Optionally, it describes how you output the information into web pages or APIs.
+
+Your app will have simple models to encapsulate the data in the Academy CSV, as well as fields we are interested in filling later for data collection
+
+.. code-block:: bash
+
+   $ django-admin startapp academy
+
+The startapp command just created a barebones Django app for you. Jump in and let's see what files are there.
+
+.. code-block:: bash
+
+    $ cd academy
+
 - Fire up the runserver for the first time to look at default admin
 
 Act 2: Hello models
