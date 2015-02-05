@@ -489,7 +489,7 @@ Then create a new superuser with permission to edit all records.
 - Create an admin to access and edit the new model
 - Gradually refine it so it's better
 
-Act 5: Hello Internet
+Act 5: Hello newsroom
 ---------------------
 
 Instructions for after you get home about how to host it on Amazon or something like that.
