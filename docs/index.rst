@@ -5,6 +5,8 @@ First Django admin
 
 A step-by-step guide to creating a simple web application that empowers you to enlist reporters in data entry and refinement.
 
+You will learn just enough about the [Django](https://www.djangoproject.com/) framework to design database tables, load in data and create an administration panel for others to improve it. You will not bother with all the other web developer crap.
+
 This guide in currently being developed by `Ben Welsh <http://palewi.re/who-is-ben-welsh/>`_ and Ken Schwencke for a workshop `scheduled for March 8 <http://ire.org/conferences/nicar2015/hands-on-training/>`_ at
 the 2015 conference of the National Institute for Computer-Assisted Reporting in Atlanta.
 
@@ -119,12 +121,12 @@ pip and virtualenv
 ------------------
 
 The `pip package manager <https://pip.pypa.io/en/latest/>`_
-makes it easy to install open-source libraries that 
+makes it easy to install open-source libraries that
 expand what you're able to do with Python. Later, we will use it to install everything
-needed to create a working web application. 
+needed to create a working web application.
 
-If you don't have it already, you can get pip by following 
-`these instructions <https://pip.pypa.io/en/latest/installing.html>`_. In Windows, it's necessary to make sure that the 
+If you don't have it already, you can get pip by following
+`these instructions <https://pip.pypa.io/en/latest/installing.html>`_. In Windows, it's necessary to make sure that the
 Python ``Scripts`` directory is available on your system's ``PATH`` so it can be called from anywhere on the command line. `This screencast <http://showmedo.com/videotutorials/video?name=960000&fromSeriesID=96>`_ can help.
 
 Verify pip is installed with the following.
@@ -135,7 +137,7 @@ Verify pip is installed with the following.
 
 The `virtualenv environment manager <http://www.virtualenv.org/en/latest/>`_
 makes it possible to create an isolated corner of your computer where all the different
-tools you use to build an application are sealed off. 
+tools you use to build an application are sealed off.
 
 It might not be obvious why you need this, but it quickly becomes important when you need to juggle different tools
 for different projects on one computer. By developing your applications inside separate
@@ -169,7 +171,7 @@ Start by creating a new development environment with virtualenv. Name it after o
 
 .. code-block:: bash
 
-    # You don't have to type the "$" It's just a generic symbol 
+    # You don't have to type the "$" It's just a generic symbol
     # geeks use to show they're working on the command line.
     $ virtualenv first-django-admin
 
@@ -207,7 +209,7 @@ Now use Django's ``django-admin`` command to create a new "project" that will be
 
     $ django-admin startproject project
 
-Now jump into the project and we'll start setting it up. 
+Now jump into the project and we'll start setting it up.
 
 .. code-block:: bash
 
@@ -217,7 +219,7 @@ Now jump into the project and we'll start setting it up.
 
     Run the ``ls`` command, which lists the files in your current location. Wonder what all those weird files are in your new directory? We'll only need a couple for this tutorial, but you can read about all of them in the `official Django documentation <https://docs.djangoproject.com/en/1.7/intro/tutorial01/#creating-a-project>`_.
 
-- Configure the settings (How much do we explain?) 
+- Configure the settings (How much do we explain?)
 
 Go back one directory before you create your app, which should exist alongside the project folder.
 
