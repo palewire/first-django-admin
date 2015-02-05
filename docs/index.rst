@@ -435,8 +435,8 @@ Now run the ``migrate`` command to execute it.
 
     $ python manage.py migrate academy
 
-Act 3: Hello CSV loader
------------------------
+Act 3: Hello loader
+-------------------
 
 - Create a new management command directory
 - Put our loader command in it
