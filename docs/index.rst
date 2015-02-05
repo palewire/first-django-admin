@@ -217,15 +217,30 @@ Now jump into the project and we'll start setting it up.
 
 .. note::
 
-    Run the ``ls`` command, which lists the files in your current location. Wonder what all those weird files are in your new directory? We'll only need a couple for this tutorial, but you can read about all of them in the `official Django documentation <https://docs.djangoproject.com/en/1.7/intro/tutorial01/#creating-a-project>`_.
+    Run the ``ls`` command (``dir`` on Windows), which lists the files in your current location. Wonder what all those weird files are in your new directory? We'll only need a couple for this tutorial, but you can read about all of them in the `official Django documentation <https://docs.djangoproject.com/en/1.7/intro/tutorial01/#creating-a-project>`_.
 
-- Configure the settings (How much do we explain?)
+There is a lot of `configuration <https://docs.djangoproject.com/en/1.7/intro/tutorial01/#database-setup>`_ that could be done at this point, but we're going to advance with all of the Django defaults in place.
 
-Go back one directory before you create your app, which should exist alongside the project folder.
+The first step is creating your database, which will appear as new `SQLLite <https://en.wikipedia.org/wiki/SQLite>`_ file named ``db.sqlite3``.
 
 .. code-block:: bash
 
-    $ cd ..
+    $ python manage.py migrate
+
+Now fire up Django's built-in web server.
+
+.. code-block:: bash
+
+    $ python manage.py runserver
+
+And visit `localhost:8000 <http://localhost:8000>`_ in your browser to see Django in action. Here's what you should see.
+
+.. image:: /_static/hello-django.png
+
+Congratulations. You've installed Django and got a blank site started up and working. Now the real work begins.
+
+Act 2: Hello models
+-------------------
 
 Now let's create the app. In Django terms, an "app" is a group of code files that describe the information in your database and how it functions in the Django admin. Optionally, it describes how you output the information into web pages or APIs.
 
@@ -241,16 +256,17 @@ The startapp command just created a barebones Django app for you. Jump in and le
 
     $ cd academy
 
-- Fire up the runserver for the first time to look at default admin
-
-Act 2: Hello models
--------------------
-
 - Draft a model to match our source CSV
 - Write a management command that will load the CSV into the model
 
 Act 3: Hello admin
 ------------------
+
+Then create a new superuser with permission to edit all records.
+
+.. code-block:: bash
+
+    $ python manage.py createsuperuser
 
 - Create an admin to access and edit the new model
 - Gradually refine it so it's better

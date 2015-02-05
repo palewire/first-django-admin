@@ -44,6 +44,7 @@
   <div class="section" id="first-django-admin">
 <h1>First Django admin<a class="headerlink" href="#first-django-admin" title="Permalink to this headline">¶</a></h1>
 <p>A step-by-step guide to creating a simple web application that empowers you to enlist reporters in data entry and refinement.</p>
+<p>You will learn just enough about the [Django](<a class="reference external" href="https://www.djangoproject.com/">https://www.djangoproject.com/</a>) framework to design database tables, load in data and create an administration panel for others to improve it. You will not bother with all the other web developer crap.</p>
 <p>This guide in currently being developed by <a class="reference external" href="http://palewi.re/who-is-ben-welsh/">Ben Welsh</a> and Ken Schwencke for a workshop <a class="reference external" href="http://ire.org/conferences/nicar2015/hands-on-training/">scheduled for March 8</a> at
 the 2015 conference of the National Institute for Computer-Assisted Reporting in Atlanta.</p>
 <ul class="simple">
@@ -208,15 +209,22 @@ we&#8217;ll use to put together our website.</p>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Run the <tt class="docutils literal"><span class="pre">ls</span></tt> command, which lists the files in your current location. Wonder what all those weird files are in your new directory? We&#8217;ll only need a couple for this tutorial, but you can read about all of them in the <a class="reference external" href="https://docs.djangoproject.com/en/1.7/intro/tutorial01/#creating-a-project">official Django documentation</a>.</p>
+<p class="last">Run the <tt class="docutils literal"><span class="pre">ls</span></tt> command (<tt class="docutils literal"><span class="pre">dir</span></tt> on Windows), which lists the files in your current location. Wonder what all those weird files are in your new directory? We&#8217;ll only need a couple for this tutorial, but you can read about all of them in the <a class="reference external" href="https://docs.djangoproject.com/en/1.7/intro/tutorial01/#creating-a-project">official Django documentation</a>.</p>
 </div>
-<ul class="simple">
-<li>Configure the settings (How much do we explain?)</li>
-</ul>
-<p>Go back one directory before you create your app, which should exist alongside the project folder.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">cd</span> ..
+<p>There is a lot of <a class="reference external" href="https://docs.djangoproject.com/en/1.7/intro/tutorial01/#database-setup">configuration</a> that could be done at this point, but we&#8217;re going to advance with all of the Django defaults in place.</p>
+<p>The first step is creating your database, which will appear as new <a class="reference external" href="https://en.wikipedia.org/wiki/SQLite">SQLLite</a> file named <tt class="docutils literal"><span class="pre">db.sqlite3</span></tt>.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>python manage.py migrate
 </pre></div>
 </div>
+<p>Now fire up Django&#8217;s built-in web server.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>python manage.py runserver
+</pre></div>
+</div>
+<p>And visit <a class="reference external" href="http://localhost:8000">localhost:8000</a> in your browser to see Django in action.</p>
+<img alt="_images/hello-django.png" src="_images/hello-django.png" />
+</div>
+<div class="section" id="act-2-hello-models">
+<h2>Act 2: Hello models<a class="headerlink" href="#act-2-hello-models" title="Permalink to this headline">¶</a></h2>
 <p>Now let&#8217;s create the app. In Django terms, an &#8220;app&#8221; is a group of code files that describe the information in your database and how it functions in the Django admin. Optionally, it describes how you output the information into web pages or APIs.</p>
 <p>Your app will have simple models to encapsulate the data in the Academy CSV, as well as fields we are interested in filling later for data collection</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>django-admin startapp academy
@@ -227,18 +235,16 @@ we&#8217;ll use to put together our website.</p>
 </pre></div>
 </div>
 <ul class="simple">
-<li>Fire up the runserver for the first time to look at default admin</li>
-</ul>
-</div>
-<div class="section" id="act-2-hello-models">
-<h2>Act 2: Hello models<a class="headerlink" href="#act-2-hello-models" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
 <li>Draft a model to match our source CSV</li>
 <li>Write a management command that will load the CSV into the model</li>
 </ul>
 </div>
 <div class="section" id="act-3-hello-admin">
 <h2>Act 3: Hello admin<a class="headerlink" href="#act-3-hello-admin" title="Permalink to this headline">¶</a></h2>
+<p>Then create a new superuser with permission to edit all records.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>python manage.py createsuperuser
+</pre></div>
+</div>
 <ul class="simple">
 <li>Create an admin to access and edit the new model</li>
 <li>Gradually refine it so it&#8217;s better</li>

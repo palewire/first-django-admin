@@ -14,3 +14,4 @@ sphinx-autobuild==0.4.0
 tornado==4.0.2
 watchdog==0.8.2
 wsgiref==0.1.2
+Django==1.7.4
