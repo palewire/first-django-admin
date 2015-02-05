@@ -22,7 +22,7 @@ This tutorial will guide you through creating a custom Django administration pan
 
 In 2012, `a study by the Los Angeles Times <http://www.latimes.com/entertainment/movies/academy/la-et-unmasking-oscar-academy-project-html-htmlstory.html>`_ found that the group is overwhelmingly white and male, which led to renewed calls to diversify the Oscar voting pool. A new list was used to write `a follow-up story <http://www.latimes.com/entertainment/envelope/moviesnow/la-et-mn-diversity-oscar-academy-members-20131221-story.html>`_ in 2013. The analysis appeared on the front page `again in early 2015 <http://www.latimes.com/entertainment/movies/la-et-mn-oscar-nominations-diversity-20150116-story.html#page=1>`_ when the academy was criticized after announcing a `virtually all-white slate <http://graphics.latimes.com/oscar-nominees-2015/>`_ of nominees.
 
-By following the steps below, you will repeat The Times' work using the academy's 2014 list of new invitees, creating a system to share the load of producing a follow-up story in `this vein <http://www.latimes.com/entertainment/envelope/moviesnow/la-et-mn-diversity-oscar-academy-members-20131221-story.html>`_.
+By following the steps below, you will repeat The Times' work using the academy's 2014 invitation list, creating a system to share the load of producing a follow-up story in `this vein <http://www.latimes.com/entertainment/envelope/moviesnow/la-et-mn-diversity-oscar-academy-members-20131221-story.html>`_.
 
 Prelude: Prerequisites
 ----------------------
