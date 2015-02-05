@@ -118,7 +118,7 @@ this tutorial work with other versions if you futz a little.
 .. _command-line-pip:
 
 pip and virtualenv
-------------------
+~~~~~~~~~~~~~~~~~~
 
 The `pip package manager <https://pip.pypa.io/en/latest/>`_
 makes it easy to install open-source libraries that
