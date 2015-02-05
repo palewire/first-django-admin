@@ -44,7 +44,7 @@
   <div class="section" id="first-django-admin">
 <h1>First Django admin<a class="headerlink" href="#first-django-admin" title="Permalink to this headline">¶</a></h1>
 <p>A step-by-step guide to creating a simple web application that empowers you to enlist reporters in data entry and refinement.</p>
-<p>You will learn just enough about the [Django](<a class="reference external" href="https://www.djangoproject.com/">https://www.djangoproject.com/</a>) framework to design database tables, load in data and create an administration panel for others to improve it. You will not bother with all the other web developer crap.</p>
+<p>You will learn just enough about the <a class="reference external" href="https://www.djangoproject.com/">Django</a> framework to design database tables, load in data and create an administration panel for others to improve it. You will not bother with all the other web developer crap.</p>
 <p>This guide in currently being developed by <a class="reference external" href="http://palewi.re/who-is-ben-welsh/">Ben Welsh</a> and Ken Schwencke for a workshop <a class="reference external" href="http://ire.org/conferences/nicar2015/hands-on-training/">scheduled for March 8</a> at
 the 2015 conference of the National Institute for Computer-Assisted Reporting in Atlanta.</p>
 <ul class="simple">
@@ -216,28 +216,140 @@ we&#8217;ll use to put together our website.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>python manage.py migrate
 </pre></div>
 </div>
-<p>Now fire up Django&#8217;s built-in web server.</p>
+<p>Fire up Django&#8217;s built-in web server.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>python manage.py runserver
 </pre></div>
 </div>
-<p>And visit <a class="reference external" href="http://localhost:8000">localhost:8000</a> in your browser to see Django in action.</p>
+<p>Visit <a class="reference external" href="http://localhost:8000">localhost:8000</a> in your browser to see Django in action. Here&#8217;s what you should see.</p>
 <img alt="_images/hello-django.png" src="_images/hello-django.png" />
+<p>Congratulations. You&#8217;ve installed Django and got a blank site started up and working. Now the real work begins.</p>
 </div>
 <div class="section" id="act-2-hello-models">
 <h2>Act 2: Hello models<a class="headerlink" href="#act-2-hello-models" title="Permalink to this headline">¶</a></h2>
-<p>Now let&#8217;s create the app. In Django terms, an &#8220;app&#8221; is a group of code files that describe the information in your database and how it functions in the Django admin. Optionally, it describes how you output the information into web pages or APIs.</p>
-<p>Your app will have simple models to encapsulate the data in the Academy CSV, as well as fields we are interested in filling later for data collection</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>django-admin startapp academy
+<p>Now we create our app. In Django terms, an app is a collection of files that do something, like publish a blog or store public records. A project, like we made above, collects those apps and organizes them into a working website.</p>
+<p>You can create a new app with Django&#8217;s <a href="#id1"><span class="problematic" id="id2">``</span></a>startapp` command. Since we are aiming to make a list of people invited to join the academy, naming this one isn&#8217;t too hard.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>python manage.py startapp academy
 </pre></div>
 </div>
-<p>The startapp command just created a barebones Django app for you. Jump in and let&#8217;s see what files are there.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">cd </span>academy
+<p>There should now be a new <tt class="docutils literal"><span class="pre">academy</span></tt> folder in your project. If you look inside you will see that Django created a series of files common to every app.</p>
+<p>We will only be using two of them in this tutorial. The file called <tt class="docutils literal"><span class="pre">models.py</span></tt> is where we will design our database tables. Another called <tt class="docutils literal"><span class="pre">admin.py</span></tt> is where we will configure the panels where reporters will be able to enrich the source data.</p>
+<p>But before we do any of that, we need to configure out project to include our new apps. Use your text editor to open the file <tt class="docutils literal"><span class="pre">settings.py</span></tt> in the <tt class="docutils literal"><span class="pre">project</span></tt> directory. Add our app, <tt class="docutils literal"><span class="pre">academy</span></tt>, to the <tt class="docutils literal"><span class="pre">INSTALLED_APPS</span></tt> list you find there.</p>
+<div class="highlight-python"><div class="highlight"><pre>  <span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">(</span>
+      <span class="s">&#39;django.contrib.admin&#39;</span><span class="p">,</span>
+      <span class="s">&#39;django.contrib.auth&#39;</span><span class="p">,</span>
+      <span class="s">&#39;django.contrib.contenttypes&#39;</span><span class="p">,</span>
+      <span class="s">&#39;django.contrib.sessions&#39;</span><span class="p">,</span>
+      <span class="s">&#39;django.contrib.messages&#39;</span><span class="p">,</span>
+      <span class="s">&#39;django.contrib.staticfiles&#39;</span><span class="p">,</span>
+<span class="hll">      <span class="s">&#39;academy&#39;</span><span class="p">,</span>
+</span>  <span class="p">)</span>
 </pre></div>
 </div>
-<ul class="simple">
-<li>Draft a model to match our source CSV</li>
-<li>Write a management command that will load the CSV into the model</li>
-</ul>
+<p>Next open up the <tt class="docutils literal"><span class="pre">models.py</span></tt> file in the <tt class="docutils literal"><span class="pre">academy</span></tt> app&#8217;s directory. Here we will use Django&#8217;s built-in <a class="reference external" href="https://docs.djangoproject.com/en/1.7/topics/db/models/">models</a> system to design a database table to hold the source data.</p>
+<p>Each table is defined using a Python <a class="reference external" href="http://www.learnpython.org/en/Classes_and_Objects">class</a> that inherits special powers from Django allowing it to syncronize with an underlying database. Our work begins by creating our class and naming it after the data we&#8217;ll put inside.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
+
+<span class="c"># Create your models here.</span>
+<span class="hll"><span class="k">class</span> <span class="nc">Invite</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">BaseModel</span><span class="p">):</span>
+</span></pre></div>
+</div>
+<p>Next, like any good database table, it needs some fields.</p>
+<p>If you open <a class="reference external" href="https://github.com/ireapps/first-django-admin/blob/master/academy_invites_2014.csv">the source CSV</a>, you will see that is has only two fields: name and branch. Both are filled with characters (as opposed to other data types like integers or dates).</p>
+<p>Django also has some <a class="reference external" href="https://docs.djangoproject.com/en/1.7/ref/models/fields/">fancy tricks</a> for defining fields. Use them to define the fields from our source data.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Watch out. You&#8217;ll need to carefully indent your code according to Python&#8217;s very <a class="reference external" href="http://www.diveintopython.net/getting_to_know_python/indenting_code.html">strict rules</a> for this to work.</p>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>  <span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
+
+  <span class="c"># Create your models here.</span>
+  <span class="k">class</span> <span class="nc">Invite</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="hll">      <span class="n">name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+</span><span class="hll">      <span class="n">branch</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+</span></pre></div>
+</div>
+<p>Now let&#8217;s add a few more fields that we will ask the reporters to figure out and fill in. We&#8217;ll use another Django trick, the <tt class="docutils literal"><span class="pre">choices</span></tt> option, to make some of them multiple-choice fields rather than free text.</p>
+<p>First gender.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
+
+<span class="c"># Create your models here.</span>
+<span class="k">class</span> <span class="nc">Invite</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+    <span class="n">branch</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+<span class="hll">    <span class="n">GENDER_CHOICES</span> <span class="o">=</span> <span class="p">(</span>
+</span><span class="hll">      <span class="p">(</span><span class="s">&quot;M&quot;</span><span class="p">,</span> <span class="s">&quot;Male&quot;</span><span class="p">),</span>
+</span><span class="hll">      <span class="p">(</span><span class="s">&quot;F&quot;</span><span class="p">,</span> <span class="s">&quot;Female&quot;</span><span class="p">),</span>
+</span><span class="hll">      <span class="p">(</span><span class="s">&quot;?&quot;</span><span class="p">,</span> <span class="s">&quot;Unknown&quot;</span><span class="p">)</span>
+</span><span class="hll">    <span class="p">)</span>
+</span><span class="hll">    <span class="n">gender</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
+</span><span class="hll">        <span class="n">max_length</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+</span><span class="hll">        <span class="n">choices</span><span class="o">=</span><span class="n">GENDER_CHOICES</span><span class="p">,</span>
+</span><span class="hll">        <span class="n">default</span><span class="o">=</span><span class="s">&quot;?&quot;</span>
+</span><span class="hll">    <span class="p">)</span>
+</span></pre></div>
+</div>
+<p>Then date of birth.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
+
+<span class="c"># Create your models here.</span>
+<span class="k">class</span> <span class="nc">Invite</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+    <span class="n">branch</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+    <span class="n">GENDER_CHOICES</span> <span class="o">=</span> <span class="p">(</span>
+      <span class="p">(</span><span class="s">&quot;M&quot;</span><span class="p">,</span> <span class="s">&quot;Male&quot;</span><span class="p">),</span>
+      <span class="p">(</span><span class="s">&quot;F&quot;</span><span class="p">,</span> <span class="s">&quot;Female&quot;</span><span class="p">),</span>
+      <span class="p">(</span><span class="s">&quot;?&quot;</span><span class="p">,</span> <span class="s">&quot;Unknown&quot;</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="n">gender</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
+        <span class="n">max_length</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">choices</span><span class="o">=</span><span class="n">GENDER_CHOICES</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="s">&quot;?&quot;</span>
+    <span class="p">)</span>
+<span class="hll">    <span class="n">date_of_birth</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateField</span><span class="p">(</span><span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</span></pre></div>
+</div>
+<p>Finally race.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
+
+<span class="c"># Create your models here.</span>
+<span class="k">class</span> <span class="nc">Invite</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+    <span class="n">branch</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+    <span class="n">GENDER_CHOICES</span> <span class="o">=</span> <span class="p">(</span>
+      <span class="p">(</span><span class="s">&quot;M&quot;</span><span class="p">,</span> <span class="s">&quot;Male&quot;</span><span class="p">),</span>
+      <span class="p">(</span><span class="s">&quot;F&quot;</span><span class="p">,</span> <span class="s">&quot;Female&quot;</span><span class="p">),</span>
+      <span class="p">(</span><span class="s">&quot;?&quot;</span><span class="p">,</span> <span class="s">&quot;Unknown&quot;</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="n">gender</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
+        <span class="n">max_length</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">choices</span><span class="o">=</span><span class="n">GENDER_CHOICES</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="s">&quot;?&quot;</span>
+    <span class="p">)</span>
+    <span class="n">date_of_birth</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateField</span><span class="p">(</span><span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="hll">    <span class="n">RACE_CHOICES</span> <span class="o">=</span> <span class="p">(</span>
+</span><span class="hll">        <span class="p">(</span><span class="s">&quot;ASIAN&quot;</span><span class="p">,</span> <span class="s">&quot;Asian&quot;</span><span class="p">),</span>
+</span><span class="hll">        <span class="p">(</span><span class="s">&quot;BLACK&quot;</span><span class="p">,</span> <span class="s">&quot;Black&quot;</span><span class="p">),</span>
+</span><span class="hll">        <span class="p">(</span><span class="s">&quot;LATINO&quot;</span><span class="p">,</span> <span class="s">&quot;Latino&quot;</span><span class="p">),</span>
+</span><span class="hll">        <span class="p">(</span><span class="s">&quot;WHITE&quot;</span><span class="p">,</span> <span class="s">&quot;White&quot;</span><span class="p">),</span>
+</span><span class="hll">        <span class="p">(</span><span class="s">&quot;OTHER&quot;</span><span class="p">,</span> <span class="s">&quot;Other&quot;</span><span class="p">),</span>
+</span><span class="hll">        <span class="p">(</span><span class="s">&quot;?&quot;</span><span class="p">,</span> <span class="s">&quot;Unknown&quot;</span><span class="p">),</span>
+</span><span class="hll">    <span class="p">)</span>
+</span><span class="hll">    <span class="n">race</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
+</span><span class="hll">        <span class="n">max_length</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+</span><span class="hll">        <span class="n">choices</span><span class="o">=</span><span class="n">RACE_CHOICES</span><span class="p">,</span>
+</span><span class="hll">        <span class="n">default</span><span class="o">=</span><span class="s">&quot;?&quot;</span>
+</span><span class="hll">    <span class="p">)</span>
+</span></pre></div>
+</div>
+<p>Congratulations, you&#8217;ve written your first model. But it won&#8217;t be created as a real table in your database until you run what Django calls a &#8220;migration.&#8221; That&#8217;s just a fancy word for syncing our models files.</p>
+<p>Make sure to save your <a href="#id3"><span class="problematic" id="id4">``</span></a>models.py``file. Then design the migration for your new model.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>python manage.py makemigrations academy
+</pre></div>
+</div>
+<p>Now run the <tt class="docutils literal"><span class="pre">migrate</span></tt> command to execute it.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>python manage.py migrate academy
+</pre></div>
+</div>
 </div>
 <div class="section" id="act-3-hello-admin">
 <h2>Act 3: Hello admin<a class="headerlink" href="#act-3-hello-admin" title="Permalink to this headline">¶</a></h2>

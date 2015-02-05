@@ -227,13 +227,13 @@ The first step is creating your database, which will appear as new `SQLLite <htt
 
     $ python manage.py migrate
 
-Now fire up Django's built-in web server.
+Fire up Django's built-in web server.
 
 .. code-block:: bash
 
     $ python manage.py runserver
 
-And visit `localhost:8000 <http://localhost:8000>`_ in your browser to see Django in action. Here's what you should see.
+Visit `localhost:8000 <http://localhost:8000>`_ in your browser to see Django in action. Here's what you should see.
 
 .. image:: /_static/hello-django.png
 
@@ -242,22 +242,161 @@ Congratulations. You've installed Django and got a blank site started up and wor
 Act 2: Hello models
 -------------------
 
-Now let's create the app. In Django terms, an "app" is a group of code files that describe the information in your database and how it functions in the Django admin. Optionally, it describes how you output the information into web pages or APIs.
+Now we create our app. In Django terms, an app is a collection of files that do something, like publish a blog or store public records. A project, like we made above, collects those apps and organizes them into a working website.
 
-Your app will have simple models to encapsulate the data in the Academy CSV, as well as fields we are interested in filling later for data collection
-
-.. code-block:: bash
-
-   $ django-admin startapp academy
-
-The startapp command just created a barebones Django app for you. Jump in and let's see what files are there.
+You can create a new app with Django's ``startapp` command. Since we are aiming to make a list of people invited to join the academy, naming this one isn't too hard.
 
 .. code-block:: bash
 
-    $ cd academy
+   $ python manage.py startapp academy
 
-- Draft a model to match our source CSV
-- Write a management command that will load the CSV into the model
+There should now be a new ``academy`` folder in your project. If you look inside you will see that Django created a series of files common to every app.
+
+We will only be using two of them in this tutorial. The file called ``models.py`` is where we will design our database tables. Another called ``admin.py`` is where we will configure the panels where reporters will be able to enrich the source data.
+
+But before we do any of that, we need to configure out project to include our new apps. Use your text editor to open the file ``settings.py`` in the ``project`` directory. Add our app, ``academy``, to the ``INSTALLED_APPS`` list you find there.
+
+.. code-block:: python
+  :emphasize-lines: 8
+
+    INSTALLED_APPS = (
+        'django.contrib.admin',
+        'django.contrib.auth',
+        'django.contrib.contenttypes',
+        'django.contrib.sessions',
+        'django.contrib.messages',
+        'django.contrib.staticfiles',
+        'academy',
+    )
+
+Next open up the ``models.py`` file in the ``academy`` app's directory. Here we will use Django's built-in `models <https://docs.djangoproject.com/en/1.7/topics/db/models/>`_ system to design a database table to hold the source data.
+
+Each table is defined using a Python `class <http://www.learnpython.org/en/Classes_and_Objects>`_ that inherits special powers from Django allowing it to syncronize with an underlying database. Our work begins by creating our class and naming it after the data we'll put inside.
+
+.. code-block:: python
+  :emphasize-lines: 4
+
+  from django.db import models
+
+  # Create your models here.
+  class Invite(models.Model):
+
+Next, like any good database table, it needs some fields.
+
+If you open `the source CSV <https://github.com/ireapps/first-django-admin/blob/master/academy_invites_2014.csv>`_, you will see that is has only two fields: name and branch. Both are filled with characters (as opposed to other data types like integers or dates).
+
+Django also has some `fancy tricks <https://docs.djangoproject.com/en/1.7/ref/models/fields/>`_ for defining fields. Use them to define the fields from our source data.
+
+.. note::
+
+    Watch out. You'll need to carefully indent your code according to Python's very `strict rules <http://www.diveintopython.net/getting_to_know_python/indenting_code.html>`_ for this to work.
+
+.. code-block:: python
+  :emphasize-lines: 5-6
+
+    from django.db import models
+
+    # Create your models here.
+    class Invite(models.Model):
+        name = models.CharField(max_length=500)
+        branch = models.CharField(max_length=500)
+
+Now let's add a few more fields that we will ask the reporters to figure out and fill in. We'll use another Django trick, the ``choices`` option, to make some of them multiple-choice fields rather than free text.
+
+First gender.
+
+.. code-block:: python
+  :emphasize-lines: 7-17
+
+  from django.db import models
+
+  # Create your models here.
+  class Invite(models.Model):
+      name = models.CharField(max_length=500)
+      branch = models.CharField(max_length=500)
+      GENDER_CHOICES = (
+        ("M", "Male"),
+        ("F", "Female"),
+        ("?", "Unknown")
+      )
+      gender = models.CharField(
+          max_length=1,
+          choices=GENDER_CHOICES,
+          default="?"
+      )
+
+Then date of birth.
+
+.. code-block:: python
+  :emphasize-lines: 17
+
+  from django.db import models
+
+  # Create your models here.
+  class Invite(models.Model):
+      name = models.CharField(max_length=500)
+      branch = models.CharField(max_length=500)
+      GENDER_CHOICES = (
+        ("M", "Male"),
+        ("F", "Female"),
+        ("?", "Unknown")
+      )
+      gender = models.CharField(
+          max_length=1,
+          choices=GENDER_CHOICES,
+          default="?"
+      )
+      date_of_birth = models.DateField(blank=True, null=True)
+
+Finally race.
+
+.. code-block:: python
+  :emphasize-lines: 18-31
+
+  from django.db import models
+
+  # Create your models here.
+  class Invite(models.Model):
+      name = models.CharField(max_length=500)
+      branch = models.CharField(max_length=500)
+      GENDER_CHOICES = (
+        ("M", "Male"),
+        ("F", "Female"),
+        ("?", "Unknown")
+      )
+      gender = models.CharField(
+          max_length=1,
+          choices=GENDER_CHOICES,
+          default="?"
+      )
+      date_of_birth = models.DateField(blank=True, null=True)
+      RACE_CHOICES = (
+          ("ASIAN", "Asian"),
+          ("BLACK", "Black"),
+          ("LATINO", "Latino"),
+          ("WHITE", "White"),
+          ("OTHER", "Other"),
+          ("?", "Unknown"),
+      )
+      race = models.CharField(
+          max_length=10,
+          choices=RACE_CHOICES,
+          default="?"
+      )
+
+Congratulations, you've written your first model. But it won't be created as a real table in your database until you run what Django calls a "migration." That's just a fancy word for syncing our models files.
+
+Make sure to save your ``models.py``file. Then design the migration for your new model.
+
+.. code-block:: bash
+
+    $ python manage.py makemigrations academy
+
+Now run the ``migrate`` command to execute it.
+
+.. code-block:: bash
+
+    $ python manage.py migrate academy
 
 Act 3: Hello admin
 ------------------
