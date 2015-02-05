@@ -283,7 +283,7 @@ Each table is defined using a Python `class <http://www.learnpython.org/en/Class
 
 Next, like any good database table, it needs some fields.
 
-If you open `the source CSV <https://github.com/ireapps/first-django-admin/blob/master/academy_invites_2014.csv>`_, you will see that is has only two fields: name and branch. Both are filled with characters (as opposed to other data types like integers or dates).
+If you open `the source CSV <https://github.com/ireapps/first-django-admin/blob/master/academy_invites_2014.csv>`_, you will see that is has only two: name and branch. Both are filled with characters (as opposed to other data types like integers or dates).
 
 Django also has some `fancy tricks <https://docs.djangoproject.com/en/1.7/ref/models/fields/>`_ for defining fields. Use them to define the fields from our source data.
 
