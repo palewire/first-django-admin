@@ -250,7 +250,7 @@ we&#8217;ll use to put together our website.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
 
 <span class="c"># Create your models here.</span>
-<span class="hll"><span class="k">class</span> <span class="nc">Invite</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="hll"><span class="k">class</span> <span class="nc">Invite</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
 </span></pre></div>
 </div>
 <p>Next, like any good database table, it needs some fields.</p>
@@ -263,7 +263,7 @@ we&#8217;ll use to put together our website.</p>
 <div class="highlight-python"><div class="highlight"><pre>  <span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
 
   <span class="c"># Create your models here.</span>
-  <span class="k">class</span> <span class="nc">Invite</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">BaseModel</span><span class="p">):</span>
+  <span class="k">class</span> <span class="nc">Invite</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
 <span class="hll">      <span class="n">name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
 </span><span class="hll">      <span class="n">branch</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
 </span></pre></div>
@@ -273,7 +273,7 @@ we&#8217;ll use to put together our website.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
 
 <span class="c"># Create your models here.</span>
-<span class="k">class</span> <span class="nc">Invite</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">Invite</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
     <span class="n">name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
     <span class="n">branch</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
 <span class="hll">    <span class="n">GENDER_CHOICES</span> <span class="o">=</span> <span class="p">(</span>
@@ -292,7 +292,7 @@ we&#8217;ll use to put together our website.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
 
 <span class="c"># Create your models here.</span>
-<span class="k">class</span> <span class="nc">Invite</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">Invite</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
     <span class="n">name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
     <span class="n">branch</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
     <span class="n">GENDER_CHOICES</span> <span class="o">=</span> <span class="p">(</span>
@@ -308,11 +308,11 @@ we&#8217;ll use to put together our website.</p>
 <span class="hll">    <span class="n">date_of_birth</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateField</span><span class="p">(</span><span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </span></pre></div>
 </div>
-<p>Finally race.</p>
+<p>Race.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
 
 <span class="c"># Create your models here.</span>
-<span class="k">class</span> <span class="nc">Invite</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">Invite</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
     <span class="n">name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
     <span class="n">branch</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
     <span class="n">GENDER_CHOICES</span> <span class="o">=</span> <span class="p">(</span>
@@ -339,6 +339,40 @@ we&#8217;ll use to put together our website.</p>
 </span><span class="hll">        <span class="n">choices</span><span class="o">=</span><span class="n">RACE_CHOICES</span><span class="p">,</span>
 </span><span class="hll">        <span class="n">default</span><span class="o">=</span><span class="s">&quot;?&quot;</span>
 </span><span class="hll">    <span class="p">)</span>
+</span></pre></div>
+</div>
+<p>Finally, an open-ended text field for reporters to leave notes about their decisions.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
+
+<span class="c"># Create your models here.</span>
+<span class="k">class</span> <span class="nc">Invite</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+    <span class="n">branch</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+    <span class="n">GENDER_CHOICES</span> <span class="o">=</span> <span class="p">(</span>
+      <span class="p">(</span><span class="s">&quot;M&quot;</span><span class="p">,</span> <span class="s">&quot;Male&quot;</span><span class="p">),</span>
+      <span class="p">(</span><span class="s">&quot;F&quot;</span><span class="p">,</span> <span class="s">&quot;Female&quot;</span><span class="p">),</span>
+      <span class="p">(</span><span class="s">&quot;?&quot;</span><span class="p">,</span> <span class="s">&quot;Unknown&quot;</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="n">gender</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
+        <span class="n">max_length</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">choices</span><span class="o">=</span><span class="n">GENDER_CHOICES</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="s">&quot;?&quot;</span>
+    <span class="p">)</span>
+    <span class="n">date_of_birth</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateField</span><span class="p">(</span><span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">RACE_CHOICES</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="p">(</span><span class="s">&quot;ASIAN&quot;</span><span class="p">,</span> <span class="s">&quot;Asian&quot;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s">&quot;BLACK&quot;</span><span class="p">,</span> <span class="s">&quot;Black&quot;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s">&quot;LATINO&quot;</span><span class="p">,</span> <span class="s">&quot;Latino&quot;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s">&quot;WHITE&quot;</span><span class="p">,</span> <span class="s">&quot;White&quot;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s">&quot;OTHER&quot;</span><span class="p">,</span> <span class="s">&quot;Other&quot;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s">&quot;?&quot;</span><span class="p">,</span> <span class="s">&quot;Unknown&quot;</span><span class="p">),</span>
+    <span class="p">)</span>
+    <span class="n">race</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
+        <span class="n">max_length</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+        <span class="n">choices</span><span class="o">=</span><span class="n">RACE_CHOICES</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="s">&quot;?&quot;</span>
+    <span class="p">)</span>
+<span class="hll">    <span class="n">notes</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">TextField</span><span class="p">(</span><span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </span></pre></div>
 </div>
 <p>Congratulations, you&#8217;ve written your first model. But it won&#8217;t be created as a real table in your database until you run what Django calls a &#8220;migration.&#8221; That&#8217;s just a fancy word for syncing our models files.</p>

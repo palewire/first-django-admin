@@ -279,7 +279,7 @@ Each table is defined using a Python `class <http://www.learnpython.org/en/Class
   from django.db import models
 
   # Create your models here.
-  class Invite(models.BaseModel):
+  class Invite(models.Model):
 
 Next, like any good database table, it needs some fields.
 
@@ -297,7 +297,7 @@ Django also has some `fancy tricks <https://docs.djangoproject.com/en/1.7/ref/mo
     from django.db import models
 
     # Create your models here.
-    class Invite(models.BaseModel):
+    class Invite(models.Model):
         name = models.CharField(max_length=500)
         branch = models.CharField(max_length=500)
 
@@ -311,7 +311,7 @@ First gender.
   from django.db import models
 
   # Create your models here.
-  class Invite(models.BaseModel):
+  class Invite(models.Model):
       name = models.CharField(max_length=500)
       branch = models.CharField(max_length=500)
       GENDER_CHOICES = (
@@ -333,7 +333,7 @@ Then date of birth.
   from django.db import models
 
   # Create your models here.
-  class Invite(models.BaseModel):
+  class Invite(models.Model):
       name = models.CharField(max_length=500)
       branch = models.CharField(max_length=500)
       GENDER_CHOICES = (
@@ -348,7 +348,7 @@ Then date of birth.
       )
       date_of_birth = models.DateField(blank=True, null=True)
 
-Finally race.
+Race.
 
 .. code-block:: python
   :emphasize-lines: 18-31
@@ -356,7 +356,7 @@ Finally race.
   from django.db import models
 
   # Create your models here.
-  class Invite(models.BaseModel):
+  class Invite(models.Model):
       name = models.CharField(max_length=500)
       branch = models.CharField(max_length=500)
       GENDER_CHOICES = (
@@ -383,6 +383,43 @@ Finally race.
           choices=RACE_CHOICES,
           default="?"
       )
+
+Finally, an open-ended text field for reporters to leave notes about their decisions.
+
+.. code-block:: python
+  :emphasize-lines: 31
+
+  from django.db import models
+
+  # Create your models here.
+  class Invite(models.Model):
+      name = models.CharField(max_length=500)
+      branch = models.CharField(max_length=500)
+      GENDER_CHOICES = (
+        ("M", "Male"),
+        ("F", "Female"),
+        ("?", "Unknown")
+      )
+      gender = models.CharField(
+          max_length=1,
+          choices=GENDER_CHOICES,
+          default="?"
+      )
+      date_of_birth = models.DateField(blank=True, null=True)
+      RACE_CHOICES = (
+          ("ASIAN", "Asian"),
+          ("BLACK", "Black"),
+          ("LATINO", "Latino"),
+          ("WHITE", "White"),
+          ("OTHER", "Other"),
+          ("?", "Unknown"),
+      )
+      race = models.CharField(
+          max_length=10,
+          choices=RACE_CHOICES,
+          default="?"
+      )
+      notes = models.TextField(blank=True)
 
 Congratulations, you've written your first model. But it won't be created as a real table in your database until you run what Django calls a "migration." That's just a fancy word for syncing our models files.
 
