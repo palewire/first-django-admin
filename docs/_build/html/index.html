@@ -56,8 +56,8 @@ the 2015 conference of the National Institute for Computer-Assisted Reporting in
 <div class="section" id="what-you-will-make">
 <h2>What you will make<a class="headerlink" href="#what-you-will-make" title="Permalink to this headline">¶</a></h2>
 <p>This tutorial will guide you through creating a custom Django administration panel where reporters can inspect, edit and augment a list of invitees to the <a class="reference external" href="http://www.oscars.org/">Academy of Motion Picture Arts and Sciences</a>, the elite organization that decides the Oscars.</p>
-<p>In 2012, <a class="reference external" href="http://www.latimes.com/entertainment/movies/academy/la-et-unmasking-oscar-academy-project-html-htmlstory.html">a study by the Los Angeles Times</a> found the group is overwhelmingly white and male, which led to renewed calls to diversify the Oscar voting pool. A new list was used to write <a class="reference external" href="http://www.latimes.com/entertainment/envelope/moviesnow/la-et-mn-diversity-oscar-academy-members-20131221-story.html">a follow-up story</a> in 2013. The analysis appeared on the front page <a class="reference external" href="http://www.latimes.com/entertainment/movies/la-et-mn-oscar-nominations-diversity-20150116-story.html#page=1">again in early 2015</a> when the academy was criticized after announcing a <a class="reference external" href="http://graphics.latimes.com/oscar-nominees-2015/">virtually all-white slate</a> of nominees.</p>
-<p>By following the steps below, you will repeat The Times&#8217; work using the academy&#8217;s 2014 list of new invitees, creating a system to share the load of producing a follow-up story in <a class="reference external" href="http://www.latimes.com/entertainment/envelope/moviesnow/la-et-mn-diversity-oscar-academy-members-20131221-story.html">this vein</a>.</p>
+<p>In 2012, <a class="reference external" href="http://www.latimes.com/entertainment/movies/academy/la-et-unmasking-oscar-academy-project-html-htmlstory.html">a study by the Los Angeles Times</a> found that the group is overwhelmingly white and male, which led to renewed calls to diversify the Oscar voting pool. A new list was used to write <a class="reference external" href="http://www.latimes.com/entertainment/envelope/moviesnow/la-et-mn-diversity-oscar-academy-members-20131221-story.html">a follow-up story</a> in 2013. The analysis appeared on the front page <a class="reference external" href="http://www.latimes.com/entertainment/movies/la-et-mn-oscar-nominations-diversity-20150116-story.html#page=1">again in early 2015</a> when the academy was criticized after announcing a <a class="reference external" href="http://graphics.latimes.com/oscar-nominees-2015/">virtually all-white slate</a> of nominees.</p>
+<p>By following the steps below, you will repeat The Times&#8217; work using the academy&#8217;s 2014 invitation list, creating a system to share the load of producing a follow-up story in <a class="reference external" href="http://www.latimes.com/entertainment/envelope/moviesnow/la-et-mn-diversity-oscar-academy-members-20131221-story.html">this vein</a>.</p>
 </div>
 <div class="section" id="prelude-prerequisites">
 <h2>Prelude: Prerequisites<a class="headerlink" href="#prelude-prerequisites" title="Permalink to this headline">¶</a></h2>
@@ -136,9 +136,8 @@ can guide you through that process.</p>
 <p>Python 2.7 is preferred but you can probably find a way to make most of
 this tutorial work with other versions if you futz a little.</p>
 </div>
-</div>
 <div class="section" id="pip-and-virtualenv">
-<span id="command-line-pip"></span><h2>pip and virtualenv<a class="headerlink" href="#pip-and-virtualenv" title="Permalink to this headline">¶</a></h2>
+<span id="command-line-pip"></span><h3>pip and virtualenv<a class="headerlink" href="#pip-and-virtualenv" title="Permalink to this headline">¶</a></h3>
 <p>The <a class="reference external" href="https://pip.pypa.io/en/latest/">pip package manager</a>
 makes it easy to install open-source libraries that
 expand what you&#8217;re able to do with Python. Later, we will use it to install everything
@@ -169,6 +168,7 @@ you want to copy your code to a server that publishes pages on the Internet.</p>
 </pre></div>
 </div>
 <p>If that doesn&#8217;t work, <a class="reference external" href="http://www.virtualenv.org/en/latest/virtualenv.html#installation">try following this advice</a>.</p>
+</div>
 </div>
 <div class="section" id="act-1-hello-django">
 <span id="activate"></span><h2>Act 1: Hello Django<a class="headerlink" href="#act-1-hello-django" title="Permalink to this headline">¶</a></h2>
@@ -254,7 +254,7 @@ we&#8217;ll use to put together our website.</p>
 </span></pre></div>
 </div>
 <p>Next, like any good database table, it needs some fields.</p>
-<p>If you open <a class="reference external" href="https://github.com/ireapps/first-django-admin/blob/master/academy_invites_2014.csv">the source CSV</a>, you will see that is has only two fields: name and branch. Both are filled with characters (as opposed to other data types like integers or dates).</p>
+<p>If you open <a class="reference external" href="https://github.com/ireapps/first-django-admin/blob/master/academy_invites_2014.csv">the source CSV</a>, you will see that is has only two: name and branch. Both are filled with characters (as opposed to other data types like integers or dates).</p>
 <p>Django also has some <a class="reference external" href="https://docs.djangoproject.com/en/1.7/ref/models/fields/">fancy tricks</a> for defining fields. Use them to define the fields from our source data.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -385,8 +385,46 @@ we&#8217;ll use to put together our website.</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="act-3-hello-admin">
-<h2>Act 3: Hello admin<a class="headerlink" href="#act-3-hello-admin" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="act-3-hello-loader">
+<h2>Act 3: Hello loader<a class="headerlink" href="#act-3-hello-loader" title="Permalink to this headline">¶</a></h2>
+<p>Our next challenge is to load the source CSV file into the model.</p>
+<p>We are going to do this using Django&#8217;s system for <a class="reference external" href="https://docs.djangoproject.com/en/1.7/howto/custom-management-commands/">custom management commands</a>. It allows us to make our own <tt class="docutils literal"><span class="pre">manage.py</span></tt> commands like <tt class="docutils literal"><span class="pre">migrate</span></tt> and <tt class="docutils literal"><span class="pre">startapp</span></tt> that take advantage of Django&#8217;s bag of tricks and interact with the database.</p>
+<p>To do this, add a <tt class="docutils literal"><span class="pre">management/commands</span></tt> directory in our academy app, complete with the empty <tt class="docutils literal"><span class="pre">__init__.py</span></tt> files required by Python. You can do this in your operating system&#8217;s file explorer, or on the command line. From a Linux or OSX prompt that would look something like this.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="c"># The -p flag here makes both new directories</span>
+<span class="nv">$ </span>mkdir -p academy/management/commands
+<span class="c"># This creates the empty files for Python</span>
+<span class="nv">$ </span>touch academy/management/__init__.py
+<span class="nv">$ </span>touch academy/management/commands/__init__.py
+</pre></div>
+</div>
+<p>When you&#8217;re done the app&#8217;s directory should look something like this.</p>
+<div class="highlight-txt"><div class="highlight"><pre>academy/
+    __init__.py
+    models.py
+    management/
+        __init__.py
+        commands/
+            __init__.py
+    tests.py
+    views.py
+</pre></div>
+</div>
+<ul class="simple">
+<li>Create a new management command directory</li>
+<li>Put our loader command in it</li>
+<li>Load the CSV</li>
+</ul>
+</div>
+<div class="section" id="act-4-hello-admin">
+<h2>Act 4: Hello admin<a class="headerlink" href="#act-4-hello-admin" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Configure the admin vanilla.</li>
+<li>Create a superuser</li>
+<li>Check out how the vanilla admin looks</li>
+<li>Configure an admin for our model</li>
+<li>Tweak our admin so it&#8217;s nicer</li>
+<li>Create users for the reporters</li>
+</ul>
 <p>Then create a new superuser with permission to edit all records.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>python manage.py createsuperuser
 </pre></div>
@@ -396,9 +434,14 @@ we&#8217;ll use to put together our website.</p>
 <li>Gradually refine it so it&#8217;s better</li>
 </ul>
 </div>
-<div class="section" id="afterparty-hello-internet">
-<h2>Afterparty: Hello internet<a class="headerlink" href="#afterparty-hello-internet" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="act-5-hello-internet">
+<h2>Act 5: Hello Internet<a class="headerlink" href="#act-5-hello-internet" title="Permalink to this headline">¶</a></h2>
 <p>Instructions for after you get home about how to host it on Amazon or something like that.</p>
+<ul class="simple">
+<li>Show how the 0.0.0.0 trick works</li>
+<li>Explain alternatives, like under your desk, in the cloud, etc.</li>
+<li>Show how to do it with Heroku maybe?</li>
+</ul>
 </div>
 </div>
 
@@ -413,11 +456,11 @@ we&#8217;ll use to put together our website.</p>
 <li><a class="reference internal" href="#">First Django admin</a><ul>
 <li><a class="reference internal" href="#what-you-will-make">What you will make</a></li>
 <li><a class="reference internal" href="#prelude-prerequisites">Prelude: Prerequisites</a></li>
-<li><a class="reference internal" href="#pip-and-virtualenv">pip and virtualenv</a></li>
 <li><a class="reference internal" href="#act-1-hello-django">Act 1: Hello Django</a></li>
 <li><a class="reference internal" href="#act-2-hello-models">Act 2: Hello models</a></li>
-<li><a class="reference internal" href="#act-3-hello-admin">Act 3: Hello admin</a></li>
-<li><a class="reference internal" href="#afterparty-hello-internet">Afterparty: Hello internet</a></li>
+<li><a class="reference internal" href="#act-3-hello-loader">Act 3: Hello loader</a></li>
+<li><a class="reference internal" href="#act-4-hello-admin">Act 4: Hello admin</a></li>
+<li><a class="reference internal" href="#act-5-hello-internet">Act 5: Hello Internet</a></li>
 </ul>
 </li>
 </ul>

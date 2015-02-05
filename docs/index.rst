@@ -438,6 +438,34 @@ Now run the ``migrate`` command to execute it.
 Act 3: Hello loader
 -------------------
 
+Our next challenge is to load the source CSV file into the model.
+
+We are going to do this using Django's system for `custom management commands <https://docs.djangoproject.com/en/1.7/howto/custom-management-commands/>`_. It allows us to make our own ``manage.py`` commands like ``migrate`` and ``startapp`` that take advantage of Django's bag of tricks and interact with the database.
+
+To do this, add a ``management/commands`` directory in our academy app, complete with the empty ``__init__.py`` files required by Python. You can do this in your operating system's file explorer, or on the command line. From a Linux or OSX prompt that would look something like this.
+
+.. code-block:: bash
+
+  # The -p flag here makes both new directories
+  $ mkdir -p academy/management/commands
+  # This creates the empty files for Python
+  $ touch academy/management/__init__.py
+  $ touch academy/management/commands/__init__.py
+
+When you're done the app's directory should look something like this.
+
+.. code-block:: txt
+
+  academy/
+      __init__.py
+      models.py
+      management/
+          __init__.py
+          commands/
+              __init__.py
+      tests.py
+      views.py
+
 - Create a new management command directory
 - Put our loader command in it
 - Load the CSV

@@ -20,9 +20,9 @@ What you will make
 
 This tutorial will guide you through creating a custom Django administration panel where reporters can inspect, edit and augment a list of invitees to the `Academy of Motion Picture Arts and Sciences <http://www.oscars.org/>`_, the elite organization that decides the Oscars.
 
-In 2012, `a study by the Los Angeles Times <http://www.latimes.com/entertainment/movies/academy/la-et-unmasking-oscar-academy-project-html-htmlstory.html>`_ found the group is overwhelmingly white and male, which led to renewed calls to diversify the Oscar voting pool. A new list was used to write `a follow-up story <http://www.latimes.com/entertainment/envelope/moviesnow/la-et-mn-diversity-oscar-academy-members-20131221-story.html>`_ in 2013. The analysis appeared on the front page `again in early 2015 <http://www.latimes.com/entertainment/movies/la-et-mn-oscar-nominations-diversity-20150116-story.html#page=1>`_ when the academy was criticized after announcing a `virtually all-white slate <http://graphics.latimes.com/oscar-nominees-2015/>`_ of nominees.
+In 2012, `a study by the Los Angeles Times <http://www.latimes.com/entertainment/movies/academy/la-et-unmasking-oscar-academy-project-html-htmlstory.html>`_ found that the group is overwhelmingly white and male, which led to renewed calls to diversify the Oscar voting pool. A new list was used to write `a follow-up story <http://www.latimes.com/entertainment/envelope/moviesnow/la-et-mn-diversity-oscar-academy-members-20131221-story.html>`_ in 2013. The analysis appeared on the front page `again in early 2015 <http://www.latimes.com/entertainment/movies/la-et-mn-oscar-nominations-diversity-20150116-story.html#page=1>`_ when the academy was criticized after announcing a `virtually all-white slate <http://graphics.latimes.com/oscar-nominees-2015/>`_ of nominees.
 
-By following the steps below, you will repeat The Times' work using the academy's 2014 list of new invitees, creating a system to share the load of producing a follow-up story in `this vein <http://www.latimes.com/entertainment/envelope/moviesnow/la-et-mn-diversity-oscar-academy-members-20131221-story.html>`_.
+By following the steps below, you will repeat The Times' work using the academy's 2014 invitation list, creating a system to share the load of producing a follow-up story in `this vein <http://www.latimes.com/entertainment/envelope/moviesnow/la-et-mn-diversity-oscar-academy-members-20131221-story.html>`_.
 
 Prelude: Prerequisites
 ----------------------
@@ -118,7 +118,7 @@ this tutorial work with other versions if you futz a little.
 .. _command-line-pip:
 
 pip and virtualenv
-------------------
+~~~~~~~~~~~~~~~~~~
 
 The `pip package manager <https://pip.pypa.io/en/latest/>`_
 makes it easy to install open-source libraries that
@@ -283,7 +283,7 @@ Each table is defined using a Python `class <http://www.learnpython.org/en/Class
 
 Next, like any good database table, it needs some fields.
 
-If you open `the source CSV <https://github.com/ireapps/first-django-admin/blob/master/academy_invites_2014.csv>`_, you will see that is has only two fields: name and branch. Both are filled with characters (as opposed to other data types like integers or dates).
+If you open `the source CSV <https://github.com/ireapps/first-django-admin/blob/master/academy_invites_2014.csv>`_, you will see that is has only two: name and branch. Both are filled with characters (as opposed to other data types like integers or dates).
 
 Django also has some `fancy tricks <https://docs.djangoproject.com/en/1.7/ref/models/fields/>`_ for defining fields. Use them to define the fields from our source data.
 
@@ -435,8 +435,50 @@ Now run the ``migrate`` command to execute it.
 
     $ python manage.py migrate academy
 
-Act 3: Hello admin
+Act 3: Hello loader
+-------------------
+
+Our next challenge is to load the source CSV file into the model.
+
+We are going to do this using Django's system for `custom management commands <https://docs.djangoproject.com/en/1.7/howto/custom-management-commands/>`_. It allows us to make our own ``manage.py`` commands like ``migrate`` and ``startapp`` that take advantage of Django's bag of tricks and interact with the database.
+
+To do this, add a ``management/commands`` directory in our academy app, complete with the empty ``__init__.py`` files required by Python. You can do this in your operating system's file explorer, or on the command line. From a Linux or OSX prompt that would look something like this.
+
+.. code-block:: bash
+
+  # The -p flag here makes both new directories
+  $ mkdir -p academy/management/commands
+  # This creates the empty files for Python
+  $ touch academy/management/__init__.py
+  $ touch academy/management/commands/__init__.py
+
+When you're done the app's directory should look something like this.
+
+.. code-block:: txt
+
+  academy/
+      __init__.py
+      models.py
+      management/
+          __init__.py
+          commands/
+              __init__.py
+      tests.py
+      views.py
+
+- Create a new management command directory
+- Put our loader command in it
+- Load the CSV
+
+Act 4: Hello admin
 ------------------
+
+- Configure the admin vanilla.
+- Create a superuser
+- Check out how the vanilla admin looks
+- Configure an admin for our model
+- Tweak our admin so it's nicer
+- Create users for the reporters
 
 Then create a new superuser with permission to edit all records.
 
@@ -447,8 +489,11 @@ Then create a new superuser with permission to edit all records.
 - Create an admin to access and edit the new model
 - Gradually refine it so it's better
 
-Afterparty: Hello internet
---------------------------
+Act 5: Hello Internet
+---------------------
 
 Instructions for after you get home about how to host it on Amazon or something like that.
 
+- Show how the 0.0.0.0 trick works
+- Explain alternatives, like under your desk, in the cloud, etc.
+- Show how to do it with Heroku maybe?
