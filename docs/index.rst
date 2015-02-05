@@ -435,8 +435,22 @@ Now run the ``migrate`` command to execute it.
 
     $ python manage.py migrate academy
 
-Act 3: Hello admin
+Act 3: Hello CSV loader
+-----------------------
+
+- Create a new management command directory
+- Put our loader command in it
+- Load the CSV
+
+Act 4: Hello admin
 ------------------
+
+- Configure the admin vanilla.
+- Create a superuser
+- Check out how the vanilla admin looks
+- Configure an admin for our model
+- Tweak our admin so it's nicer
+- Create users for the reporters
 
 Then create a new superuser with permission to edit all records.
 
@@ -447,8 +461,11 @@ Then create a new superuser with permission to edit all records.
 - Create an admin to access and edit the new model
 - Gradually refine it so it's better
 
-Afterparty: Hello internet
---------------------------
+Act 5: Hello Internet
+---------------------
 
 Instructions for after you get home about how to host it on Amazon or something like that.
 
+- Show how the 0.0.0.0 trick works
+- Explain alternatives, like under your desk, in the cloud, etc.
+- Show how to do it with Heroku maybe?
