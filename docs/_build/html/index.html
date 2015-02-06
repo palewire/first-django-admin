@@ -57,7 +57,8 @@ the 2015 conference of the National Institute for Computer-Assisted Reporting in
 <h2>What you will make<a class="headerlink" href="#what-you-will-make" title="Permalink to this headline">¶</a></h2>
 <p>This tutorial will guide you through creating a custom Django administration panel where reporters can inspect, edit and augment a list of invitees to the <a class="reference external" href="http://www.oscars.org/">Academy of Motion Picture Arts and Sciences</a>, the elite organization that decides the Oscars.</p>
 <p>In 2012, <a class="reference external" href="http://www.latimes.com/entertainment/movies/academy/la-et-unmasking-oscar-academy-project-html-htmlstory.html">a study by the Los Angeles Times</a> found that the group is overwhelmingly white and male, which led to renewed calls to diversify the Oscar voting pool. A new list was used to write <a class="reference external" href="http://www.latimes.com/entertainment/envelope/moviesnow/la-et-mn-diversity-oscar-academy-members-20131221-story.html">a follow-up story</a> in 2013. The analysis appeared on the front page <a class="reference external" href="http://www.latimes.com/entertainment/movies/la-et-mn-oscar-nominations-diversity-20150116-story.html#page=1">again in early 2015</a> when the academy was criticized after announcing a <a class="reference external" href="http://graphics.latimes.com/oscar-nominees-2015/">virtually all-white slate</a> of nominees.</p>
-<p>By following the steps below, you will repeat The Times&#8217; work using the academy&#8217;s 2014 invitation list, creating a system to share the load of producing a follow-up story in <a class="reference external" href="http://www.latimes.com/entertainment/envelope/moviesnow/la-et-mn-diversity-oscar-academy-members-20131221-story.html">this vein</a>.</p>
+<p>In the steps below, you will repeat The Times&#8217; work using the academy&#8217;s 2014 invitation list, creating a system to share the load of producing a follow-up story in <a class="reference external" href="http://www.latimes.com/entertainment/envelope/moviesnow/la-et-mn-diversity-oscar-academy-members-20131221-story.html">this vein</a>.</p>
+<p>You are following in the footsteps of Times reporters <a class="reference external" href="http://www.latimes.com/la-bio-doug-smith-staff.html">Doug Smith</a> and <a class="reference external" href="http://www.latimes.com/la-bio-sandra-poindexter-staff.html">Sandra Poindexter</a>, who developed a similar administration panel as their first Django project. They were inspired by a presentation made by <a class="reference external" href="http://mattwynn.net/">Matt Wynn</a> at a past conference of The National Institute for Computer-Assisted Reporting.</p>
 </div>
 <div class="section" id="prelude-prerequisites">
 <h2>Prelude: Prerequisites<a class="headerlink" href="#prelude-prerequisites" title="Permalink to this headline">¶</a></h2>
@@ -538,18 +539,33 @@ we&#8217;ll use to put together our website.</p>
 </div>
 <div class="section" id="act-5-hello-newsroom">
 <h2>Act 5: Hello newsroom<a class="headerlink" href="#act-5-hello-newsroom" title="Permalink to this headline">¶</a></h2>
-<p>Now you&#8217;re ready to get other people involved. The first thing to do is create additional users for your colleagues. Return to <a class="reference external" href="http://localhost:8000/admin/">localhost:8000</a> and click the plus button next to the &#8220;User&#8221; model.</p>
+<p>Now you&#8217;re ready to get other people involved. The first thing to do is create additional users for your colleagues. Return to <a class="reference external" href="http://localhost:8000/admin/">localhost:8000/admin/</a> and click the plus button to the right of the &#8220;Users&#8221; link.</p>
 <img alt="_images/hello-newsroom-userlink.png" src="_images/hello-newsroom-userlink.png" />
+<p>Name a user.</p>
 <img alt="_images/hello-newsroom-nameuser.png" src="_images/hello-newsroom-nameuser.png" />
+<p>When filling in their profile, be <strong>certain</strong> to click on the &#8220;staff status&#8221; checkbox that gives users authorization to access the admin.</p>
 <img alt="_images/hello-newsroom-staffstatus.png" src="_images/hello-newsroom-staffstatus.png" />
+<p>Lower down, choose which permissions to give this user. In this example, since the source data are already loaded the reporter will only have authorization to edit records, not create or delete them.</p>
 <img alt="_images/hello-newsroom-permissions.png" src="_images/hello-newsroom-permissions.png" />
-<ul class="simple">
-<li>Show how the 0.0.0.0 trick works</li>
-<li>Explain alternatives, like under your desk, in the cloud, etc.</li>
-<li>Show how to do it with Heroku maybe?</li>
-<li>Create users for the reporters</li>
-<li>Randomly assign records to staff</li>
-</ul>
+<p>We&#8217;re getting close One problem, though. That <tt class="docutils literal"><span class="pre">localhost</span></tt> address we&#8217;ve been using isn&#8217;t on the Internet. It only exists on your machine.</p>
+<p>There are numerous ways to deploy your Django application so other people can access it. You could use the <a class="reference external" href="https://docs.djangoproject.com/en/1.7/howto/deployment/">Apache</a> webserver. You could try a cloud service like <a class="reference external" href="https://devcenter.heroku.com/articles/getting-started-with-django">Heroku</a>.</p>
+<p>But if all you need is for other people inside your office network (often referred to as an &#8220;Intranet&#8221;) to log in, here&#8217;s a simple trick that will work in most cases.</p>
+<p>Return to your command line and try this.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>python manage.py runserver 0.0.0.0:8000
+</pre></div>
+</div>
+<p>Now all you need to do is find your computer&#8217;s IP address. The method varies depending on your operating system. Good instructions are <a class="reference external" href="http://home.huck.psu.edu/it/how-to/how-to-ip-address">available here</a>. Though it mostly boils down to opening a new command line terminal and typing in one of the following.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="c"># In OSX or Linux</span>
+<span class="nv">$ </span>ifconfig
+<span class="c"># In Windows</span>
+<span class="nv">$ </span>ipconfig
+</pre></div>
+</div>
+<p>Then within the code that comes out you&#8217;ll see a series of numbers formatted something like 172.19.131.101 after a label like &#8220;inet&#8221; or &#8220;IPv4 Address&#8221;.</p>
+<p>Copy and past that into your browser to <a class="reference external" href="http://XXX.YY.ZZZ.QQ:8000/admin/">http://XXX.YY.ZZZ.QQ:8000/admin/</a> and see what happens. If your Django site appears, you&#8217;re off to a good start.</p>
+<p>Now visit your colleagues computer across the newsroom and if the same address works, you&#8217;re ready to roll.</p>
+<img alt="_images/hello-newsroom-permissions.png" src="_images/hello-newsroom-permissions.png" />
+<p>Now as long as the runserver command is up and running back at your computer, your data entry website is online. Congratulations!</p>
 </div>
 </div>
 

@@ -22,7 +22,9 @@ This tutorial will guide you through creating a custom Django administration pan
 
 In 2012, `a study by the Los Angeles Times <http://www.latimes.com/entertainment/movies/academy/la-et-unmasking-oscar-academy-project-html-htmlstory.html>`_ found that the group is overwhelmingly white and male, which led to renewed calls to diversify the Oscar voting pool. A new list was used to write `a follow-up story <http://www.latimes.com/entertainment/envelope/moviesnow/la-et-mn-diversity-oscar-academy-members-20131221-story.html>`_ in 2013. The analysis appeared on the front page `again in early 2015 <http://www.latimes.com/entertainment/movies/la-et-mn-oscar-nominations-diversity-20150116-story.html#page=1>`_ when the academy was criticized after announcing a `virtually all-white slate <http://graphics.latimes.com/oscar-nominees-2015/>`_ of nominees.
 
-By following the steps below, you will repeat The Times' work using the academy's 2014 invitation list, creating a system to share the load of producing a follow-up story in `this vein <http://www.latimes.com/entertainment/envelope/moviesnow/la-et-mn-diversity-oscar-academy-members-20131221-story.html>`_.
+In the steps below, you will repeat The Times' work using the academy's 2014 invitation list, creating a system to share the load of producing a follow-up story in `this vein <http://www.latimes.com/entertainment/envelope/moviesnow/la-et-mn-diversity-oscar-academy-members-20131221-story.html>`_.
+
+You are following in the footsteps of Times reporters `Doug Smith <http://www.latimes.com/la-bio-doug-smith-staff.html>`_ and `Sandra Poindexter <http://www.latimes.com/la-bio-sandra-poindexter-staff.html>`_, who developed a similar administration panel as their first Django project. They were inspired by a presentation made by `Matt Wynn <http://mattwynn.net/>`_ at a past conference of The National Institute for Computer-Assisted Reporting.
 
 Prelude: Prerequisites
 ----------------------
@@ -641,18 +643,49 @@ Take a moment to search, filter and sort the list to see how things work. You ca
 Act 5: Hello newsroom
 ---------------------
 
-Now you're ready to get other people involved. The first thing to do is create additional users for your colleagues. Return to `localhost:8000 <http://localhost:8000/admin/>`_ and click the plus button next to the "User" model.
+Now you're ready to get other people involved. The first thing to do is create additional users for your colleagues. Return to `localhost:8000/admin/ <http://localhost:8000/admin/>`_ and click the plus button to the right of the "Users" link.
 
 .. image:: /_static/hello-newsroom-userlink.png
 
+Name a user.
+
 .. image:: /_static/hello-newsroom-nameuser.png
+
+When filling in their profile, be **certain** to click on the "staff status" checkbox that gives users authorization to access the admin.
 
 .. image:: /_static/hello-newsroom-staffstatus.png
 
+Lower down, choose which permissions to give this user. In this example, since the source data are already loaded the reporter will only have authorization to edit records, not create or delete them.
+
 .. image:: /_static/hello-newsroom-permissions.png
 
-- Show how the 0.0.0.0 trick works
-- Explain alternatives, like under your desk, in the cloud, etc.
-- Show how to do it with Heroku maybe?
-- Create users for the reporters
-- Randomly assign records to staff
+We're getting close One problem, though. That ``localhost`` address we've been using isn't on the Internet. It only exists on your machine.
+
+There are numerous ways to deploy your Django application so other people can access it. You could use the `Apache <https://docs.djangoproject.com/en/1.7/howto/deployment/>`_ webserver. You could try a cloud service like `Heroku <https://devcenter.heroku.com/articles/getting-started-with-django>`_.
+
+But if all you need is for other people inside your office network (often referred to as an "Intranet") to log in, here's a simple trick that will work in most cases.
+
+Return to your command line and try this.
+
+.. code-block:: bash
+
+  $ python manage.py runserver 0.0.0.0:8000
+
+Now all you need to do is find your computer's IP address. The method varies depending on your operating system. Good instructions are `available here <http://home.huck.psu.edu/it/how-to/how-to-ip-address>`_. Though it mostly boils down to opening a new command line terminal and typing in one of the following.
+
+.. code-block:: bash
+
+  # In OSX or Linux
+  $ ifconfig
+  # In Windows
+  $ ipconfig
+
+Then within the code that comes out you'll see a series of numbers formatted something like 172.19.131.101 after a label like "inet" or "IPv4 Address".
+
+Copy and past that into your browser to `http://XXX.YY.ZZZ.QQ:8000/admin/ <http://XXX.YY.ZZZ.QQ:8000/admin/>`_ and see what happens. If your Django site appears, you're off to a good start.
+
+Now visit your colleagues computer across the newsroom and if the same address works, you're ready to roll.
+
+.. image:: /_static/hello-newsroom-permissions.png
+
+Now as long as the runserver command is up and running back at your computer, your data entry website is online. Congratulations!
