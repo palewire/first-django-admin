@@ -196,7 +196,7 @@ inside its sealed space. You only need to create the virtualenv once, but you'll
 
 Make a new directory and move into it.
 
-Use ``pip`` on the command line to install `Djang <https://www.djangoproject.com/>`_, a Python "framework"
+Use ``pip`` on the command line to install `Django <https://www.djangoproject.com/>`_, a Python "framework"
 we'll use to put together our website.
 
 .. code-block:: bash
