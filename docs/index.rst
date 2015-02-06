@@ -659,7 +659,7 @@ Lower down, choose which permissions to give this user. In this example, since t
 
 .. image:: /_static/hello-newsroom-permissions.png
 
-We're getting close One problem, though. That ``localhost`` address we've been using isn't on the Internet. It only exists on your machine.
+We're getting close. One problem, though. That ``localhost`` address we've been using isn't on the Internet. It only exists on your machine.
 
 There are numerous ways to deploy your Django application so other people can access it. You could use the `Apache <https://docs.djangoproject.com/en/1.7/howto/deployment/>`_ webserver. You could try a cloud service like `Heroku <https://devcenter.heroku.com/articles/getting-started-with-django>`_.
 
