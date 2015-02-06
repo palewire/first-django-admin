@@ -581,7 +581,7 @@ SCREENSHOT
 Configure the columns that appear in the list.
 
 .. code-block:: python
-  :emphasize-lines: 3-7
+  :emphasize-lines: 4-7
 
   from django.contrib import admin
   from academy.models import Invite
