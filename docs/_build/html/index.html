@@ -400,6 +400,7 @@ we&#8217;ll use to put together our website.</p>
 <p>When you&#8217;re done the app&#8217;s directory should look something like this.</p>
 <div class="highlight-txt"><div class="highlight"><pre>academy/
     __init__.py
+    admin.py
     models.py
     management/
         __init__.py
@@ -409,11 +410,64 @@ we&#8217;ll use to put together our website.</p>
     views.py
 </pre></div>
 </div>
-<ul class="simple">
-<li>Create a new management command directory</li>
-<li>Put our loader command in it</li>
-<li>Load the CSV</li>
-</ul>
+<p>Create a new file in the <tt class="docutils literal"><span class="pre">management/commands</span></tt> directory where the new command will go. Let&#8217;s call it <tt class="docutils literal"><span class="pre">loadacademycsv.py</span></tt>.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>touch academy/management/commands/loadacademycsv.py
+</pre></div>
+</div>
+<p>Open it up and paste in the skeleton common to all management commands.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.core.management.base</span> <span class="kn">import</span> <span class="n">BaseCommand</span>
+
+<span class="k">class</span> <span class="nc">Command</span><span class="p">(</span><span class="n">BaseCommand</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">handle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">):</span>
+        <span class="k">print</span> <span class="s">&quot;Loading CSV&quot;</span>
+</pre></div>
+</div>
+<p>Running is as simple as invoking its name with <tt class="docutils literal"><span class="pre">manage.py</span></tt>.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>python manage.py loadacademycsv
+</pre></div>
+</div>
+<p>Download <a class="reference external" href="https://raw.githubusercontent.com/ireapps/first-django-admin/master/academy_invites_2014.csv">the source CSV file</a> from GitHub and store in your base directory next to <tt class="docutils literal"><span class="pre">manage.py</span></tt>.</p>
+<p>Return to the management command and introduce Python&#8217;s built-in <a class="reference external" href="https://docs.python.org/2/library/csv.html">csv module</a> to convert the CSV into a list and print each record.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="hll"><span class="kn">import</span> <span class="nn">os</span>
+</span><span class="hll"><span class="kn">import</span> <span class="nn">csv</span>
+</span><span class="hll"><span class="kn">from</span> <span class="nn">django.conf</span> <span class="kn">import</span> <span class="n">settings</span>
+</span><span class="kn">from</span> <span class="nn">django.core.management.base</span> <span class="kn">import</span> <span class="n">BaseCommand</span>
+
+<span class="k">class</span> <span class="nc">Command</span><span class="p">(</span><span class="n">BaseCommand</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">handle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">):</span>
+        <span class="k">print</span> <span class="s">&quot;Loading CSV&quot;</span>
+<span class="hll">        <span class="n">csv_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">BASE_DIR</span><span class="p">,</span> <span class="s">&quot;academy_invites_2014.csv&quot;</span><span class="p">)</span>
+</span><span class="hll">        <span class="n">csv_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">csv_path</span><span class="p">,</span> <span class="s">&#39;rb&#39;</span><span class="p">)</span>
+</span><span class="hll">        <span class="n">csv_reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">csv_file</span><span class="p">)</span>
+</span><span class="hll">        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">csv_reader</span><span class="p">:</span>
+</span><span class="hll">            <span class="k">print</span> <span class="n">row</span>
+</span></pre></div>
+</div>
+<p>Run it to see what we mean.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>python manage.py loadacademycsv
+</pre></div>
+</div>
+<p>Import our model into the command and use it to save the CSV records to the database.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">from</span> <span class="nn">django.conf</span> <span class="kn">import</span> <span class="n">settings</span>
+<span class="hll"><span class="kn">from</span> <span class="nn">academy.models</span> <span class="kn">import</span> <span class="n">Invite</span>
+</span><span class="kn">from</span> <span class="nn">django.core.management.base</span> <span class="kn">import</span> <span class="n">BaseCommand</span>
+
+<span class="k">class</span> <span class="nc">Command</span><span class="p">(</span><span class="n">BaseCommand</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">handle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">):</span>
+        <span class="k">print</span> <span class="s">&quot;Loading CSV&quot;</span>
+        <span class="n">csv_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">BASE_DIR</span><span class="p">,</span> <span class="s">&quot;academy_invites_2014.csv&quot;</span><span class="p">)</span>
+        <span class="n">csv_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">csv_path</span><span class="p">,</span> <span class="s">&#39;rb&#39;</span><span class="p">)</span>
+        <span class="n">csv_reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">csv_file</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">csv_reader</span><span class="p">:</span>
+<span class="hll">            <span class="n">obj</span> <span class="o">=</span> <span class="n">Invite</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s">&#39;name&#39;</span><span class="p">],</span> <span class="n">branch</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s">&#39;branch&#39;</span><span class="p">])</span>
+</span><span class="hll">            <span class="k">print</span> <span class="n">obj</span>
+</span></pre></div>
+</div>
 </div>
 <div class="section" id="act-4-hello-admin">
 <h2>Act 4: Hello admin<a class="headerlink" href="#act-4-hello-admin" title="Permalink to this headline">¶</a></h2>
