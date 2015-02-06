@@ -576,18 +576,55 @@ Adding panels for your own models is done in the ``admin.py`` file included with
 
 Now reload `localhost:8000/admin/ <http://localhost:8000/admin/>`_ and you'll see it in action.
 
-- Configure the admin vanilla.
-- Create a superuser
-- Check out how the vanilla admin looks
-- Configure an admin for our model
-- Tweak our admin so it's nicer
-- Create users for the reporters
+SCREENSHOT
 
-Then
+Configure the columns that appear in the list.
 
+.. code-block:: python
+  :emphasize-lines: 3-7
 
-- Create an admin to access and edit the new model
-- Gradually refine it so it's better
+  from django.contrib import admin
+  from academy.models import Invite
+
+  class InviteAdmin(admin.ModelAdmin):
+      list_display = ("name", "branch", "gender", "date_of_birth", "race")
+
+  admin.site.register(Invite, InviteAdmin)
+
+SCREENSHOT
+
+Add a filter.
+
+.. code-block:: python
+  :emphasize-lines: 6
+
+  from django.contrib import admin
+  from academy.models import Invite
+
+  class InviteAdmin(admin.ModelAdmin):
+      list_display = ("name", "branch", "gender", "date_of_birth", "race")
+      list_filter = ("branch", "gender", "race")
+
+  admin.site.register(Invite, InviteAdmin)
+
+SCREENSHOT
+
+And now a search.
+
+.. code-block:: python
+  :emphasize-lines: 8
+
+  from django.contrib import admin
+  from academy.models import Invite
+
+  class InviteAdmin(admin.ModelAdmin):
+      list_display = ("name", "branch", "gender", "date_of_birth", "race")
+      list_filter = ("branch", "gender", "race")
+      search_fields = ("name",)
+
+  admin.site.register(Invite, InviteAdmin)
+
+SCREENSHOT
 
 Act 5: Hello newsroom
 ---------------------
@@ -597,3 +634,5 @@ Instructions for after you get home about how to host it on Amazon or something 
 - Show how the 0.0.0.0 trick works
 - Explain alternatives, like under your desk, in the cloud, etc.
 - Show how to do it with Heroku maybe?
+- Create users for the reporters
+- Randomly assign records to staff

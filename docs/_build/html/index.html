@@ -464,37 +464,81 @@ we&#8217;ll use to put together our website.</p>
         <span class="n">csv_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">csv_path</span><span class="p">,</span> <span class="s">&#39;rb&#39;</span><span class="p">)</span>
         <span class="n">csv_reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">csv_file</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">csv_reader</span><span class="p">:</span>
-<span class="hll">            <span class="n">obj</span> <span class="o">=</span> <span class="n">Invite</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s">&#39;name&#39;</span><span class="p">],</span> <span class="n">branch</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s">&#39;branch&#39;</span><span class="p">])</span>
+<span class="hll">            <span class="n">obj</span> <span class="o">=</span> <span class="n">Invite</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s">&#39;Name&#39;</span><span class="p">],</span> <span class="n">branch</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s">&#39;Branch&#39;</span><span class="p">])</span>
 </span><span class="hll">            <span class="k">print</span> <span class="n">obj</span>
 </span></pre></div>
 </div>
+<p>You&#8217;ve done it. The CSV is loaded into the database.</p>
 </div>
 <div class="section" id="act-4-hello-admin">
 <h2>Act 4: Hello admin<a class="headerlink" href="#act-4-hello-admin" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li>Configure the admin vanilla.</li>
-<li>Create a superuser</li>
-<li>Check out how the vanilla admin looks</li>
-<li>Configure an admin for our model</li>
-<li>Tweak our admin so it&#8217;s nicer</li>
-<li>Create users for the reporters</li>
-</ul>
-<p>Then create a new superuser with permission to edit all records.</p>
+<p>One of Django&#8217;s unique features is that it comes with a custom administration that allows users to view, edit and create records. To see it in action, create a new superuser with permission to edit all records.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>python manage.py createsuperuser
 </pre></div>
 </div>
-<ul class="simple">
-<li>Create an admin to access and edit the new model</li>
-<li>Gradually refine it so it&#8217;s better</li>
-</ul>
+<p>Then fire up the Django test server.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>python manage.py runserver
+</pre></div>
 </div>
-<div class="section" id="act-5-hello-internet">
-<h2>Act 5: Hello Internet<a class="headerlink" href="#act-5-hello-internet" title="Permalink to this headline">¶</a></h2>
+<p>And visit <a class="reference external" href="http://localhost:8000/admin/">localhost:8000/admin/</a> and log in using the credentials you just created.</p>
+<p>SCREENSHOT HERE</p>
+<p>Without any additional configuration you will see administration panels for the apps installed with Django by default.</p>
+<p>SCREENSHOT HERE</p>
+<p>Adding panels for your own models is done in the <tt class="docutils literal"><span class="pre">admin.py</span></tt> file included with each app. Open <tt class="docutils literal"><span class="pre">academy/admin.py</span></tt> to start in.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
+<span class="kn">from</span> <span class="nn">academy.models</span> <span class="kn">import</span> <span class="n">Invite</span>
+
+<span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Invite</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now reload <a class="reference external" href="http://localhost:8000/admin/">localhost:8000/admin/</a> and you&#8217;ll see it in action.</p>
+<p>SCREENSHOT</p>
+<p>Configure the columns that appear in the list.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
+<span class="kn">from</span> <span class="nn">academy.models</span> <span class="kn">import</span> <span class="n">Invite</span>
+<span class="hll">
+</span><span class="hll"><span class="k">class</span> <span class="nc">InviteAdmin</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">ModelAdmin</span><span class="p">):</span>
+</span><span class="hll">    <span class="n">list_display</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;name&quot;</span><span class="p">,</span> <span class="s">&quot;branch&quot;</span><span class="p">,</span> <span class="s">&quot;gender&quot;</span><span class="p">,</span> <span class="s">&quot;date_of_birth&quot;</span><span class="p">,</span> <span class="s">&quot;race&quot;</span><span class="p">)</span>
+</span><span class="hll">
+</span><span class="hll"><span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Invite</span><span class="p">,</span> <span class="n">InviteAdmin</span><span class="p">)</span>
+</span></pre></div>
+</div>
+<p>SCREENSHOT</p>
+<p>Add a filter.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
+<span class="kn">from</span> <span class="nn">academy.models</span> <span class="kn">import</span> <span class="n">Invite</span>
+
+<span class="k">class</span> <span class="nc">InviteAdmin</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">ModelAdmin</span><span class="p">):</span>
+    <span class="n">list_display</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;name&quot;</span><span class="p">,</span> <span class="s">&quot;branch&quot;</span><span class="p">,</span> <span class="s">&quot;gender&quot;</span><span class="p">,</span> <span class="s">&quot;date_of_birth&quot;</span><span class="p">,</span> <span class="s">&quot;race&quot;</span><span class="p">)</span>
+<span class="hll">    <span class="n">list_filter</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;branch&quot;</span><span class="p">,</span> <span class="s">&quot;gender&quot;</span><span class="p">,</span> <span class="s">&quot;race&quot;</span><span class="p">)</span>
+</span>
+<span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Invite</span><span class="p">,</span> <span class="n">InviteAdmin</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>SCREENSHOT</p>
+<p>And now a search.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
+<span class="kn">from</span> <span class="nn">academy.models</span> <span class="kn">import</span> <span class="n">Invite</span>
+
+<span class="k">class</span> <span class="nc">InviteAdmin</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">ModelAdmin</span><span class="p">):</span>
+    <span class="n">list_display</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;name&quot;</span><span class="p">,</span> <span class="s">&quot;branch&quot;</span><span class="p">,</span> <span class="s">&quot;gender&quot;</span><span class="p">,</span> <span class="s">&quot;date_of_birth&quot;</span><span class="p">,</span> <span class="s">&quot;race&quot;</span><span class="p">)</span>
+    <span class="n">list_filter</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;branch&quot;</span><span class="p">,</span> <span class="s">&quot;gender&quot;</span><span class="p">,</span> <span class="s">&quot;race&quot;</span><span class="p">)</span>
+    <span class="n">search_fields</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;name&quot;</span><span class="p">,)</span>
+<span class="hll">
+</span><span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Invite</span><span class="p">,</span> <span class="n">InviteAdmin</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>SCREENSHOT</p>
+</div>
+<div class="section" id="act-5-hello-newsroom">
+<h2>Act 5: Hello newsroom<a class="headerlink" href="#act-5-hello-newsroom" title="Permalink to this headline">¶</a></h2>
 <p>Instructions for after you get home about how to host it on Amazon or something like that.</p>
 <ul class="simple">
 <li>Show how the 0.0.0.0 trick works</li>
 <li>Explain alternatives, like under your desk, in the cloud, etc.</li>
 <li>Show how to do it with Heroku maybe?</li>
+<li>Create users for the reporters</li>
+<li>Randomly assign records to staff</li>
 </ul>
 </div>
 </div>
@@ -514,7 +558,7 @@ we&#8217;ll use to put together our website.</p>
 <li><a class="reference internal" href="#act-2-hello-models">Act 2: Hello models</a></li>
 <li><a class="reference internal" href="#act-3-hello-loader">Act 3: Hello loader</a></li>
 <li><a class="reference internal" href="#act-4-hello-admin">Act 4: Hello admin</a></li>
-<li><a class="reference internal" href="#act-5-hello-internet">Act 5: Hello Internet</a></li>
+<li><a class="reference internal" href="#act-5-hello-newsroom">Act 5: Hello newsroom</a></li>
 </ul>
 </li>
 </ul>

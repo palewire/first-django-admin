@@ -1,4 +1,9 @@
 from django.contrib import admin
 from academy.models import Invite
 
-admin.site.register(Invite)
+class InviteAdmin(admin.ModelAdmin):
+    list_display = ("name", "branch", "gender", "date_of_birth", "race")
+    list_filter = ("branch", "gender", "race")
+    search_fields = ("name",)
+
+admin.site.register(Invite, InviteAdmin)
