@@ -194,7 +194,7 @@ inside its sealed space. You only need to create the virtualenv once, but you&#8
 </pre></div>
 </div>
 <p>Make a new directory and move into it.</p>
-<p>Use <tt class="docutils literal"><span class="pre">pip</span></tt> on the command line to install <a class="reference external" href="https://www.djangoproject.com/">Djang</a>, a Python &#8220;framework&#8221;
+<p>Use <tt class="docutils literal"><span class="pre">pip</span></tt> on the command line to install <a class="reference external" href="https://www.djangoproject.com/">Django</a>, a Python &#8220;framework&#8221;
 we&#8217;ll use to put together our website.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>pip install Django
 </pre></div>
@@ -221,13 +221,13 @@ we&#8217;ll use to put together our website.</p>
 </pre></div>
 </div>
 <p>Visit <a class="reference external" href="http://localhost:8000">localhost:8000</a> in your browser to see Django in action. Here&#8217;s what you should see.</p>
-<img alt="_images/hello-django.png" src="_images/hello-django.png" />
+<img alt="_images/hello-django.jpg" src="_images/hello-django.jpg" />
 <p>Congratulations. You&#8217;ve installed Django and got a blank site started up and working. Now the real work begins.</p>
 </div>
 <div class="section" id="act-2-hello-models">
 <h2>Act 2: Hello models<a class="headerlink" href="#act-2-hello-models" title="Permalink to this headline">¶</a></h2>
 <p>Now we create our app. In Django terms, an app is a collection of files that do something, like publish a blog or store public records. A project, like we made above, collects those apps and organizes them into a working website.</p>
-<p>You can create a new app with Django&#8217;s <a href="#id1"><span class="problematic" id="id2">``</span></a>startapp` command. Since we are aiming to make a list of people invited to join the academy, naming this one isn&#8217;t too hard.</p>
+<p>You can create a new app with Django&#8217;s <a href="#id2"><span class="problematic" id="id3">``</span></a>startapp` command. Since we are aiming to make a list of people invited to join the academy, naming this one isn&#8217;t too hard.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>python manage.py startapp academy
 </pre></div>
 </div>
@@ -376,7 +376,7 @@ we&#8217;ll use to put together our website.</p>
 </span></pre></div>
 </div>
 <p>Congratulations, you&#8217;ve written your first model. But it won&#8217;t be created as a real table in your database until you run what Django calls a &#8220;migration.&#8221; That&#8217;s just a fancy word for syncing our models files.</p>
-<p>Make sure to save your <a href="#id3"><span class="problematic" id="id4">``</span></a>models.py``file. Then design the migration for your new model.</p>
+<p>Make sure to save your <a href="#id4"><span class="problematic" id="id5">``</span></a>models.py``file. Then design the migration for your new model.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>python manage.py makemigrations academy
 </pre></div>
 </div>
@@ -481,9 +481,9 @@ we&#8217;ll use to put together our website.</p>
 </pre></div>
 </div>
 <p>And visit <a class="reference external" href="http://localhost:8000/admin/">localhost:8000/admin/</a> and log in using the credentials you just created.</p>
-<p>SCREENSHOT HERE</p>
+<img alt="_images/hello-admin-login.png" src="_images/hello-admin-login.png" />
 <p>Without any additional configuration you will see administration panels for the apps installed with Django by default.</p>
-<p>SCREENSHOT HERE</p>
+<img alt="_images/hello-admin-noconfig.png" src="_images/hello-admin-noconfig.png" />
 <p>Adding panels for your own models is done in the <tt class="docutils literal"><span class="pre">admin.py</span></tt> file included with each app. Open <tt class="docutils literal"><span class="pre">academy/admin.py</span></tt> to start in.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
 <span class="kn">from</span> <span class="nn">academy.models</span> <span class="kn">import</span> <span class="n">Invite</span>
@@ -491,19 +491,21 @@ we&#8217;ll use to put together our website.</p>
 <span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Invite</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Now reload <a class="reference external" href="http://localhost:8000/admin/">localhost:8000/admin/</a> and you&#8217;ll see it in action.</p>
-<p>SCREENSHOT</p>
+<p>Now reload <a class="reference external" href="http://localhost:8000/admin/">localhost:8000/admin/</a> and you&#8217;ll see it added to the index app list.</p>
+<img alt="_images/hello-admin-module.png" src="_images/hello-admin-module.png" />
+<p>Click on &#8220;Invite&#8221; and you&#8217;ll see all the records we loaded into the database a list.</p>
+<img alt="_images/hello-admin-list.png" src="_images/hello-admin-list.png" />
 <p>Configure the columns that appear in the list.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
 <span class="kn">from</span> <span class="nn">academy.models</span> <span class="kn">import</span> <span class="n">Invite</span>
-<span class="hll">
-</span><span class="hll"><span class="k">class</span> <span class="nc">InviteAdmin</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">ModelAdmin</span><span class="p">):</span>
+
+<span class="hll"><span class="k">class</span> <span class="nc">InviteAdmin</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">ModelAdmin</span><span class="p">):</span>
 </span><span class="hll">    <span class="n">list_display</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;name&quot;</span><span class="p">,</span> <span class="s">&quot;branch&quot;</span><span class="p">,</span> <span class="s">&quot;gender&quot;</span><span class="p">,</span> <span class="s">&quot;date_of_birth&quot;</span><span class="p">,</span> <span class="s">&quot;race&quot;</span><span class="p">)</span>
 </span><span class="hll">
 </span><span class="hll"><span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Invite</span><span class="p">,</span> <span class="n">InviteAdmin</span><span class="p">)</span>
 </span></pre></div>
 </div>
-<p>SCREENSHOT</p>
+<img alt="_images/hello-admin-columns.png" src="_images/hello-admin-columns.png" />
 <p>Add a filter.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
 <span class="kn">from</span> <span class="nn">academy.models</span> <span class="kn">import</span> <span class="n">Invite</span>
@@ -515,7 +517,7 @@ we&#8217;ll use to put together our website.</p>
 <span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Invite</span><span class="p">,</span> <span class="n">InviteAdmin</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>SCREENSHOT</p>
+<img alt="_images/hello-admin-filter.png" src="_images/hello-admin-filter.png" />
 <p>And now a search.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
 <span class="kn">from</span> <span class="nn">academy.models</span> <span class="kn">import</span> <span class="n">Invite</span>
@@ -523,12 +525,12 @@ we&#8217;ll use to put together our website.</p>
 <span class="k">class</span> <span class="nc">InviteAdmin</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">ModelAdmin</span><span class="p">):</span>
     <span class="n">list_display</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;name&quot;</span><span class="p">,</span> <span class="s">&quot;branch&quot;</span><span class="p">,</span> <span class="s">&quot;gender&quot;</span><span class="p">,</span> <span class="s">&quot;date_of_birth&quot;</span><span class="p">,</span> <span class="s">&quot;race&quot;</span><span class="p">)</span>
     <span class="n">list_filter</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;branch&quot;</span><span class="p">,</span> <span class="s">&quot;gender&quot;</span><span class="p">,</span> <span class="s">&quot;race&quot;</span><span class="p">)</span>
-    <span class="n">search_fields</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;name&quot;</span><span class="p">,)</span>
-<span class="hll">
-</span><span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Invite</span><span class="p">,</span> <span class="n">InviteAdmin</span><span class="p">)</span>
+<span class="hll">    <span class="n">search_fields</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;name&quot;</span><span class="p">,)</span>
+</span>
+<span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Invite</span><span class="p">,</span> <span class="n">InviteAdmin</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>SCREENSHOT</p>
+<img alt="_images/hello-admin-search.png" src="_images/hello-admin-search.png" />
 </div>
 <div class="section" id="act-5-hello-newsroom">
 <h2>Act 5: Hello newsroom<a class="headerlink" href="#act-5-hello-newsroom" title="Permalink to this headline">¶</a></h2>

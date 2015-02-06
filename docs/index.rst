@@ -235,7 +235,7 @@ Fire up Django's built-in web server.
 
 Visit `localhost:8000 <http://localhost:8000>`_ in your browser to see Django in action. Here's what you should see.
 
-.. image:: /_static/hello-django.png
+.. image:: /_static/hello-django.jpg
 
 Congratulations. You've installed Django and got a blank site started up and working. Now the real work begins.
 
@@ -559,11 +559,11 @@ Then fire up the Django test server.
 
 And visit `localhost:8000/admin/ <http://localhost:8000/admin/>`_ and log in using the credentials you just created.
 
-SCREENSHOT HERE
+.. image:: /_static/hello-admin-login.png
 
 Without any additional configuration you will see administration panels for the apps installed with Django by default.
 
-SCREENSHOT HERE
+.. image:: /_static/hello-admin-noconfig.png
 
 Adding panels for your own models is done in the ``admin.py`` file included with each app. Open ``academy/admin.py`` to start in.
 
@@ -574,9 +574,13 @@ Adding panels for your own models is done in the ``admin.py`` file included with
 
   admin.site.register(Invite)
 
-Now reload `localhost:8000/admin/ <http://localhost:8000/admin/>`_ and you'll see it in action.
+Now reload `localhost:8000/admin/ <http://localhost:8000/admin/>`_ and you'll see it added to the index app list.
 
-SCREENSHOT
+.. image:: /_static/hello-admin-module.png
+
+Click on "Invite" and you'll see all the records we loaded into the database a list.
+
+.. image:: /_static/hello-admin-list.png
 
 Configure the columns that appear in the list.
 
@@ -591,7 +595,7 @@ Configure the columns that appear in the list.
 
   admin.site.register(Invite, InviteAdmin)
 
-SCREENSHOT
+.. image:: /_static/hello-admin-columns.png
 
 Add a filter.
 
@@ -607,7 +611,7 @@ Add a filter.
 
   admin.site.register(Invite, InviteAdmin)
 
-SCREENSHOT
+.. image:: /_static/hello-admin-filter.png
 
 And now a search.
 
@@ -624,7 +628,7 @@ And now a search.
 
   admin.site.register(Invite, InviteAdmin)
 
-SCREENSHOT
+.. image:: /_static/hello-admin-search.png
 
 Act 5: Hello newsroom
 ---------------------
