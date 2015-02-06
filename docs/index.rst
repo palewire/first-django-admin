@@ -595,6 +595,8 @@ Configure the columns that appear in the list.
 
   admin.site.register(Invite, InviteAdmin)
 
+Reload.
+
 .. image:: /_static/hello-admin-columns.png
 
 Add a filter.
@@ -610,6 +612,8 @@ Add a filter.
       list_filter = ("branch", "gender", "race")
 
   admin.site.register(Invite, InviteAdmin)
+
+Reload.
 
 .. image:: /_static/hello-admin-filter.png
 
@@ -628,12 +632,24 @@ And now a search.
 
   admin.site.register(Invite, InviteAdmin)
 
+Reload.
+
 .. image:: /_static/hello-admin-search.png
+
+Take a moment to search, filter and sort the list to see how things work. You can even fill in a few records if you want to give that a spin.
 
 Act 5: Hello newsroom
 ---------------------
 
-Instructions for after you get home about how to host it on Amazon or something like that.
+Now you're ready to get other people involved. The first thing to do is create additional users for your colleagues. Return to `localhost:8000 <http://localhost:8000/admin/>`_ and click the plus button next to the "User" model.
+
+.. image:: /_static/hello-newsroom-userlink.png
+
+.. image:: /_static/hello-newsroom-nameuser.png
+
+.. image:: /_static/hello-newsroom-staffstatus.png
+
+.. image:: /_static/hello-newsroom-permissions.png
 
 - Show how the 0.0.0.0 trick works
 - Explain alternatives, like under your desk, in the cloud, etc.
