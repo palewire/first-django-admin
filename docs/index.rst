@@ -545,6 +545,37 @@ You've done it. The CSV is loaded into the database.
 Act 4: Hello admin
 ------------------
 
+One of Django's unique features is that it comes with a custom administration that allows users to view, edit and create records. To see it in action, create a new superuser with permission to edit all records.
+
+.. code-block:: bash
+
+    $ python manage.py createsuperuser
+
+Then fire up the Django test server.
+
+.. code-block:: bash
+
+    $ python manage.py runserver
+
+And visit `localhost:8000/admin/ <http://localhost:8000/admin/>`_ and log in using the credentials you just created.
+
+SCREENSHOT HERE
+
+Without any additional configuration you will see administration panels for the apps installed with Django by default.
+
+SCREENSHOT HERE
+
+Adding panels for your own models is done in the ``admin.py`` file included with each app. Open ``academy/admin.py`` to start in.
+
+.. code-block:: python
+
+  from django.contrib import admin
+  from academy.models import Invite
+
+  admin.site.register(Invite)
+
+Now reload `localhost:8000/admin/ <http://localhost:8000/admin/>`_ and you'll see it in action.
+
 - Configure the admin vanilla.
 - Create a superuser
 - Check out how the vanilla admin looks
@@ -552,11 +583,8 @@ Act 4: Hello admin
 - Tweak our admin so it's nicer
 - Create users for the reporters
 
-Then create a new superuser with permission to edit all records.
+Then
 
-.. code-block:: bash
-
-    $ python manage.py createsuperuser
 
 - Create an admin to access and edit the new model
 - Gradually refine it so it's better

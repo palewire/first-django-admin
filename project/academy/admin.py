@@ -1,3 +1,4 @@
 from django.contrib import admin
+from academy.models import Invite
 
-# Register your models here.
+admin.site.register(Invite)
