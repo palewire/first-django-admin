@@ -612,7 +612,7 @@ SCREENSHOT
 And now a search.
 
 .. code-block:: python
-  :emphasize-lines: 8
+  :emphasize-lines: 7
 
   from django.contrib import admin
   from academy.models import Invite
