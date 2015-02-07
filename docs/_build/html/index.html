@@ -255,7 +255,7 @@ we&#8217;ll use to put together our website.</p>
 </span></pre></div>
 </div>
 <p>Next, like any good database table, it needs some fields.</p>
-<p>If you open <a class="reference external" href="https://github.com/ireapps/first-django-admin/blob/master/academy_invites_2014.csv">the source CSV</a>, you will see that is has only two: name and branch. Both are filled with characters (as opposed to other data types like integers or dates).</p>
+<p>If you open <a class="reference external" href="https://github.com/ireapps/first-django-admin/blob/master/project/academy_invites_2014.csv">the source CSV</a>, you will see that is has only two: name and branch. Both are filled with characters (as opposed to other data types like integers or dates).</p>
 <p>Django also has some <a class="reference external" href="https://docs.djangoproject.com/en/1.7/ref/models/fields/">fancy tricks</a> for defining fields. Use them to define the fields from our source data.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -428,7 +428,7 @@ we&#8217;ll use to put together our website.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>python manage.py loadacademycsv
 </pre></div>
 </div>
-<p>Download <a class="reference external" href="https://raw.githubusercontent.com/ireapps/first-django-admin/master/academy_invites_2014.csv">the source CSV file</a> from GitHub and store in your base directory next to <tt class="docutils literal"><span class="pre">manage.py</span></tt>.</p>
+<p>Download <a class="reference external" href="https://raw.githubusercontent.com/ireapps/first-django-admin/master/project/academy_invites_2014.csv">the source CSV file</a> from GitHub and store in your base directory next to <tt class="docutils literal"><span class="pre">manage.py</span></tt>.</p>
 <p>Return to the management command and introduce Python&#8217;s built-in <a class="reference external" href="https://docs.python.org/2/library/csv.html">csv module</a> to convert the CSV into a list and print each record.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="hll"><span class="kn">import</span> <span class="nn">os</span>
 </span><span class="hll"><span class="kn">import</span> <span class="nn">csv</span>
@@ -562,10 +562,66 @@ we&#8217;ll use to put together our website.</p>
 </pre></div>
 </div>
 <p>Then within the code that comes out you&#8217;ll see a series of numbers formatted something like 172.19.131.101 after a label like &#8220;inet&#8221; or &#8220;IPv4 Address&#8221;.</p>
-<p>Copy and past that into your browser to <a class="reference external" href="http://XXX.YY.ZZZ.QQ:8000/admin/">http://XXX.YY.ZZZ.QQ:8000/admin/</a> and see what happens. If your Django site appears, you&#8217;re off to a good start.</p>
+<p>Copy and past that into your browser to <a class="reference external" href="http://XXX.YY.ZZZ.QQ:8000/admin/">http://xxx.xx.xxx.xx:8000/admin/</a> and see what happens. If your Django site appears, you&#8217;re off to a good start.</p>
 <p>Now visit your colleagues computer across the newsroom and if the same address works, you&#8217;re ready to roll.</p>
 <img alt="_images/hello-newsroom-permissions.png" src="_images/hello-newsroom-permissions.png" />
 <p>Now as long as the runserver command is up and running back at your computer, your data entry website is online. Congratulations!</p>
+</div>
+<div class="section" id="epilogue-hello-dumper">
+<h2>Epilogue: Hello dumper<a class="headerlink" href="#epilogue-hello-dumper" title="Permalink to this headline">¶</a></h2>
+<p>Alright, so let&#8217;s assume you work with some industrious reporters. They roll through all the records and you&#8217;ve got the gender, race and age entered for everybody in the database.</p>
+<p>Here&#8217;s how you can get the data back out as a CSV. We&#8217;ll start by creating a new management command much like the one we made for the loader.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>touch academy/management/commands/dumpacademycsv.py
+</pre></div>
+</div>
+<p>Open it up and paste in the barebones of a management command.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.core.management.base</span> <span class="kn">import</span> <span class="n">BaseCommand</span>
+
+<span class="k">class</span> <span class="nc">Command</span><span class="p">(</span><span class="n">BaseCommand</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">handle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">):</span>
+        <span class="k">print</span> <span class="s">&quot;Dumping CSV&quot;</span>
+</pre></div>
+</div>
+<p>Import our Invite model and create a loop that runs through all the records
+and prints out each field.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="hll"><span class="kn">from</span> <span class="nn">academy.models</span> <span class="kn">import</span> <span class="n">Invite</span>
+</span><span class="kn">from</span> <span class="nn">django.core.management.base</span> <span class="kn">import</span> <span class="n">BaseCommand</span>
+
+<span class="k">class</span> <span class="nc">Command</span><span class="p">(</span><span class="n">BaseCommand</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">handle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">):</span>
+        <span class="k">print</span> <span class="s">&quot;Dumping CSV&quot;</span>
+<span class="hll">        <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">Invite</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
+</span><span class="hll">            <span class="n">row</span> <span class="o">=</span> <span class="p">[</span><span class="n">obj</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">branch</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">gender</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">date_of_birth</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">race</span><span class="p">]</span>
+</span><span class="hll">            <span class="k">print</span> <span class="n">row</span>
+</span></pre></div>
+</div>
+<p>Save the file and run the command. You should see all the data printed out in lists.</p>
+<div class="highlight-python"><div class="highlight"><pre>$ python manage.py dumpacademycsv
+</pre></div>
+</div>
+<p>Now introduce the csv module to output those rows to a new file.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="hll"><span class="kn">import</span> <span class="nn">os</span>
+</span><span class="hll"><span class="kn">import</span> <span class="nn">csv</span>
+</span><span class="hll"><span class="kn">from</span> <span class="nn">django.conf</span> <span class="kn">import</span> <span class="n">settings</span>
+</span><span class="kn">from</span> <span class="nn">academy.models</span> <span class="kn">import</span> <span class="n">Invite</span>
+<span class="kn">from</span> <span class="nn">django.core.management.base</span> <span class="kn">import</span> <span class="n">BaseCommand</span>
+
+<span class="k">class</span> <span class="nc">Command</span><span class="p">(</span><span class="n">BaseCommand</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">handle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">):</span>
+        <span class="k">print</span> <span class="s">&quot;Dumping CSV&quot;</span>
+<span class="hll">        <span class="n">csv_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">BASE_DIR</span><span class="p">,</span> <span class="s">&quot;dump.csv&quot;</span><span class="p">)</span>
+</span><span class="hll">        <span class="n">csv_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">csv_path</span><span class="p">,</span> <span class="s">&#39;wb&#39;</span><span class="p">)</span>
+</span><span class="hll">        <span class="n">csv_writer</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">csv_file</span><span class="p">)</span>
+</span><span class="hll">        <span class="n">csv_writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="s">&#39;name&#39;</span><span class="p">,</span> <span class="s">&#39;branch&#39;</span><span class="p">,</span> <span class="s">&#39;gender&#39;</span><span class="p">,</span> <span class="s">&#39;date_of_birth&#39;</span><span class="p">,</span> <span class="s">&#39;race&#39;</span><span class="p">])</span>
+</span>        <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">Invite</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
+            <span class="n">row</span> <span class="o">=</span> <span class="p">[</span><span class="n">obj</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">branch</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">gender</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">date_of_birth</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">race</span><span class="p">]</span>
+<span class="hll">            <span class="n">csv_writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+</span></pre></div>
+</div>
+<p>Now open up <tt class="docutils literal"><span class="pre">dump.csv</span></tt> in your base directory and your export should be good to go.</p>
 </div>
 </div>
 
@@ -585,6 +641,7 @@ we&#8217;ll use to put together our website.</p>
 <li><a class="reference internal" href="#act-3-hello-loader">Act 3: Hello loader</a></li>
 <li><a class="reference internal" href="#act-4-hello-admin">Act 4: Hello admin</a></li>
 <li><a class="reference internal" href="#act-5-hello-newsroom">Act 5: Hello newsroom</a></li>
+<li><a class="reference internal" href="#epilogue-hello-dumper">Epilogue: Hello dumper</a></li>
 </ul>
 </li>
 </ul>
