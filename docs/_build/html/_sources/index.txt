@@ -726,7 +726,7 @@ and prints out each field.
       def handle(self, *args, **options):
           print "Dumping CSV"
           for obj in Invite.objects.all():
-              row = [obj.name, obj.branch, obj.gender, obj.date_of_birth, obj.race]
+              row = [obj.name, obj.branch, obj.gender, obj.date_of_birth, obj.race, obj.notes]
               print row
 
 Save the file and run the command. You should see all the data printed out in lists.
@@ -753,9 +753,9 @@ Now introduce the csv module to output those rows to a new file.
           csv_path = os.path.join(settings.BASE_DIR, "dump.csv")
           csv_file = open(csv_path, 'wb')
           csv_writer = csv.writer(csv_file)
-          csv_writer.writerow(['name', 'branch', 'gender', 'date_of_birth', 'race'])
+          csv_writer.writerow(['name', 'branch', 'gender', 'date_of_birth', 'race', 'notes'])
           for obj in Invite.objects.all():
-              row = [obj.name, obj.branch, obj.gender, obj.date_of_birth, obj.race]
+              row = [obj.name, obj.branch, obj.gender, obj.date_of_birth, obj.race, obj.notes]
               csv_writer.writerow(row)
 
 Run our new command once more.
