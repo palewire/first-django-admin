@@ -758,4 +758,10 @@ Now introduce the csv module to output those rows to a new file.
               row = [obj.name, obj.branch, obj.gender, obj.date_of_birth, obj.race]
               csv_writer.writerow(row)
 
+Run our new command once more.
+
+.. code-block:: python
+
+  $ python manage.py dumpacademycsv
+
 Now open up ``dump.csv`` in your base directory and your export should be good to go.
