@@ -285,7 +285,7 @@ Each table is defined using a Python `class <http://www.learnpython.org/en/Class
 
 Next, like any good database table, it needs some fields.
 
-If you open `the source CSV <https://github.com/ireapps/first-django-admin/blob/master/academy_invites_2014.csv>`_, you will see that is has only two: name and branch. Both are filled with characters (as opposed to other data types like integers or dates).
+If you open `the source CSV <https://github.com/ireapps/first-django-admin/blob/master/project/academy_invites_2014.csv>`_, you will see that is has only two: name and branch. Both are filled with characters (as opposed to other data types like integers or dates).
 
 Django also has some `fancy tricks <https://docs.djangoproject.com/en/1.7/ref/models/fields/>`_ for defining fields. Use them to define the fields from our source data.
 
@@ -492,7 +492,7 @@ Running is as simple as invoking its name with ``manage.py``.
 
   $ python manage.py loadacademycsv
 
-Download `the source CSV file <https://raw.githubusercontent.com/ireapps/first-django-admin/master/academy_invites_2014.csv>`_ from GitHub and store in your base directory next to ``manage.py``.
+Download `the source CSV file <https://raw.githubusercontent.com/ireapps/first-django-admin/master/project/academy_invites_2014.csv>`_ from GitHub and store in your base directory next to ``manage.py``.
 
 Return to the management command and introduce Python's built-in `csv module <https://docs.python.org/2/library/csv.html>`_ to convert the CSV into a list and print each record.
 
