@@ -836,7 +836,7 @@ The admin's ``list_editable`` is a powerful little option that lets you do a lot
 If you want to go further and filter by reporter so, for example, you could see all of Jimmy Olson's assignments at a glance, simply add "reporter" to the ``list_filter`` list.
 
 .. code-block:: python
-  :emphasize-lines: 7
+  :emphasize-lines: 6
 
   from django.contrib import admin
   from academy.models import Invite
