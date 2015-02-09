@@ -42,7 +42,6 @@ and working to participate.
    language
 4. The `pip <https://pip.pypa.io/en/latest/installing.html>`_ package manager and `virtualenv <http://www.virtualenv.org/en/latest/>`_ environment manager for Python
 
-
 .. note::
 
   Depending on your experience and operating system, you might
@@ -72,7 +71,7 @@ Text editor
 ~~~~~~~~~~~
 
 A program like Microsoft Word, which can do all sorts of text formatting
-like change the size and color of words, is not what you need. Do not
+such as change the size and color of words, is not what you need. Do not
 try to use it below.
 
 You need a program that works with simple `"plain text"
