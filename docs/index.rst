@@ -812,7 +812,7 @@ Now fire up your runserver again and check out the invite list:
 That's a whole lot of Nones though, and do you really want to go into each page and select the name from a dropdown to assign it? No, you do not. Let's make one quick change to the ``admin.py`` file to speed this up. We are going to use a feature called ``list_editable`` to make changes directly from the invite list:
 
 .. code-block:: python
-  :emphasize-lines: 6
+  :emphasize-lines: 7
 
   from django.contrib import admin
   from academy.models import Invite
