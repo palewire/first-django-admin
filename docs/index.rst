@@ -697,7 +697,7 @@ There are two constants in this kind of work: 1) Your models will change. 2) Rep
 
 With that in mind, let's alter our model so we have a place for a reporter's name. Then we will assign each invitee to a reporter to finish.
 
-First, let's add a character field and some choices for the reporter's name.
+First, let's add a character field and some choices for the reporter's name. Open your ``models.py`` file and add them.
 
 .. code-block:: python
   :emphasize-lines: 32-42
@@ -745,7 +745,7 @@ First, let's add a character field and some choices for the reporter's name.
           null=True
       )
 
-Great. Now let's just run 
+Great. Save it and let's run:
 
 .. code-block:: bash
 
