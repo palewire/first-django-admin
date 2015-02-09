@@ -567,6 +567,131 @@ we&#8217;ll use to put together our website.</p>
 <img alt="_images/hello-newsroom-permissions.png" src="_images/hello-newsroom-permissions.png" />
 <p>Now as long as the runserver command is up and running back at your computer, your data entry website is online. Congratulations!</p>
 </div>
+<div class="section" id="act-6-adding-fields-and-assigning-reporters">
+<h2>Act 6: Adding fields and assigning reporters<a class="headerlink" href="#act-6-adding-fields-and-assigning-reporters" title="Permalink to this headline">¶</a></h2>
+<p>There are two constants in this kind of work: 1) Your models will change. 2) Reporters need to be told what to do.</p>
+<p>With that in mind, let&#8217;s alter our model so we have a place for a reporter&#8217;s name. Then we will assign each invitee to a reporter to finish.</p>
+<p>First, let&#8217;s add a character field and some choices for the reporter&#8217;s name.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
+
+<span class="c"># Create your models here.</span>
+<span class="k">class</span> <span class="nc">Invite</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+    <span class="n">branch</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+    <span class="n">GENDER_CHOICES</span> <span class="o">=</span> <span class="p">(</span>
+      <span class="p">(</span><span class="s">&quot;M&quot;</span><span class="p">,</span> <span class="s">&quot;Male&quot;</span><span class="p">),</span>
+      <span class="p">(</span><span class="s">&quot;F&quot;</span><span class="p">,</span> <span class="s">&quot;Female&quot;</span><span class="p">),</span>
+      <span class="p">(</span><span class="s">&quot;?&quot;</span><span class="p">,</span> <span class="s">&quot;Unknown&quot;</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="n">gender</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
+        <span class="n">max_length</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">choices</span><span class="o">=</span><span class="n">GENDER_CHOICES</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="s">&quot;?&quot;</span>
+    <span class="p">)</span>
+    <span class="n">date_of_birth</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateField</span><span class="p">(</span><span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">RACE_CHOICES</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="p">(</span><span class="s">&quot;ASIAN&quot;</span><span class="p">,</span> <span class="s">&quot;Asian&quot;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s">&quot;BLACK&quot;</span><span class="p">,</span> <span class="s">&quot;Black&quot;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s">&quot;LATINO&quot;</span><span class="p">,</span> <span class="s">&quot;Latino&quot;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s">&quot;WHITE&quot;</span><span class="p">,</span> <span class="s">&quot;White&quot;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s">&quot;OTHER&quot;</span><span class="p">,</span> <span class="s">&quot;Other&quot;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s">&quot;?&quot;</span><span class="p">,</span> <span class="s">&quot;Unknown&quot;</span><span class="p">),</span>
+    <span class="p">)</span>
+    <span class="n">race</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
+        <span class="n">max_length</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+        <span class="n">choices</span><span class="o">=</span><span class="n">RACE_CHOICES</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="s">&quot;?&quot;</span>
+    <span class="p">)</span>
+    <span class="n">notes</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">TextField</span><span class="p">(</span><span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="hll">    <span class="n">REPORTERS</span> <span class="o">=</span> <span class="p">(</span>
+</span><span class="hll">        <span class="p">(</span><span class="s">&quot;lois-lane&quot;</span><span class="p">,</span> <span class="s">&quot;Lois Lane&quot;</span><span class="p">),</span>
+</span><span class="hll">        <span class="p">(</span><span class="s">&quot;clark-kent&quot;</span><span class="p">,</span> <span class="s">&quot;Clark Kent&quot;</span><span class="p">),</span>
+</span><span class="hll">        <span class="p">(</span><span class="s">&quot;jimmy-olson&quot;</span><span class="p">,</span> <span class="s">&quot;Jimmy Olson&quot;</span><span class="p">)</span>
+</span><span class="hll">    <span class="p">)</span>
+</span><span class="hll">    <span class="n">reporter</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
+</span><span class="hll">        <span class="n">max_length</span><span class="o">=</span><span class="mi">255</span><span class="p">,</span>
+</span><span class="hll">        <span class="n">choices</span><span class="o">=</span><span class="n">REPORTERS</span><span class="p">,</span>
+</span><span class="hll">        <span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+</span><span class="hll">        <span class="n">null</span><span class="o">=</span><span class="bp">True</span>
+</span><span class="hll">    <span class="p">)</span>
+</span></pre></div>
+</div>
+<p>Great. Now let&#8217;s just run</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>python manage.py runserver
+</pre></div>
+</div>
+<p>Now go to <a class="reference external" href="http://localhost:8000/admin/">localhost:8000/admin/</a> and click on &#8216;Invites.&#8217; You should see this:</p>
+<img alt="_images/hello-newsroom-nomigrationerror.png" src="_images/hello-newsroom-nomigrationerror.png" />
+<p>Uh oh. What happened? Well, in Django parlance, we are missing a migration. While your <tt class="docutils literal"><span class="pre">models.py</span></tt> file describes your database tables, simply changing the file won&#8217;t change your database. Django needs some instructions on how to create, delete or migrate fields in an explicit way. This is where migrations come in. Migrations explain how to modify your database, including the ability to &#8220;roll back&#8221; your database tables to a previous state.</p>
+<p>Thankfully, in newer versions of Django, this feature is built in. Kill your <tt class="docutils literal"><span class="pre">runserver</span></tt> by hitting <tt class="docutils literal"><span class="pre">ctrl-c</span></tt>, and run a command:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="c"># Create a migration</span>
+<span class="nv">$ </span>python manage.py makemigrations academy
+</pre></div>
+</div>
+<p>This creates a file that says we want to add a reporter field to our database.  Let&#8217;s check to see what we did. List the contents of <tt class="docutils literal"><span class="pre">academy/migrations/</span></tt></p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="c"># In OSX or Linux</span>
+<span class="nv">$ </span>ls academy/migrations/
+<span class="c"># In Windows</span>
+<span class="nv">$ </span>dir academy/migrations
+</pre></div>
+</div>
+<p>You should see that there are two migration files there: <tt class="docutils literal"><span class="pre">0001_initial.py</span></tt> and <tt class="docutils literal"><span class="pre">0002_invite_reporter.py</span></tt>. When you created your table before, you ran the <tt class="docutils literal"><span class="pre">makemigrations</span></tt> command as well, which created the initial file. Every time you make a migration, Django will add another file to this folder.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If you&#8217;re using <tt class="docutils literal"><span class="pre">git</span></tt> to track your project, it&#8217;s important to add these migrations to your git repository. Otherwise people collaborating with you won&#8217;t know what changes you have made to the database.</p>
+</div>
+<p>Now we have to apply the migration. Your changes won&#8217;t be applied to the database until you run <tt class="docutils literal"><span class="pre">migrate</span></tt>, so let&#8217;s do that now</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="c"># Actually apply the migrations</span>
+<span class="nv">$ </span>python manage.py migrate academy
+</pre></div>
+</div>
+<p>Excellent. Run your server and check out an invite now. You should see a dropdown like this:</p>
+<img alt="_images/hello-newsroom-reporter.png" src="_images/hello-newsroom-reporter.png" />
+<p>Wouldn&#8217;t it be great if you could see this information at a glance, though? Pop open your <tt class="docutils literal"><span class="pre">admin.py</span></tt> file and let&#8217;s do just that. We will add &#8220;reporter&#8221; to the end of our <tt class="docutils literal"><span class="pre">list_display</span></tt> list.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
+<span class="kn">from</span> <span class="nn">academy.models</span> <span class="kn">import</span> <span class="n">Invite</span>
+
+<span class="k">class</span> <span class="nc">InviteAdmin</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">ModelAdmin</span><span class="p">):</span>
+<span class="hll">    <span class="n">list_display</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;name&quot;</span><span class="p">,</span> <span class="s">&quot;branch&quot;</span><span class="p">,</span> <span class="s">&quot;gender&quot;</span><span class="p">,</span> <span class="s">&quot;date_of_birth&quot;</span><span class="p">,</span> <span class="s">&quot;race&quot;</span><span class="p">,</span> <span class="s">&quot;reporter&quot;</span><span class="p">,)</span>
+</span>    <span class="n">list_filter</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;branch&quot;</span><span class="p">,</span> <span class="s">&quot;gender&quot;</span><span class="p">,</span> <span class="s">&quot;race&quot;</span><span class="p">)</span>
+    <span class="n">search_fields</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;name&quot;</span><span class="p">,)</span>
+
+<span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Invite</span><span class="p">,</span> <span class="n">InviteAdmin</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now fire up your runserver again and check out the invite list:</p>
+<img alt="_images/hello-newsroom-nones.png" src="_images/hello-newsroom-nones.png" />
+<p>That&#8217;s a whole lot of Nones though, and do you really want to go into each page and select the name from a dropdown to assign it? No, you do not. Let&#8217;s make one quick change to the <tt class="docutils literal"><span class="pre">admin.py</span></tt> file to speed this up. We are going to use a feature called <tt class="docutils literal"><span class="pre">list_editable</span></tt> to make changes directly from the invite list:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
+<span class="kn">from</span> <span class="nn">academy.models</span> <span class="kn">import</span> <span class="n">Invite</span>
+
+<span class="k">class</span> <span class="nc">InviteAdmin</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">ModelAdmin</span><span class="p">):</span>
+    <span class="n">list_display</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;name&quot;</span><span class="p">,</span> <span class="s">&quot;branch&quot;</span><span class="p">,</span> <span class="s">&quot;gender&quot;</span><span class="p">,</span> <span class="s">&quot;date_of_birth&quot;</span><span class="p">,</span> <span class="s">&quot;race&quot;</span><span class="p">,</span> <span class="s">&quot;reporter&quot;</span><span class="p">,)</span>
+<span class="hll">    <span class="n">list_filter</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;branch&quot;</span><span class="p">,</span> <span class="s">&quot;gender&quot;</span><span class="p">,</span> <span class="s">&quot;race&quot;</span><span class="p">)</span>
+</span>    <span class="n">list_editable</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;reporter&quot;</span><span class="p">,)</span>
+    <span class="n">search_fields</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;name&quot;</span><span class="p">,)</span>
+
+<span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Invite</span><span class="p">,</span> <span class="n">InviteAdmin</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Ready? Save the file and open up the invite list again.</p>
+<img alt="_images/hello-newsroom-list-editable.png" src="_images/hello-newsroom-list-editable.png" />
+<p>Now you can edit the reporter field directly from the admin list! Select a few reporters from a few dropdowns and then scroll to the bottom of the page and hit Save. Congratulations, you&#8217;ve just doled out some work.</p>
+<p>The admin&#8217;s <tt class="docutils literal"><span class="pre">list_editable</span></tt> is a powerful little option that lets you do a lot of work in a little time. When you&#8217;ve assigned enough people, you can turn the feature back off by removing or commenting out the <tt class="docutils literal"><span class="pre">list_editable</span></tt> line in the admin.</p>
+<p>If you want to go further and filter by reporter so, for example, you could see all of Jimmy Olson&#8217;s assignments at a glance, simply add &#8220;reporter&#8221; to the <tt class="docutils literal"><span class="pre">list_filter</span></tt> list.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
+<span class="kn">from</span> <span class="nn">academy.models</span> <span class="kn">import</span> <span class="n">Invite</span>
+
+<span class="k">class</span> <span class="nc">InviteAdmin</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">ModelAdmin</span><span class="p">):</span>
+    <span class="n">list_display</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;name&quot;</span><span class="p">,</span> <span class="s">&quot;branch&quot;</span><span class="p">,</span> <span class="s">&quot;gender&quot;</span><span class="p">,</span> <span class="s">&quot;date_of_birth&quot;</span><span class="p">,</span> <span class="s">&quot;race&quot;</span><span class="p">,</span> <span class="s">&quot;reporter&quot;</span><span class="p">,)</span>
+    <span class="n">list_filter</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;branch&quot;</span><span class="p">,</span> <span class="s">&quot;gender&quot;</span><span class="p">,</span> <span class="s">&quot;race&quot;</span><span class="p">,</span> <span class="s">&quot;reporter&quot;</span><span class="p">,)</span>
+<span class="hll">    <span class="n">list_editable</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;reporter&quot;</span><span class="p">,)</span>
+</span>    <span class="n">search_fields</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;name&quot;</span><span class="p">,)</span>
+
+<span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Invite</span><span class="p">,</span> <span class="n">InviteAdmin</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="epilogue-hello-dumper">
 <h2>Epilogue: Hello dumper<a class="headerlink" href="#epilogue-hello-dumper" title="Permalink to this headline">¶</a></h2>
 <p>Alright, so let&#8217;s assume you work with some industrious reporters. They roll through all the records and you&#8217;ve got the gender, race and age entered for everybody in the database.</p>
@@ -645,6 +770,7 @@ and prints out each field.</p>
 <li><a class="reference internal" href="#act-3-hello-loader">Act 3: Hello loader</a></li>
 <li><a class="reference internal" href="#act-4-hello-admin">Act 4: Hello admin</a></li>
 <li><a class="reference internal" href="#act-5-hello-newsroom">Act 5: Hello newsroom</a></li>
+<li><a class="reference internal" href="#act-6-adding-fields-and-assigning-reporters">Act 6: Adding fields and assigning reporters</a></li>
 <li><a class="reference internal" href="#epilogue-hello-dumper">Epilogue: Hello dumper</a></li>
 </ul>
 </li>
