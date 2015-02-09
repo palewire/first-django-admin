@@ -800,7 +800,7 @@ Wouldn't it be great if you could see this information at a glance, though? Pop 
 
   class InviteAdmin(admin.ModelAdmin):
       list_display = ("name", "branch", "gender", "date_of_birth", "race", "reporter",)
-      list_filter = ("branch", "gender", "race")
+      list_filter = ("branch", "gender", "race",)
       search_fields = ("name",)
 
   admin.site.register(Invite, InviteAdmin)
@@ -819,7 +819,7 @@ That's a whole lot of Nones though, and do you really want to go into each page 
 
   class InviteAdmin(admin.ModelAdmin):
       list_display = ("name", "branch", "gender", "date_of_birth", "race", "reporter",)
-      list_filter = ("branch", "gender", "race")
+      list_filter = ("branch", "gender", "race",)
       list_editable = ("reporter",)
       search_fields = ("name",)
 
