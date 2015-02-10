@@ -690,8 +690,8 @@ Now visit your colleagues computer across the newsroom and if the same address w
 Now as long as the runserver command is up and running back at your computer, your data entry website is online. Congratulations!
 
 
-Act 6: Adding fields and assigning reporters
---------------------------------------------
+Act 6: Hello assignment system
+------------------------------
 
 There are two constants in this kind of work: 1) Your models will change. 2) Reporters need to be told what to do.
 
@@ -751,7 +751,7 @@ Great. Save it and let's run:
 
   $ python manage.py runserver
 
-Now go to `localhost:8000/admin/ <http://localhost:8000/admin/>`_ and click on 'Invites.' You should see this:
+Now go to `http://localhost:8000/admin/ <http://localhost:8000/admin/>`_ and click on 'Invites.' You should see this:
 
 .. image:: /_static/hello-newsroom-nomigrationerror.png
 
