@@ -690,7 +690,7 @@ Now all you need to do is find your computer's IP address. The method varies dep
 
 Then within the code that comes out you'll see a series of numbers formatted something like 172.19.131.101 after a label like "inet" or "IPv4 Address".
 
-Copy and past that into your browser to `http://xxx.xx.xxx.xx:8000/admin/ <http://XXX.YY.ZZZ.QQ:8000/admin/>`_ and see what happens. If your Django site appears, you're off to a good start.
+Copy and paste that into your browser to `http://xxx.xx.xxx.xx:8000/admin/ <http://XXX.YY.ZZZ.QQ:8000/admin/>`_ and see what happens. If your Django site appears, you're off to a good start.
 
 Now visit your colleagues computer across the newsroom and if the same address works, you're ready to roll.
 
