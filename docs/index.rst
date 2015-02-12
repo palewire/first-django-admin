@@ -253,6 +253,15 @@ You can create a new app with Django's ``startapp` command. Since we are aiming 
 
 There should now be a new ``academy`` folder in your project. If you look inside you will see that Django created a series of files common to every app.
 
+.. code-block:: txt
+
+  academy/
+      __init__.py
+      admin.py
+      models.py
+      tests.py
+      views.py
+
 We will only be using two of them in this tutorial. The file called ``models.py`` is where we will design our database tables. Another called ``admin.py`` is where we will configure the panels where reporters will be able to enrich the source data.
 
 But before we do any of that, we need to configure out project to include our new apps. Use your text editor to open the file ``settings.py`` in the ``project`` directory. Add our app, ``academy``, to the ``INSTALLED_APPS`` list you find there.
