@@ -243,7 +243,7 @@ Congratulations. You've installed Django and got a blank site started up and wor
 Act 2: Hello models
 -------------------
 
-Now we create our app. In Django terms, an app is a collection of files that do something, like publish a blog or store public records. A project, like we made above, collects those apps and organizes them into a working website.
+Now we create our app. In Django terms, an app is a collection of files that does something, like publish a blog or store public records. A project, like we made above, collects those apps and organizes them into a working website.
 
 You can create a new app with Django's ``startapp` command. Since we are aiming to make a list of people invited to join the academy, naming this one isn't too hard.
 
