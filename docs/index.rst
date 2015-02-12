@@ -24,7 +24,7 @@ In 2012, `a study by the Los Angeles Times <http://www.latimes.com/entertainment
 
 In the steps below, you will repeat The Times' work using the academy's 2014 invitation list, creating a system to share the load of producing a follow-up story in `this vein <http://www.latimes.com/entertainment/envelope/moviesnow/la-et-mn-diversity-oscar-academy-members-20131221-story.html>`_.
 
-You are following in the footsteps of Times reporters `Sandra Poindexter <http://www.latimes.com/la-bio-sandra-poindexter-staff.html>`_ and `Doug Smith <http://www.latimes.com/la-bio-doug-smith-staff.html>`_, who developed a similar administration panel as their first Django project. They were inspired by a presentation made by `Matt Wynn <http://mattwynn.net/>`_ at a past conference of The National Institute for Computer-Assisted Reporting.
+You are following in the footsteps of Times reporters `Sandra Poindexter <http://www.latimes.com/la-bio-sandra-poindexter-staff.html>`_ and `Doug Smith <http://www.latimes.com/la-bio-doug-smith-staff.html>`_, who developed a similar administration panel as part of their investigation. They were inspired by a presentation made by `Matt Wynn <http://mattwynn.net/>`_ at a past conference of The National Institute for Computer-Assisted Reporting.
 
 Prelude: Prerequisites
 ----------------------
