@@ -465,7 +465,10 @@ we&#8217;ll use to put together our website.</p>
         <span class="n">csv_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">csv_path</span><span class="p">,</span> <span class="s">&#39;rb&#39;</span><span class="p">)</span>
         <span class="n">csv_reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">csv_file</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">csv_reader</span><span class="p">:</span>
-<span class="hll">            <span class="n">obj</span> <span class="o">=</span> <span class="n">Invite</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s">&#39;Name&#39;</span><span class="p">],</span> <span class="n">branch</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s">&#39;Branch&#39;</span><span class="p">])</span>
+<span class="hll">            <span class="n">obj</span> <span class="o">=</span> <span class="n">Invite</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+</span><span class="hll">                <span class="n">name</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s">&#39;Name&#39;</span><span class="p">],</span>
+</span><span class="hll">                <span class="n">branch</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s">&#39;Branch&#39;</span><span class="p">]</span>
+</span><span class="hll">            <span class="p">)</span>
 </span><span class="hll">            <span class="k">print</span> <span class="n">obj</span>
 </span></pre></div>
 </div>

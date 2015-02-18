@@ -522,7 +522,7 @@ Run it to see what we mean.
 Import our model into the command and use it to save the CSV records to the database.
 
 .. code-block:: python
-  :emphasize-lines: 4,15-16
+  :emphasize-lines: 4,15-19
 
   import os
   import csv
@@ -538,7 +538,10 @@ Import our model into the command and use it to save the CSV records to the data
           csv_file = open(csv_path, 'rb')
           csv_reader = csv.DictReader(csv_file)
           for row in csv_reader:
-              obj = Invite.objects.create(name=row['Name'], branch=row['Branch'])
+              obj = Invite.objects.create(
+                  name=row['Name'],
+                  branch=row['Branch']
+              )
               print obj
 
 You've done it. The CSV is loaded into the database.
