@@ -281,7 +281,7 @@ But before we do any of that, we need to configure out project to include our ne
 
 Next open up the ``models.py`` file in the ``academy`` app's directory. Here we will use Django's built-in `models <https://docs.djangoproject.com/en/1.7/topics/db/models/>`_ system to design a database table to hold the source data.
 
-Each table is defined using a Python `class <http://www.learnpython.org/en/Classes_and_Objects>`_ that inherits special powers from Django allowing it to syncronize with an underlying database. Our work begins by creating our class and naming it after the data we'll put inside.
+Each table is defined using a Python `class <http://www.learnpython.org/en/Classes_and_Objects>`_ that inherits special powers `from Django <https://docs.djangoproject.com/en/dev/topics/db/models/>`_ allowing it to syncronize with an underlying database. Our work begins by creating our class and naming it after the data we'll put inside.
 
 .. code-block:: python
   :emphasize-lines: 4
@@ -290,6 +290,10 @@ Each table is defined using a Python `class <http://www.learnpython.org/en/Class
 
   # Create your models here.
   class Invite(models.Model):
+
+.. note::
+
+    Don't know what a class is? Don't stress out about it. It's a little tricky to explain, but a class is basically a blueprint for designing how information in your code is structured. In our case, we're creating a blueprint that will link up with a traditional database table (often called a schema).
 
 Next, like any good database table, it needs some fields.
 
