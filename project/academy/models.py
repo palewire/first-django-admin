@@ -28,3 +28,14 @@ class Invite(models.Model):
         choices=RACE_CHOICES,
         default="?"
     )
+    REPORTERS = (
+        ("lois-lane", "Lois Lane"),
+        ("clark-kent", "Clark Kent"),
+        ("jimmy-olson", "Jimmy Olson") 
+    )
+    reporter = models.CharField(
+        max_length=255,
+        choices=REPORTERS,
+        blank=True,
+        null=True
+    )
