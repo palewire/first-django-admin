@@ -301,7 +301,7 @@ we&#8217;ll use to put together our website.</p>
 <p class="first admonition-title">Note</p>
 <p class="last">When you create a choices list each option needs to have two values. The first one is what is written into the database, and is often more compact. the second one is what is displayed for user, and is often more verbose.</p>
 </div>
-<p>Then date of birth.</p>
+<p>Then the invite&#8217;s date of birth. Since this type of field will start off empty we need to instruct the database to: 1) allow null values with <tt class="docutils literal"><span class="pre">null=True</span></tt> and allow entrants to leave it empty when they update records later <tt class="docutils literal"><span class="pre">blank=True</span></tt>.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
 
 <span class="c"># Create your models here.</span>
@@ -318,7 +318,7 @@ we&#8217;ll use to put together our website.</p>
         <span class="n">choices</span><span class="o">=</span><span class="n">GENDER_CHOICES</span><span class="p">,</span>
         <span class="n">default</span><span class="o">=</span><span class="s">&quot;?&quot;</span>
     <span class="p">)</span>
-<span class="hll">    <span class="n">date_of_birth</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateField</span><span class="p">(</span><span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="hll">    <span class="n">date_of_birth</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateField</span><span class="p">(</span><span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </span></pre></div>
 </div>
 <p>Race.</p>
@@ -338,7 +338,7 @@ we&#8217;ll use to put together our website.</p>
         <span class="n">choices</span><span class="o">=</span><span class="n">GENDER_CHOICES</span><span class="p">,</span>
         <span class="n">default</span><span class="o">=</span><span class="s">&quot;?&quot;</span>
     <span class="p">)</span>
-    <span class="n">date_of_birth</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateField</span><span class="p">(</span><span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">date_of_birth</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateField</span><span class="p">(</span><span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 <span class="hll">    <span class="n">RACE_CHOICES</span> <span class="o">=</span> <span class="p">(</span>
 </span><span class="hll">        <span class="p">(</span><span class="s">&quot;ASIAN&quot;</span><span class="p">,</span> <span class="s">&quot;Asian&quot;</span><span class="p">),</span>
 </span><span class="hll">        <span class="p">(</span><span class="s">&quot;BLACK&quot;</span><span class="p">,</span> <span class="s">&quot;Black&quot;</span><span class="p">),</span>
@@ -371,7 +371,7 @@ we&#8217;ll use to put together our website.</p>
         <span class="n">choices</span><span class="o">=</span><span class="n">GENDER_CHOICES</span><span class="p">,</span>
         <span class="n">default</span><span class="o">=</span><span class="s">&quot;?&quot;</span>
     <span class="p">)</span>
-    <span class="n">date_of_birth</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateField</span><span class="p">(</span><span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">date_of_birth</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateField</span><span class="p">(</span><span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
     <span class="n">RACE_CHOICES</span> <span class="o">=</span> <span class="p">(</span>
         <span class="p">(</span><span class="s">&quot;ASIAN&quot;</span><span class="p">,</span> <span class="s">&quot;Asian&quot;</span><span class="p">),</span>
         <span class="p">(</span><span class="s">&quot;BLACK&quot;</span><span class="p">,</span> <span class="s">&quot;Black&quot;</span><span class="p">),</span>
@@ -644,7 +644,7 @@ we&#8217;ll use to put together our website.</p>
         <span class="n">choices</span><span class="o">=</span><span class="n">GENDER_CHOICES</span><span class="p">,</span>
         <span class="n">default</span><span class="o">=</span><span class="s">&quot;?&quot;</span>
     <span class="p">)</span>
-    <span class="n">date_of_birth</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateField</span><span class="p">(</span><span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">date_of_birth</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateField</span><span class="p">(</span><span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
     <span class="n">RACE_CHOICES</span> <span class="o">=</span> <span class="p">(</span>
         <span class="p">(</span><span class="s">&quot;ASIAN&quot;</span><span class="p">,</span> <span class="s">&quot;Asian&quot;</span><span class="p">),</span>
         <span class="p">(</span><span class="s">&quot;BLACK&quot;</span><span class="p">,</span> <span class="s">&quot;Black&quot;</span><span class="p">),</span>
@@ -659,16 +659,15 @@ we&#8217;ll use to put together our website.</p>
         <span class="n">default</span><span class="o">=</span><span class="s">&quot;?&quot;</span>
     <span class="p">)</span>
     <span class="n">notes</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">TextField</span><span class="p">(</span><span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-<span class="hll">    <span class="n">REPORTERS</span> <span class="o">=</span> <span class="p">(</span>
+<span class="hll">    <span class="n">REPORTER_CHOICES</span> <span class="o">=</span> <span class="p">(</span>
 </span><span class="hll">        <span class="p">(</span><span class="s">&quot;lois-lane&quot;</span><span class="p">,</span> <span class="s">&quot;Lois Lane&quot;</span><span class="p">),</span>
 </span><span class="hll">        <span class="p">(</span><span class="s">&quot;clark-kent&quot;</span><span class="p">,</span> <span class="s">&quot;Clark Kent&quot;</span><span class="p">),</span>
 </span><span class="hll">        <span class="p">(</span><span class="s">&quot;jimmy-olson&quot;</span><span class="p">,</span> <span class="s">&quot;Jimmy Olson&quot;</span><span class="p">)</span>
 </span><span class="hll">    <span class="p">)</span>
 </span><span class="hll">    <span class="n">reporter</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
 </span><span class="hll">        <span class="n">max_length</span><span class="o">=</span><span class="mi">255</span><span class="p">,</span>
-</span><span class="hll">        <span class="n">choices</span><span class="o">=</span><span class="n">REPORTERS</span><span class="p">,</span>
-</span><span class="hll">        <span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
-</span><span class="hll">        <span class="n">null</span><span class="o">=</span><span class="bp">True</span>
+</span><span class="hll">        <span class="n">choices</span><span class="o">=</span><span class="n">REPORTER_CHOICES</span><span class="p">,</span>
+</span><span class="hll">        <span class="n">blank</span><span class="o">=</span><span class="bp">True</span>
 </span><span class="hll">    <span class="p">)</span>
 </span></pre></div>
 </div>
@@ -774,7 +773,7 @@ and prints out each field.</p>
     <span class="k">def</span> <span class="nf">handle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">):</span>
         <span class="k">print</span> <span class="s">&quot;Dumping CSV&quot;</span>
 <span class="hll">        <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">Invite</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
-</span><span class="hll">            <span class="n">row</span> <span class="o">=</span> <span class="p">[</span><span class="n">obj</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">branch</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">gender</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">date_of_birth</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">race</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">notes</span><span class="p">]</span>
+</span><span class="hll">            <span class="n">row</span> <span class="o">=</span> <span class="p">[</span><span class="n">obj</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">branch</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">gender</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">date_of_birth</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">race</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">notes</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">reporter</span><span class="p">]</span>
 </span><span class="hll">            <span class="k">print</span> <span class="n">row</span>
 </span></pre></div>
 </div>
@@ -796,9 +795,9 @@ and prints out each field.</p>
 <span class="hll">        <span class="n">csv_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">BASE_DIR</span><span class="p">,</span> <span class="s">&quot;dump.csv&quot;</span><span class="p">)</span>
 </span><span class="hll">        <span class="n">csv_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">csv_path</span><span class="p">,</span> <span class="s">&#39;wb&#39;</span><span class="p">)</span>
 </span><span class="hll">        <span class="n">csv_writer</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">csv_file</span><span class="p">)</span>
-</span><span class="hll">        <span class="n">csv_writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="s">&#39;name&#39;</span><span class="p">,</span> <span class="s">&#39;branch&#39;</span><span class="p">,</span> <span class="s">&#39;gender&#39;</span><span class="p">,</span> <span class="s">&#39;date_of_birth&#39;</span><span class="p">,</span> <span class="s">&#39;race&#39;</span><span class="p">,</span> <span class="s">&#39;notes&#39;</span><span class="p">])</span>
+</span><span class="hll">        <span class="n">csv_writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="s">&#39;name&#39;</span><span class="p">,</span> <span class="s">&#39;branch&#39;</span><span class="p">,</span> <span class="s">&#39;gender&#39;</span><span class="p">,</span> <span class="s">&#39;date_of_birth&#39;</span><span class="p">,</span> <span class="s">&#39;race&#39;</span><span class="p">,</span> <span class="s">&#39;notes&#39;</span><span class="p">,</span> <span class="s">&#39;reporter&#39;</span><span class="p">])</span>
 </span>        <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">Invite</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
-            <span class="n">row</span> <span class="o">=</span> <span class="p">[</span><span class="n">obj</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">branch</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">gender</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">date_of_birth</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">race</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">notes</span><span class="p">]</span>
+            <span class="n">row</span> <span class="o">=</span> <span class="p">[</span><span class="n">obj</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">branch</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">gender</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">date_of_birth</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">race</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">notes</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">reporter</span><span class="p">]</span>
 <span class="hll">            <span class="n">csv_writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
 </span></pre></div>
 </div>

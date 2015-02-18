@@ -339,7 +339,7 @@ First gender.
 
     When you create a choices list each option needs to have two values. The first one is what is written into the database, and is often more compact. the second one is what is displayed for user, and is often more verbose.
 
-Then date of birth.
+Then the invite's date of birth. Since this type of field will start off empty we need to instruct the database to: 1) allow null values with ``null=True`` and allow entrants to leave it empty when they update records later ``blank=True``.
 
 .. code-block:: python
   :emphasize-lines: 17
@@ -360,7 +360,7 @@ Then date of birth.
           choices=GENDER_CHOICES,
           default="?"
       )
-      date_of_birth = models.DateField(blank=True, null=True)
+      date_of_birth = models.DateField(null=True, blank=True)
 
 Race.
 
@@ -383,7 +383,7 @@ Race.
           choices=GENDER_CHOICES,
           default="?"
       )
-      date_of_birth = models.DateField(blank=True, null=True)
+      date_of_birth = models.DateField(null=True, blank=True)
       RACE_CHOICES = (
           ("ASIAN", "Asian"),
           ("BLACK", "Black"),
@@ -419,7 +419,7 @@ Finally, an open-ended text field for reporters to leave notes about their decis
           choices=GENDER_CHOICES,
           default="?"
       )
-      date_of_birth = models.DateField(blank=True, null=True)
+      date_of_birth = models.DateField(null=True, blank=True)
       RACE_CHOICES = (
           ("ASIAN", "Asian"),
           ("BLACK", "Black"),
@@ -785,7 +785,7 @@ First, let's add a character field and some choices for the reporter's name. Ope
           choices=GENDER_CHOICES,
           default="?"
       )
-      date_of_birth = models.DateField(blank=True, null=True)
+      date_of_birth = models.DateField(null=True, blank=True)
       RACE_CHOICES = (
           ("ASIAN", "Asian"),
           ("BLACK", "Black"),
@@ -800,16 +800,15 @@ First, let's add a character field and some choices for the reporter's name. Ope
           default="?"
       )
       notes = models.TextField(blank=True)
-      REPORTERS = (
+      REPORTER_CHOICES = (
           ("lois-lane", "Lois Lane"),
           ("clark-kent", "Clark Kent"),
           ("jimmy-olson", "Jimmy Olson")
       )
       reporter = models.CharField(
           max_length=255,
-          choices=REPORTERS,
-          blank=True,
-          null=True
+          choices=REPORTER_CHOICES,
+          blank=True
       )
 
 Great. Save it and let's run:
@@ -953,7 +952,7 @@ and prints out each field.
       def handle(self, *args, **options):
           print "Dumping CSV"
           for obj in Invite.objects.all():
-              row = [obj.name, obj.branch, obj.gender, obj.date_of_birth, obj.race, obj.notes]
+              row = [obj.name, obj.branch, obj.gender, obj.date_of_birth, obj.race, obj.notes, obj.reporter]
               print row
 
 Save the file and run the command. You should see all the data printed out in lists.
@@ -980,9 +979,9 @@ Now introduce the csv module to output those rows to a new file.
           csv_path = os.path.join(settings.BASE_DIR, "dump.csv")
           csv_file = open(csv_path, 'wb')
           csv_writer = csv.writer(csv_file)
-          csv_writer.writerow(['name', 'branch', 'gender', 'date_of_birth', 'race', 'notes'])
+          csv_writer.writerow(['name', 'branch', 'gender', 'date_of_birth', 'race', 'notes', 'reporter'])
           for obj in Invite.objects.all():
-              row = [obj.name, obj.branch, obj.gender, obj.date_of_birth, obj.race, obj.notes]
+              row = [obj.name, obj.branch, obj.gender, obj.date_of_birth, obj.race, obj.notes, obj.reporter]
               csv_writer.writerow(row)
 
 Run our new command once more.
