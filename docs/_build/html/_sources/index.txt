@@ -502,10 +502,57 @@ Running is as simple as invoking its name with ``manage.py``.
 
 Download `the source CSV file <https://raw.githubusercontent.com/ireapps/first-django-admin/master/project/academy_invites_2014.csv>`_ from GitHub and store in your base directory next to ``manage.py``.
 
-Return to the management command and introduce Python's built-in `csv module <https://docs.python.org/2/library/csv.html>`_ to convert the CSV into a list and print each record.
+Return to the management command and introduce Python's built-in `csv module <https://docs.python.org/2/library/csv.html>`_.
 
 .. code-block:: python
-  :emphasize-lines: 1,2,3,10-15
+  :emphasize-lines: 1
+
+  import csv
+  from django.core.management.base import BaseCommand
+
+  class Command(BaseCommand):
+
+      def handle(self, *args, **options):
+          print "Loading CSV"
+
+Next use Python ``os`` module and Django's ``BASE_DIR`` setting to generate the full path to where you saved the csv file. By default, ``BASE_DIR`` is set to the root of you project, the same spot where you can find ``manage.py``.
+
+.. code-block:: python
+  :emphasize-lines: 1,3,10
+
+  import os
+  import csv
+  from django.conf import settings
+  from django.core.management.base import BaseCommand
+
+  class Command(BaseCommand):
+
+      def handle(self, *args, **options):
+          print "Loading CSV"
+          csv_path = os.path.join(settings.BASE_DIR, "academy_invites_2014.csv")
+
+Now access the file at that path with Python's built-in ``open`` function. Feeding the file object it creates into the ``csv`` module's ``DictReader`` will return a list with each row in the file as a dictionary.
+
+.. code-block:: python
+  :emphasize-lines: 11,12
+
+  import os
+  import csv
+  from django.conf import settings
+  from django.core.management.base import BaseCommand
+
+  class Command(BaseCommand):
+
+      def handle(self, *args, **options):
+          print "Loading CSV"
+          csv_path = os.path.join(settings.BASE_DIR, "academy_invites_2014.csv")
+          csv_file = open(csv_path, 'rb')
+          csv_reader = csv.DictReader(csv_file)
+
+Create a loop that walks through the list, printing out each row as it goes by.
+
+.. code-block:: python
+  :emphasize-lines: 13,14
 
   import os
   import csv
@@ -553,7 +600,11 @@ Import our model into the command and use it to save the CSV records to the data
               )
               print obj
 
-You've done it. The CSV is loaded into the database.
+Run it again and you've done it. The CSV is loaded into the database.
+
+.. code-block:: bash
+
+  $ python manage.py loadacademycsv
 
 Act 4: Hello admin
 ------------------
@@ -748,7 +799,7 @@ First, let's add a character field and some choices for the reporter's name. Ope
       REPORTERS = (
           ("lois-lane", "Lois Lane"),
           ("clark-kent", "Clark Kent"),
-          ("jimmy-olson", "Jimmy Olson") 
+          ("jimmy-olson", "Jimmy Olson")
       )
       reporter = models.CharField(
           max_length=255,
