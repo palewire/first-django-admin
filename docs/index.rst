@@ -335,6 +335,10 @@ First gender.
           default="?"
       )
 
+.. note::
+
+    When you create a choices list each option needs to have two values. The first one is what is written into the database, and is often more compact. the second one is what is displayed for user, and is often more verbose.
+
 Then date of birth.
 
 .. code-block:: python
