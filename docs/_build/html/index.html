@@ -255,12 +255,16 @@ we&#8217;ll use to put together our website.</p>
 </pre></div>
 </div>
 <p>Next open up the <tt class="docutils literal"><span class="pre">models.py</span></tt> file in the <tt class="docutils literal"><span class="pre">academy</span></tt> app&#8217;s directory. Here we will use Django&#8217;s built-in <a class="reference external" href="https://docs.djangoproject.com/en/1.7/topics/db/models/">models</a> system to design a database table to hold the source data.</p>
-<p>Each table is defined using a Python <a class="reference external" href="http://www.learnpython.org/en/Classes_and_Objects">class</a> that inherits special powers from Django allowing it to syncronize with an underlying database. Our work begins by creating our class and naming it after the data we&#8217;ll put inside.</p>
+<p>Each table is defined using a Python <a class="reference external" href="http://www.learnpython.org/en/Classes_and_Objects">class</a> that inherits special powers <a class="reference external" href="https://docs.djangoproject.com/en/dev/topics/db/models/">from Django</a> allowing it to syncronize with an underlying database. Our work begins by creating our class and naming it after the data we&#8217;ll put inside.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
 
 <span class="c"># Create your models here.</span>
 <span class="hll"><span class="k">class</span> <span class="nc">Invite</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
 </span></pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Don&#8217;t know what a class is? Don&#8217;t stress out about it. It&#8217;s a little tricky to explain, but a class is basically a blueprint for designing how information in your code is structured. In our case, we&#8217;re creating a blueprint that will link up with a traditional database table (often called a schema).</p>
 </div>
 <p>Next, like any good database table, it needs some fields.</p>
 <p>If you open <a class="reference external" href="https://github.com/ireapps/first-django-admin/blob/master/project/academy_invites_2014.csv">the source CSV</a>, you will see that is has only two: name and branch. Both are filled with characters (as opposed to other data types like integers or dates).</p>
@@ -405,9 +409,12 @@ we&#8217;ll use to put together our website.</p>
 <p>To do this, add a <tt class="docutils literal"><span class="pre">management/commands</span></tt> directory in our academy app, complete with the empty <tt class="docutils literal"><span class="pre">__init__.py</span></tt> files required by Python. You can do this in your operating system&#8217;s file explorer, or on the command line. From a Linux or OSX prompt that would look something like this.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="c"># The -p flag here makes both new directories</span>
 <span class="nv">$ </span>mkdir -p academy/management/commands
-<span class="c"># This creates the empty files for Python</span>
+<span class="c"># This creates the empty files for Python on Macs or in Linux</span>
 <span class="nv">$ </span>touch academy/management/__init__.py
 <span class="nv">$ </span>touch academy/management/commands/__init__.py
+<span class="c"># If you&#39;re in Windows create them with your text editor</span>
+<span class="nv">$ </span>start notepad++ academy/management/__init__.py
+<span class="nv">$ </span>start notepad++ academy/management/commands/__init__.py
 </pre></div>
 </div>
 <p>When you&#8217;re done the app&#8217;s directory should look something like this.</p>
@@ -424,7 +431,10 @@ we&#8217;ll use to put together our website.</p>
 </pre></div>
 </div>
 <p>Create a new file in the <tt class="docutils literal"><span class="pre">management/commands</span></tt> directory where the new command will go. Let&#8217;s call it <tt class="docutils literal"><span class="pre">loadacademycsv.py</span></tt>.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>touch academy/management/commands/loadacademycsv.py
+<div class="highlight-bash"><div class="highlight"><pre><span class="c"># Mac or Linux</span>
+<span class="nv">$ </span>touch academy/management/commands/loadacademycsv.py
+<span class="c"># Windows</span>
+<span class="nv">$ </span>start notepad++ academy/management/commands/loadacademycsv.py
 </pre></div>
 </div>
 <p>Open it up and paste in the skeleton common to all management commands.</p>
@@ -751,7 +761,10 @@ we&#8217;ll use to put together our website.</p>
 <h2>Epilogue: Hello dumper<a class="headerlink" href="#epilogue-hello-dumper" title="Permalink to this headline">¶</a></h2>
 <p>Alright, so let&#8217;s assume you work with some industrious reporters. They roll through all the records and you&#8217;ve got the gender, race and age entered for everybody in the database.</p>
 <p>Here&#8217;s how you can get the data back out as a CSV. We&#8217;ll start by creating a new management command much like the one we made for the loader.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>touch academy/management/commands/dumpacademycsv.py
+<div class="highlight-bash"><div class="highlight"><pre><span class="c"># Mac or Linux</span>
+<span class="nv">$ </span>touch academy/management/commands/dumpacademycsv.py
+<span class="c"># Windows</span>
+<span class="nv">$ </span>start notepad++ academy/management/commands/dumpacademycsv.py
 </pre></div>
 </div>
 <p>Open it up and paste in the barebones of a management command.</p>

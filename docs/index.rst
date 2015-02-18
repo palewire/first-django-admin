@@ -466,9 +466,12 @@ To do this, add a ``management/commands`` directory in our academy app, complete
 
   # The -p flag here makes both new directories
   $ mkdir -p academy/management/commands
-  # This creates the empty files for Python
+  # This creates the empty files for Python on Macs or in Linux
   $ touch academy/management/__init__.py
   $ touch academy/management/commands/__init__.py
+  # If you're in Windows create them with your text editor
+  $ start notepad++ academy/management/__init__.py
+  $ start notepad++ academy/management/commands/__init__.py
 
 When you're done the app's directory should look something like this.
 
@@ -489,7 +492,10 @@ Create a new file in the ``management/commands`` directory where the new command
 
 .. code-block:: bash
 
+  # Mac or Linux
   $ touch academy/management/commands/loadacademycsv.py
+  # Windows
+  $ start notepad++ academy/management/commands/loadacademycsv.py
 
 Open it up and paste in the skeleton common to all management commands.
 
@@ -929,7 +935,10 @@ Here's how you can get the data back out as a CSV. We'll start by creating a new
 
 .. code-block:: bash
 
+  # Mac or Linux
   $ touch academy/management/commands/dumpacademycsv.py
+  # Windows
+  $ start notepad++ academy/management/commands/dumpacademycsv.py
 
 Open it up and paste in the barebones of a management command.
 
