@@ -466,7 +466,7 @@ To do this, add a ``management/commands`` directory in our academy app, complete
 
   # The -p flag here makes both new directories
   $ mkdir -p academy/management/commands
-  # This creates the empty files for Python on Macs or in Linux
+  # This creates the empty files on Macs or in Linux
   $ touch academy/management/__init__.py
   $ touch academy/management/commands/__init__.py
   # If you're in Windows create them with your text editor
