@@ -767,8 +767,8 @@ Now visit your colleagues computer across the newsroom and if the same address w
 Now as long as the runserver command is up and running back at your computer, your data entry website is online. Congratulations!
 
 
-Act 6: Hello assignments
-------------------------
+Act 6: Hello homework
+---------------------
 
 There are two constants in this kind of work: 1) Your models will change. 2) Reporters need to be told what to do.
 
