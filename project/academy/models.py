@@ -7,6 +7,7 @@ class Invite(models.Model):
     GENDER_CHOICES = (
       ("M", "Male"),
       ("F", "Female"),
+      ("O", "Other"),
       ("?", "Unknown")
     )
     gender = models.CharField(
