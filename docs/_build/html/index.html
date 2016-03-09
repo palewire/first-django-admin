@@ -45,8 +45,10 @@
 <h1>First Django admin<a class="headerlink" href="#first-django-admin" title="Permalink to this headline">¶</a></h1>
 <p>A step-by-step guide to creating a simple web application that empowers you to enlist reporters in data entry and refinement.</p>
 <p>You will learn just enough about the <a class="reference external" href="https://www.djangoproject.com/">Django</a> framework to design database tables, load in data and create an administration panel for others to improve it. You will not bother with all the other web developer crap.</p>
-<p>This guide in currently being developed by <a class="reference external" href="http://palewi.re/who-is-ben-welsh/">Ben Welsh</a> and Ken Schwencke for a workshop <a class="reference external" href="http://ire.org/conferences/nicar2015/hands-on-training/">scheduled for March 8</a> at
-the 2015 conference of the National Institute for Computer-Assisted Reporting in Atlanta.</p>
+<p>This guide was developed by <a class="reference external" href="http://palewi.re/who-is-ben-welsh/">Ben Welsh</a> and Ken Schwencke
+for a workshop <a class="reference external" href="http://ire.org/conferences/nicar2015/hands-on-training/">on March 8</a> at
+the 2015 conference of the National Institute for Computer-Assisted Reporting in Atlanta. A modified
+version will be presented at the 2016 NICAR conference on <a class="reference external" href="http://www.ire.org/events-and-training/event/2198/2219/">March 13</a>.</p>
 <ul class="simple">
 <li>Code:
 <a class="reference external" href="https://github.com/ireapps/first-django-admin">github.com/ireapps/first-django-admin/</a></li>
@@ -409,7 +411,7 @@ we&#8217;ll use to put together our website.</p>
 <p>To do this, add a <tt class="docutils literal"><span class="pre">management/commands</span></tt> directory in our academy app, complete with the empty <tt class="docutils literal"><span class="pre">__init__.py</span></tt> files required by Python. You can do this in your operating system&#8217;s file explorer, or on the command line. From a Linux or OSX prompt that would look something like this.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="c"># The -p flag here makes both new directories</span>
 <span class="nv">$ </span>mkdir -p academy/management/commands
-<span class="c"># This creates the empty files for Python on Macs or in Linux</span>
+<span class="c"># This creates the empty files on Macs or in Linux</span>
 <span class="nv">$ </span>touch academy/management/__init__.py
 <span class="nv">$ </span>touch academy/management/commands/__init__.py
 <span class="c"># If you&#39;re in Windows create them with your text editor</span>
@@ -633,8 +635,8 @@ we&#8217;ll use to put together our website.</p>
 <img alt="_images/hello-newsroom-permissions.png" src="_images/hello-newsroom-permissions.png" />
 <p>Now as long as the runserver command is up and running back at your computer, your data entry website is online. Congratulations!</p>
 </div>
-<div class="section" id="act-6-hello-assignments">
-<h2>Act 6: Hello assignments<a class="headerlink" href="#act-6-hello-assignments" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="act-6-hello-homework">
+<h2>Act 6: Hello homework<a class="headerlink" href="#act-6-hello-homework" title="Permalink to this headline">¶</a></h2>
 <p>There are two constants in this kind of work: 1) Your models will change. 2) Reporters need to be told what to do.</p>
 <p>With that in mind, let&#8217;s alter our model so we have a place for a reporter&#8217;s name. Then we will assign each invitee to a reporter to finish.</p>
 <p>First, let&#8217;s add a character field and some choices for the reporter&#8217;s name. Open your <tt class="docutils literal"><span class="pre">models.py</span></tt> file and add them.</p>
@@ -838,7 +840,7 @@ and prints out each field.</p>
 <li><a class="reference internal" href="#act-3-hello-loader">Act 3: Hello loader</a></li>
 <li><a class="reference internal" href="#act-4-hello-admin">Act 4: Hello admin</a></li>
 <li><a class="reference internal" href="#act-5-hello-newsroom">Act 5: Hello newsroom</a></li>
-<li><a class="reference internal" href="#act-6-hello-assignments">Act 6: Hello assignments</a></li>
+<li><a class="reference internal" href="#act-6-hello-homework">Act 6: Hello homework</a></li>
 <li><a class="reference internal" href="#epilogue-hello-dumper">Epilogue: Hello dumper</a></li>
 </ul>
 </li>
