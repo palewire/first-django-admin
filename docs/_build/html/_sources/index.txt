@@ -326,7 +326,7 @@ Now let's add a few more fields that we will ask the reporters to figure out and
 First gender.
 
 .. code-block:: python
-  :emphasize-lines: 7-17
+  :emphasize-lines: 7-18
 
   from django.db import models
 
@@ -337,6 +337,7 @@ First gender.
       GENDER_CHOICES = (
         ("M", "Male"),
         ("F", "Female"),
+        ("O", "Other"),
         ("?", "Unknown")
       )
       gender = models.CharField(
@@ -352,7 +353,7 @@ First gender.
 Then the invite's date of birth. Since this type of field will start off empty we need to instruct the database to: 1) allow null values with ``null=True`` and allow entrants to leave it empty when they update records later ``blank=True``.
 
 .. code-block:: python
-  :emphasize-lines: 17
+  :emphasize-lines: 18
 
   from django.db import models
 
@@ -363,6 +364,7 @@ Then the invite's date of birth. Since this type of field will start off empty w
       GENDER_CHOICES = (
         ("M", "Male"),
         ("F", "Female"),
+        ("O", "Other"),
         ("?", "Unknown")
       )
       gender = models.CharField(
@@ -375,7 +377,7 @@ Then the invite's date of birth. Since this type of field will start off empty w
 Race.
 
 .. code-block:: python
-  :emphasize-lines: 18-31
+  :emphasize-lines: 19-32
 
   from django.db import models
 
@@ -386,6 +388,7 @@ Race.
       GENDER_CHOICES = (
         ("M", "Male"),
         ("F", "Female"),
+        ("O", "Other"),
         ("?", "Unknown")
       )
       gender = models.CharField(
@@ -411,7 +414,7 @@ Race.
 Finally, an open-ended text field for reporters to leave notes about their decisions.
 
 .. code-block:: python
-  :emphasize-lines: 31
+  :emphasize-lines: 32
 
   from django.db import models
 
@@ -422,6 +425,7 @@ Finally, an open-ended text field for reporters to leave notes about their decis
       GENDER_CHOICES = (
         ("M", "Male"),
         ("F", "Female"),
+        ("O", "Other"),
         ("?", "Unknown")
       )
       gender = models.CharField(
@@ -783,7 +787,7 @@ With that in mind, let's alter our model so we have a place for a reporter's nam
 First, let's add a character field and some choices for the reporter's name. Open your ``models.py`` file and add them.
 
 .. code-block:: python
-  :emphasize-lines: 32-42
+  :emphasize-lines: 33-43
 
   from django.db import models
 
@@ -794,6 +798,7 @@ First, let's add a character field and some choices for the reporter's name. Ope
       GENDER_CHOICES = (
         ("M", "Male"),
         ("F", "Female"),
+        ("O", "Other"),
         ("?", "Unknown")
       )
       gender = models.CharField(
