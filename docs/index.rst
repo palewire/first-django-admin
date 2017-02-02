@@ -512,7 +512,7 @@ Create a new file in the ``management/commands`` directory where the new command
 Open it up and paste in the skeleton common to all management commands.
 
 .. code-block:: python
-
+ 
   from django.core.management.base import BaseCommand
 
   class Command(BaseCommand):
