@@ -10,7 +10,7 @@ You will learn just enough about the `Django <https://www.djangoproject.com/>`_ 
 This guide was developed by `Ben Welsh <http://palewi.re/who-is-ben-welsh/>`_ and Ken Schwencke
 for a workshop `on March 8 <http://ire.org/conferences/nicar2015/hands-on-training/>`_ at
 the 2015 conference of the National Institute for Computer-Assisted Reporting (NICAR) in Atlanta. A modified
-version will be presented at the 2016 NICAR conference on `March 13 <http://www.ire.org/events-and-training/event/2198/2219/>`_.
+version was presented at the 2016 NICAR conference on `March 13 <http://www.ire.org/events-and-training/event/2198/2219/>`_.
 
 `Dana Amihere <http://damihere.com>`_ will co-teach this as a hands-on workshop March 5, 2017 at the annual NICAR conference in Jacksonville, Fla. Click `here <http://ire.org/conferences/nicar2017/hands-on-training/>`_ for more details and to sign up.   
 
