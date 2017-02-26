@@ -213,8 +213,6 @@ inside its sealed space. You only need to create the virtualenv once, but you'll
     $ activate
     $ cd ..
 
-Make a new directory and move into it.
-
 Use ``pip`` on the command line to install `Django <https://www.djangoproject.com/>`_, a Python "framework"
 we'll use to put together our website.
 
@@ -236,11 +234,11 @@ Now jump into the project and we'll start setting it up.
 
 .. note::
 
-    Run the ``ls`` command (``dir`` on Windows), which lists the files in your current location. Wonder what all those weird files are in your new directory? We'll only need a couple for this tutorial, but you can read about all of them in the `official Django documentation <https://docs.djangoproject.com/en/1.7/intro/tutorial01/#creating-a-project>`_.
+    Run the ``ls`` command (``dir`` on Windows), which lists the files in your current location. Wonder what all those weird files are in your new directory? We'll only need a couple for this tutorial, but you can read about all of them in the `official Django documentation <https://docs.djangoproject.com/en/1.10/intro/tutorial01/#creating-a-project>`_.
 
-There is a lot of `configuration <https://docs.djangoproject.com/en/1.7/intro/tutorial01/#database-setup>`_ that could be done at this point, but we're going to advance with all of the Django defaults in place.
+There is a lot of `configuration <https://docs.djangoproject.com/en/1.10/intro/tutorial02/#database-setup>`_ that could be done at this point, but we're going to advance with all of the Django defaults in place.
 
-The first step is creating your database, which will appear as new `SQLLite <https://en.wikipedia.org/wiki/SQLite>`_ file named ``db.sqlite3``.
+The first step is creating your database, which will appear as a new `SQLite <https://en.wikipedia.org/wiki/SQLite>`_ file named ``db.sqlite3``.
 
 .. code-block:: bash
 

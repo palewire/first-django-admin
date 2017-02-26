@@ -213,8 +213,6 @@ inside its sealed space. You only need to create the virtualenv once, but you'll
     $ activate
     $ cd ..
 
-Make a new directory and move into it.
-
 Use ``pip`` on the command line to install `Django <https://www.djangoproject.com/>`_, a Python "framework"
 we'll use to put together our website.
 
@@ -236,11 +234,13 @@ Now jump into the project and we'll start setting it up.
 
 .. note::
 
-    Run the ``ls`` command (``dir`` on Windows), which lists the files in your current location. Wonder what all those weird files are in your new directory? We'll only need a couple for this tutorial, but you can read about all of them in the `official Django documentation <https://docs.djangoproject.com/en/1.7/intro/tutorial01/#creating-a-project>`_.
+    Run the ``ls`` command (``dir`` on Windows), which lists the files in your current location. Wonder what all those weird files are in your new directory? We'll only need a couple for this tutorial, but you can read about all of them in the `official Django documentation <https://docs.djangoproject.com/en/1.10/intro/tutorial01/#creating-a-project>`_.
 
-There is a lot of `configuration <https://docs.djangoproject.com/en/1.7/intro/tutorial01/#database-setup>`_ that could be done at this point, but we're going to advance with all of the Django defaults in place.
+There is a lot of `configuration <https://docs.djangoproject.com/en/1.10/intro/tutorial02/#database-setup>`_ that could be done at this point, but we're going to advance with all of the Django defaults in place.
 
-The first step is creating your database, which will appear as new `SQLLite <https://en.wikipedia.org/wiki/SQLite>`_ file named ``db.sqlite3``.
+The first step is creating your database, which will appear as a new `SQLite <https://en.wikipedia.org/wiki/SQLite>`_ file named ``db.sqlite3``.
+
+To do that, we will start using the ``manage.py` file created by ``startproject``. It is a utility belt we can use to make Django a wide range of things. The command we want now, ``migrate``, can create database tables.
 
 .. code-block:: bash
 
@@ -256,7 +256,7 @@ Visit `localhost:8000 <http://localhost:8000>`_ in your browser to see Django in
 
 .. image:: /_static/hello-django.jpg
 
-Congratulations. You've installed Django and got a blank site started up and working. Now the real work begins.
+Congratulations. You've installed Django and have a blank site started up and running. Now the real work begins.
 
 Act 2: Hello models
 -------------------
@@ -264,6 +264,8 @@ Act 2: Hello models
 Now we create our app. In Django terms, an app is a collection of files that does something, like publish a blog or store public records. A project, like we made above, collects those apps and organizes them into a working website.
 
 You can create a new app with Django's ``startapp` command. Since we are aiming to make a list of people invited to join the academy, naming this one isn't too hard.
+
+Return to your terminal and hit the combination of ``CTRL-C``, which will terminal your test server and return you to the command line. Then use our friend ``manage.py`` to create our app.
 
 .. code-block:: bash
 
