@@ -38,7 +38,7 @@ Prelude: Prerequisites
 ----------------------
 
 Before you can begin, your computer needs the following tools installed
-and working to participate.
+and working.
 
 1. A `command-line
    interface <https://en.wikipedia.org/wiki/Command-line_interface>`__
