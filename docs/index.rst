@@ -87,31 +87,51 @@ In Ubuntu Linux you can stick with the pre-installed
 Python
 ~~~~~~
 
-If you are using Mac OSX or a common flavor of Linux, Python is probably
-already installed and you can test to see what version, if any, is there
-waiting for you by typing the following into your terminal.
+Python is a computer programming language, like many others you may have heard of like Ruby or PHP or Java. It is free and open source. To continue to with this class, you will need to have version 2.7 installed.
 
-.. code:: bash
+For Apples
+^^^^^^^^^^
+
+If you are using Mac OSX, Python version 2.7 is probably already installed and you can test to see what version, if any, is already available by typing the following into your terminal.
+
+.. code-block:: bash
 
     $ python -V
 
 .. note::
 
-    You don't have to type the "$" It's just a generic symbol
-    geeks use to show they're working on the command line.
+    You'll note that the example above begins with a "$". You do not need to type this. It is only a generic symbol
+    commonly used by geeks to indicate a piece of code should be run from the command line. On Windows, this prompt could even look quite different, likely starting with a phrase like ``C:\``.
 
-If you don't have Python installed (a more likely fate for Windows
-users) try downloading and installing it from
-`here <http://www.python.org/download/releases/2.7.6/>`__.
+You should see something like this after you hit enter:
 
-In Windows, it's also crucial to make sure that the Python program is
-available on your system's ``PATH`` so it can be called from anywhere on
-the command line. `This
-screencast <http://showmedo.com/videotutorials/video?name=960000&fromSeriesID=96>`__
-can guide you through that process.
+.. code-block:: bash
 
-Python 2.7 is preferred but you can probably find a way to make most of
-this tutorial work with other versions if you futz a little.
+    $ python -V
+    Python 2.7.12
+
+If you get an error instead, Mac users should install Python by following `these instructions <http://docs.python-guide.org/en/latest/starting/install/osx/>`_ offered by The Hitchhikers Guide to Python.
+
+If your version is 2.7.11 or 2.7.13 or some other slight variation from what's above, that's okay. If it's Python 3, that's another issue and you should try to install Python 2.7 instead. If you continue with Python 3, this class may largely work, but you could encounter some small problems you'll need to sort out on your own.
+
+For Windows
+^^^^^^^^^^^
+
+Just like Apple users, Windows people should open their command prompt and investigate whether Python is already installed.
+
+.. code-block:: bash
+
+    python -V
+
+You should see something like this after you hit enter:
+
+.. code-block:: bash
+
+    python -V
+    Python 2.7.12
+
+
+If not Windows users can find a similar installation guide `here <http://docs.python-guide.org/en/latest/starting/install/win/>`_ which will have you try downloading and installing Python from `here <https://www.python.org/downloads/release/python-2712/>`_. After that's done, ensure Python is installed by reopening the command prompt and running the command above again.
 
 .. _command-line-pip:
 

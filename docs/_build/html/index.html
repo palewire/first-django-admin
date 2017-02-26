@@ -110,27 +110,39 @@ In Ubuntu Linux you can stick with the pre-installed
 </div>
 <div class="section" id="python">
 <h3>Python<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h3>
-<p>If you are using Mac OSX or a common flavor of Linux, Python is probably
-already installed and you can test to see what version, if any, is there
-waiting for you by typing the following into your terminal.</p>
-<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ python -V
+<p>Python is a computer programming language, like many others you may have heard of like Ruby or PHP or Java. It is free and open source. To continue to with this class, you will need to have version 2.7 installed.</p>
+<div class="section" id="for-apples">
+<h4>For Apples<a class="headerlink" href="#for-apples" title="Permalink to this headline">¶</a></h4>
+<p>If you are using Mac OSX, Python version 2.7 is probably already installed and you can test to see what version, if any, is already available by typing the following into your terminal.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ python -V
 </pre></div>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">You don&#8217;t have to type the &#8220;$&#8221; It&#8217;s just a generic symbol
-geeks use to show they&#8217;re working on the command line.</p>
+<p class="last">You&#8217;ll note that the example above begins with a &#8220;$&#8221;. You do not need to type this. It is only a generic symbol
+commonly used by geeks to indicate a piece of code should be run from the command line. On Windows, this prompt could even look quite different, likely starting with a phrase like <code class="docutils literal"><span class="pre">C:\</span></code>.</p>
 </div>
-<p>If you don&#8217;t have Python installed (a more likely fate for Windows
-users) try downloading and installing it from
-<a class="reference external" href="http://www.python.org/download/releases/2.7.6/">here</a>.</p>
-<p>In Windows, it&#8217;s also crucial to make sure that the Python program is
-available on your system&#8217;s <code class="docutils literal"><span class="pre">PATH</span></code> so it can be called from anywhere on
-the command line. <a class="reference external" href="http://showmedo.com/videotutorials/video?name=960000&amp;fromSeriesID=96">This
-screencast</a>
-can guide you through that process.</p>
-<p>Python 2.7 is preferred but you can probably find a way to make most of
-this tutorial work with other versions if you futz a little.</p>
+<p>You should see something like this after you hit enter:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ python -V
+Python <span class="m">2</span>.7.12
+</pre></div>
+</div>
+<p>If you get an error instead, Mac users should install Python by following <a class="reference external" href="http://docs.python-guide.org/en/latest/starting/install/osx/">these instructions</a> offered by The Hitchhikers Guide to Python.</p>
+<p>If your version is 2.7.11 or 2.7.13 or some other slight variation from what&#8217;s above, that&#8217;s okay. If it&#8217;s Python 3, that&#8217;s another issue and you should try to install Python 2.7 instead. If you continue with Python 3, this class may largely work, but you could encounter some small problems you&#8217;ll need to sort out on your own.</p>
+</div>
+<div class="section" id="for-windows">
+<h4>For Windows<a class="headerlink" href="#for-windows" title="Permalink to this headline">¶</a></h4>
+<p>Just like Apple users, Windows people should open their command prompt and investigate whether Python is already installed.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>python -V
+</pre></div>
+</div>
+<p>You should see something like this after you hit enter:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>python -V
+Python <span class="m">2</span>.7.12
+</pre></div>
+</div>
+<p>If not Windows users can find a similar installation guide <a class="reference external" href="http://docs.python-guide.org/en/latest/starting/install/win/">here</a> which will have you try downloading and installing Python from <a class="reference external" href="https://www.python.org/downloads/release/python-2712/">here</a>. After that&#8217;s done, ensure Python is installed by reopening the command prompt and running the command above again.</p>
+</div>
 </div>
 <div class="section" id="pip-and-virtualenv">
 <span id="command-line-pip"></span><h3>pip and virtualenv<a class="headerlink" href="#pip-and-virtualenv" title="Permalink to this headline">¶</a></h3>
@@ -223,7 +235,7 @@ we&#8217;ll use to put together our website.</p>
 <div class="section" id="act-2-hello-models">
 <h2>Act 2: Hello models<a class="headerlink" href="#act-2-hello-models" title="Permalink to this headline">¶</a></h2>
 <p>Now we create our app. In Django terms, an app is a collection of files that does something, like publish a blog or store public records. A project, like we made above, collects those apps and organizes them into a working website.</p>
-<p>You can create a new app with Django&#8217;s <a href="#id2"><span class="problematic" id="id3">``</span></a>startapp` command. Since we are aiming to make a list of people invited to join the academy, naming this one isn&#8217;t too hard.</p>
+<p>You can create a new app with Django&#8217;s <a href="#id5"><span class="problematic" id="id6">``</span></a>startapp` command. Since we are aiming to make a list of people invited to join the academy, naming this one isn&#8217;t too hard.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ python manage.py startapp academy
 </pre></div>
 </div>
@@ -392,7 +404,7 @@ we&#8217;ll use to put together our website.</p>
 </span></pre></div>
 </div>
 <p>Congratulations, you&#8217;ve written your first model. But it won&#8217;t be created as a real table in your database until you run what Django calls a &#8220;migration.&#8221; That&#8217;s just a fancy word for syncing our models files.</p>
-<p>Make sure to save your <a href="#id4"><span class="problematic" id="id5">``</span></a>models.py``file. Then design the migration for your new model.</p>
+<p>Make sure to save your <a href="#id7"><span class="problematic" id="id8">``</span></a>models.py``file. Then design the migration for your new model.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ python manage.py makemigrations academy
 </pre></div>
 </div>
