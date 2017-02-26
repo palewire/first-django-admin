@@ -307,10 +307,12 @@ But before we do any of that, we need to configure out project to include our ne
 
 Next open up the ``models.py`` file in the ``academy`` app's directory. Here we will use Django's built-in `models <https://docs.djangoproject.com/en/1.10/topics/db/models/>`_ system to design a database table to hold the source data.
 
-Each table is defined using a Python `class <http://www.learnpython.org/en/Classes_and_Objects>`_ that inherits special powers `from Django <https://docs.djangoproject.com/en/dev/topics/db/models/>`_ allowing it to syncronize with an underlying database. Our work begins by creating our class and naming it after the data we'll put inside.
+Each table is defined using a Python `class <http://www.learnpython.org/en/Classes_and_Objects>`_ that inherits special powers `from Django <https://docs.djangoproject.com/en/dev/topics/db/models/>`_. Those special powers allow it to syncronize with an underlying database. Our work begins by creating our class and naming it after the data we'll put inside.
 
 .. code-block:: python
-  :emphasize-lines: 4
+  :emphasize-lines: 6
+
+  from __future__ import unicode_literals
 
   from django.db import models
 
@@ -319,20 +321,18 @@ Each table is defined using a Python `class <http://www.learnpython.org/en/Class
 
 .. note::
 
-    Don't know what a class is? Don't stress out about it. It's a little tricky to explain, but a class is basically a blueprint for designing how information in your code is structured. In our case, we're creating a blueprint that will link up with a traditional database table (often called a schema).
+    Don't know what a class is? Don't stress out about it. It's a little tricky to explain, but a class is basically a blueprint for designing how information in your code is structured. In our case, we're creating a blueprint that will link up our data with a traditional database table (this is often called a schema).
 
 Next, like any good database table, it needs some fields.
 
-If you open `the source CSV <https://github.com/ireapps/first-django-admin/blob/master/project/academy_invites_2014.csv>`_, you will see that is has only two: name and branch. Both are filled with characters (as opposed to other data types like integers or dates).
+If you open `the source CSV <https://github.com/ireapps/first-django-admin/blob/master/project/academy_invites_2014.csv>`_, you will see that is has only two columns: name and branch.
 
-Django also has some `fancy tricks <https://docs.djangoproject.com/en/1.7/ref/models/fields/>`_ for defining fields. Use them to define the fields from our source data.
-
-.. note::
-
-    Watch out. You'll need to carefully indent your code according to Python's very `strict rules <http://www.diveintopython.net/getting_to_know_python/indenting_code.html>`_ for this to work.
+Django has some `fancy tricks <https://docs.djangoproject.com/en/1.10/ref/models/fields/>`_ for defining fields depending on what kind of data they hold. Now we'll use the ``CharField`` to expand our models to hold the name and branch data from our source. It just so happens, that CharFields have a maximum length that must always be set. We're going to pick a couple big numbers for that.
 
 .. code-block:: python
-  :emphasize-lines: 5-6
+  :emphasize-lines: 7-8
+
+    from __future__ import unicode_literals
 
     from django.db import models
 
@@ -341,12 +341,18 @@ Django also has some `fancy tricks <https://docs.djangoproject.com/en/1.7/ref/mo
         name = models.CharField(max_length=500)
         branch = models.CharField(max_length=500)
 
-Now let's add a few more fields that we will ask the reporters to figure out and fill in. We'll use another Django trick, the ``choices`` option, to make some of them multiple-choice fields rather than free text.
+.. note::
+
+    Watch out. You'll need to carefully indent your code according to Python's very `strict rules <http://www.diveintopython.net/getting_to_know_python/indenting_code.html>`_ for this to work.
+
+Now let's add a few more fields that we will ask the reporters to figure out and fill in. We'll use another Django trick, the ``choices`` option, to make some of them are multiple-choice fields rather than free text.
 
 First gender.
 
 .. code-block:: python
-  :emphasize-lines: 7-18
+  :emphasize-lines: 9-20
+
+  from __future__ import unicode_literals
 
   from django.db import models
 
@@ -355,10 +361,10 @@ First gender.
       name = models.CharField(max_length=500)
       branch = models.CharField(max_length=500)
       GENDER_CHOICES = (
-        ("M", "Male"),
-        ("F", "Female"),
-        ("O", "Other"),
-        ("?", "Unknown")
+          ("M", "Male"),
+          ("F", "Female"),
+          ("O", "Other"),
+          ("?", "Unknown")
       )
       gender = models.CharField(
           max_length=1,
@@ -370,10 +376,12 @@ First gender.
 
     When you create a choices list each option needs to have two values. The first one is what is written into the database, and is often more compact. the second one is what is displayed for user, and is often more verbose.
 
-Then the invite's date of birth. Since this type of field will start off empty we need to instruct the database to: 1) allow null values with ``null=True`` and allow entrants to leave it empty when they update records later ``blank=True``.
+Then the invitee's date of birth. Since this type of field will start off empty we need to instruct the database to: 1) allow null values with ``null=True`` and 2) allow entrants to leave it empty when they update records later with ``blank=True``.
 
 .. code-block:: python
-  :emphasize-lines: 18
+  :emphasize-lines: 20
+
+  from __future__ import unicode_literals
 
   from django.db import models
 
@@ -382,10 +390,10 @@ Then the invite's date of birth. Since this type of field will start off empty w
       name = models.CharField(max_length=500)
       branch = models.CharField(max_length=500)
       GENDER_CHOICES = (
-        ("M", "Male"),
-        ("F", "Female"),
-        ("O", "Other"),
-        ("?", "Unknown")
+          ("M", "Male"),
+          ("F", "Female"),
+          ("O", "Other"),
+          ("?", "Unknown")
       )
       gender = models.CharField(
           max_length=1,
@@ -397,7 +405,9 @@ Then the invite's date of birth. Since this type of field will start off empty w
 Race.
 
 .. code-block:: python
-  :emphasize-lines: 19-32
+  :emphasize-lines: 21-34
+
+  from __future__ import unicode_literals
 
   from django.db import models
 
@@ -406,10 +416,10 @@ Race.
       name = models.CharField(max_length=500)
       branch = models.CharField(max_length=500)
       GENDER_CHOICES = (
-        ("M", "Male"),
-        ("F", "Female"),
-        ("O", "Other"),
-        ("?", "Unknown")
+          ("M", "Male"),
+          ("F", "Female"),
+          ("O", "Other"),
+          ("?", "Unknown")
       )
       gender = models.CharField(
           max_length=1,
@@ -443,10 +453,10 @@ Finally, an open-ended text field for reporters to leave notes about their decis
       name = models.CharField(max_length=500)
       branch = models.CharField(max_length=500)
       GENDER_CHOICES = (
-        ("M", "Male"),
-        ("F", "Female"),
-        ("O", "Other"),
-        ("?", "Unknown")
+          ("M", "Male"),
+          ("F", "Female"),
+          ("O", "Other"),
+          ("?", "Unknown")
       )
       gender = models.CharField(
           max_length=1,
@@ -469,9 +479,9 @@ Finally, an open-ended text field for reporters to leave notes about their decis
       )
       notes = models.TextField(blank=True)
 
-Congratulations, you've written your first model. But it won't be created as a real table in your database until you run what Django calls a "migration." That's just a fancy word for syncing our models files.
+Congratulations, you've written your first model. But it won't be created as a real table in your database until you run what Django calls a "migration." That's just a fancy word for syncing our models with our database.
 
-Make sure to save your ``models.py``file. Then design the migration for your new model.
+Make sure to save your ``models.py``file. Then we'll ``manage.py`` to prepare the changes necessary to create your new model.
 
 .. code-block:: bash
 
@@ -482,6 +492,8 @@ Now run the ``migrate`` command to execute it.
 .. code-block:: bash
 
     $ python manage.py migrate academy
+
+That's it. You've made your database table.
 
 Act 3: Hello loader
 -------------------

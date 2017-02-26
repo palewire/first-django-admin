@@ -221,6 +221,7 @@ we&#8217;ll use to put together our website.</p>
 </div>
 <p>There is a lot of <a class="reference external" href="https://docs.djangoproject.com/en/1.10/intro/tutorial02/#database-setup">configuration</a> that could be done at this point, but we&#8217;re going to advance with all of the Django defaults in place.</p>
 <p>The first step is creating your database, which will appear as a new <a class="reference external" href="https://en.wikipedia.org/wiki/SQLite">SQLite</a> file named <code class="docutils literal"><span class="pre">db.sqlite3</span></code>.</p>
+<p>To do that, we will start using the <code class="docutils literal"><span class="pre">manage.py`</span> <span class="pre">file</span> <span class="pre">created</span> <span class="pre">by</span> <span class="pre">``startproject</span></code>. It is a utility belt we can use to make Django a wide range of things. The command we want now, <code class="docutils literal"><span class="pre">migrate</span></code>, can create database tables.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ python manage.py migrate
 </pre></div>
 </div>
@@ -230,12 +231,13 @@ we&#8217;ll use to put together our website.</p>
 </div>
 <p>Visit <a class="reference external" href="http://localhost:8000">localhost:8000</a> in your browser to see Django in action. Here&#8217;s what you should see.</p>
 <img alt="_images/hello-django.jpg" src="_images/hello-django.jpg" />
-<p>Congratulations. You&#8217;ve installed Django and got a blank site started up and working. Now the real work begins.</p>
+<p>Congratulations. You&#8217;ve installed Django and have a blank site started up and running. Now the real work begins.</p>
 </div>
 <div class="section" id="act-2-hello-models">
 <h2>Act 2: Hello models<a class="headerlink" href="#act-2-hello-models" title="Permalink to this headline">¶</a></h2>
 <p>Now we create our app. In Django terms, an app is a collection of files that does something, like publish a blog or store public records. A project, like we made above, collects those apps and organizes them into a working website.</p>
 <p>You can create a new app with Django&#8217;s <a href="#id5"><span class="problematic" id="id6">``</span></a>startapp` command. Since we are aiming to make a list of people invited to join the academy, naming this one isn&#8217;t too hard.</p>
+<p>Return to your terminal and hit the combination of <code class="docutils literal"><span class="pre">CTRL-C</span></code>, which will terminal your test server and return you to the command line. Then use our friend <code class="docutils literal"><span class="pre">manage.py</span></code> to create our app.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ python manage.py startapp academy
 </pre></div>
 </div>
@@ -243,13 +245,15 @@ we&#8217;ll use to put together our website.</p>
 <div class="highlight-txt"><div class="highlight"><pre><span></span>academy/
     __init__.py
     admin.py
+    apps.py
+    migrations
     models.py
     tests.py
     views.py
 </pre></div>
 </div>
 <p>We will only be using two of them in this tutorial. The file called <code class="docutils literal"><span class="pre">models.py</span></code> is where we will design our database tables. Another called <code class="docutils literal"><span class="pre">admin.py</span></code> is where we will configure the panels where reporters will be able to enrich the source data.</p>
-<p>But before we do any of that, we need to configure out project to include our new apps. Use your text editor to open the file <code class="docutils literal"><span class="pre">settings.py</span></code> in the <code class="docutils literal"><span class="pre">project</span></code> directory. Add our app, <code class="docutils literal"><span class="pre">academy</span></code>, to the <code class="docutils literal"><span class="pre">INSTALLED_APPS</span></code> list you find there.</p>
+<p>But before we do any of that, we need to configure out project to include our new app. Use your text editor to open the file <code class="docutils literal"><span class="pre">settings.py</span></code> in the <code class="docutils literal"><span class="pre">project</span></code> directory. Add our app, <code class="docutils literal"><span class="pre">academy</span></code>, to the <code class="docutils literal"><span class="pre">INSTALLED_APPS</span></code> list you find there.</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span>  <span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">(</span>
       <span class="s1">&#39;django.contrib.admin&#39;</span><span class="p">,</span>
       <span class="s1">&#39;django.contrib.auth&#39;</span><span class="p">,</span>
@@ -261,9 +265,15 @@ we&#8217;ll use to put together our website.</p>
 </span>  <span class="p">)</span>
 </pre></div>
 </div>
-<p>Next open up the <code class="docutils literal"><span class="pre">models.py</span></code> file in the <code class="docutils literal"><span class="pre">academy</span></code> app&#8217;s directory. Here we will use Django&#8217;s built-in <a class="reference external" href="https://docs.djangoproject.com/en/1.7/topics/db/models/">models</a> system to design a database table to hold the source data.</p>
-<p>Each table is defined using a Python <a class="reference external" href="http://www.learnpython.org/en/Classes_and_Objects">class</a> that inherits special powers <a class="reference external" href="https://docs.djangoproject.com/en/dev/topics/db/models/">from Django</a> allowing it to syncronize with an underlying database. Our work begins by creating our class and naming it after the data we&#8217;ll put inside.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Python, like most programming language, is very strict. When you add a new word to a list, as we did above, it always needs to be followed by a comma and surrounded by quotes. The identatations are also very stict and need to be consistent from line to line. Also, lines starting with <code class="docutils literal"><span class="pre">#</span></code> or surrounding by <cite>&#8220;&#8221;&#8220;</cite> quotes are comments that will not be run as code and are instead there only as documentation.</p>
+</div>
+<p>Next open up the <code class="docutils literal"><span class="pre">models.py</span></code> file in the <code class="docutils literal"><span class="pre">academy</span></code> app&#8217;s directory. Here we will use Django&#8217;s built-in <a class="reference external" href="https://docs.djangoproject.com/en/1.10/topics/db/models/">models</a> system to design a database table to hold the source data.</p>
+<p>Each table is defined using a Python <a class="reference external" href="http://www.learnpython.org/en/Classes_and_Objects">class</a> that inherits special powers <a class="reference external" href="https://docs.djangoproject.com/en/dev/topics/db/models/">from Django</a>. Those special powers allow it to syncronize with an underlying database. Our work begins by creating our class and naming it after the data we&#8217;ll put inside.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">unicode_literals</span>
+
+<span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
 
 <span class="c1"># Create your models here.</span>
 <span class="hll"><span class="k">class</span> <span class="nc">Invite</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
@@ -271,16 +281,14 @@ we&#8217;ll use to put together our website.</p>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Don&#8217;t know what a class is? Don&#8217;t stress out about it. It&#8217;s a little tricky to explain, but a class is basically a blueprint for designing how information in your code is structured. In our case, we&#8217;re creating a blueprint that will link up with a traditional database table (often called a schema).</p>
+<p class="last">Don&#8217;t know what a class is? Don&#8217;t stress out about it. It&#8217;s a little tricky to explain, but a class is basically a blueprint for designing how information in your code is structured. In our case, we&#8217;re creating a blueprint that will link up our data with a traditional database table (this is often called a schema).</p>
 </div>
 <p>Next, like any good database table, it needs some fields.</p>
-<p>If you open <a class="reference external" href="https://github.com/ireapps/first-django-admin/blob/master/project/academy_invites_2014.csv">the source CSV</a>, you will see that is has only two: name and branch. Both are filled with characters (as opposed to other data types like integers or dates).</p>
-<p>Django also has some <a class="reference external" href="https://docs.djangoproject.com/en/1.7/ref/models/fields/">fancy tricks</a> for defining fields. Use them to define the fields from our source data.</p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Watch out. You&#8217;ll need to carefully indent your code according to Python&#8217;s very <a class="reference external" href="http://www.diveintopython.net/getting_to_know_python/indenting_code.html">strict rules</a> for this to work.</p>
-</div>
-<div class="highlight-python"><div class="highlight"><pre><span></span>  <span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
+<p>If you open <a class="reference external" href="https://github.com/ireapps/first-django-admin/blob/master/project/academy_invites_2014.csv">the source CSV</a>, you will see that is has only two columns: name and branch.</p>
+<p>Django has some <a class="reference external" href="https://docs.djangoproject.com/en/1.10/ref/models/fields/">fancy tricks</a> for defining fields depending on what kind of data they hold. Now we&#8217;ll use the <code class="docutils literal"><span class="pre">CharField</span></code> to expand our models to hold the name and branch data from our source. It just so happens, that CharFields have a maximum length that must always be set. We&#8217;re going to pick a couple big numbers for that.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>  <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">unicode_literals</span>
+
+  <span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
 
   <span class="c1"># Create your models here.</span>
   <span class="k">class</span> <span class="nc">Invite</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
@@ -288,19 +296,25 @@ we&#8217;ll use to put together our website.</p>
 </span><span class="hll">      <span class="n">branch</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
 </span></pre></div>
 </div>
-<p>Now let&#8217;s add a few more fields that we will ask the reporters to figure out and fill in. We&#8217;ll use another Django trick, the <code class="docutils literal"><span class="pre">choices</span></code> option, to make some of them multiple-choice fields rather than free text.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Watch out. You&#8217;ll need to carefully indent your code according to Python&#8217;s very <a class="reference external" href="http://www.diveintopython.net/getting_to_know_python/indenting_code.html">strict rules</a> for this to work.</p>
+</div>
+<p>Now let&#8217;s add a few more fields that we will ask the reporters to figure out and fill in. We&#8217;ll use another Django trick, the <code class="docutils literal"><span class="pre">choices</span></code> option, to make some of them are multiple-choice fields rather than free text.</p>
 <p>First gender.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">unicode_literals</span>
+
+<span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
 
 <span class="c1"># Create your models here.</span>
 <span class="k">class</span> <span class="nc">Invite</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
     <span class="n">name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
     <span class="n">branch</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
 <span class="hll">    <span class="n">GENDER_CHOICES</span> <span class="o">=</span> <span class="p">(</span>
-</span><span class="hll">      <span class="p">(</span><span class="s2">&quot;M&quot;</span><span class="p">,</span> <span class="s2">&quot;Male&quot;</span><span class="p">),</span>
-</span><span class="hll">      <span class="p">(</span><span class="s2">&quot;F&quot;</span><span class="p">,</span> <span class="s2">&quot;Female&quot;</span><span class="p">),</span>
-</span><span class="hll">      <span class="p">(</span><span class="s2">&quot;O&quot;</span><span class="p">,</span> <span class="s2">&quot;Other&quot;</span><span class="p">),</span>
-</span><span class="hll">      <span class="p">(</span><span class="s2">&quot;?&quot;</span><span class="p">,</span> <span class="s2">&quot;Unknown&quot;</span><span class="p">)</span>
+</span><span class="hll">        <span class="p">(</span><span class="s2">&quot;M&quot;</span><span class="p">,</span> <span class="s2">&quot;Male&quot;</span><span class="p">),</span>
+</span><span class="hll">        <span class="p">(</span><span class="s2">&quot;F&quot;</span><span class="p">,</span> <span class="s2">&quot;Female&quot;</span><span class="p">),</span>
+</span><span class="hll">        <span class="p">(</span><span class="s2">&quot;O&quot;</span><span class="p">,</span> <span class="s2">&quot;Other&quot;</span><span class="p">),</span>
+</span><span class="hll">        <span class="p">(</span><span class="s2">&quot;?&quot;</span><span class="p">,</span> <span class="s2">&quot;Unknown&quot;</span><span class="p">)</span>
 </span><span class="hll">    <span class="p">)</span>
 </span><span class="hll">    <span class="n">gender</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
 </span><span class="hll">        <span class="n">max_length</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
@@ -313,18 +327,20 @@ we&#8217;ll use to put together our website.</p>
 <p class="first admonition-title">Note</p>
 <p class="last">When you create a choices list each option needs to have two values. The first one is what is written into the database, and is often more compact. the second one is what is displayed for user, and is often more verbose.</p>
 </div>
-<p>Then the invite&#8217;s date of birth. Since this type of field will start off empty we need to instruct the database to: 1) allow null values with <code class="docutils literal"><span class="pre">null=True</span></code> and allow entrants to leave it empty when they update records later <code class="docutils literal"><span class="pre">blank=True</span></code>.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
+<p>Then the invitee&#8217;s date of birth. Since this type of field will start off empty we need to instruct the database to: 1) allow null values with <code class="docutils literal"><span class="pre">null=True</span></code> and 2) allow entrants to leave it empty when they update records later with <code class="docutils literal"><span class="pre">blank=True</span></code>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">unicode_literals</span>
+
+<span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
 
 <span class="c1"># Create your models here.</span>
 <span class="k">class</span> <span class="nc">Invite</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
     <span class="n">name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
     <span class="n">branch</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
     <span class="n">GENDER_CHOICES</span> <span class="o">=</span> <span class="p">(</span>
-      <span class="p">(</span><span class="s2">&quot;M&quot;</span><span class="p">,</span> <span class="s2">&quot;Male&quot;</span><span class="p">),</span>
-      <span class="p">(</span><span class="s2">&quot;F&quot;</span><span class="p">,</span> <span class="s2">&quot;Female&quot;</span><span class="p">),</span>
-      <span class="p">(</span><span class="s2">&quot;O&quot;</span><span class="p">,</span> <span class="s2">&quot;Other&quot;</span><span class="p">),</span>
-      <span class="p">(</span><span class="s2">&quot;?&quot;</span><span class="p">,</span> <span class="s2">&quot;Unknown&quot;</span><span class="p">)</span>
+        <span class="p">(</span><span class="s2">&quot;M&quot;</span><span class="p">,</span> <span class="s2">&quot;Male&quot;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;F&quot;</span><span class="p">,</span> <span class="s2">&quot;Female&quot;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;O&quot;</span><span class="p">,</span> <span class="s2">&quot;Other&quot;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;?&quot;</span><span class="p">,</span> <span class="s2">&quot;Unknown&quot;</span><span class="p">)</span>
     <span class="p">)</span>
     <span class="n">gender</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
         <span class="n">max_length</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
@@ -335,17 +351,19 @@ we&#8217;ll use to put together our website.</p>
 </span></pre></div>
 </div>
 <p>Race.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">unicode_literals</span>
+
+<span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
 
 <span class="c1"># Create your models here.</span>
 <span class="k">class</span> <span class="nc">Invite</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
     <span class="n">name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
     <span class="n">branch</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
     <span class="n">GENDER_CHOICES</span> <span class="o">=</span> <span class="p">(</span>
-      <span class="p">(</span><span class="s2">&quot;M&quot;</span><span class="p">,</span> <span class="s2">&quot;Male&quot;</span><span class="p">),</span>
-      <span class="p">(</span><span class="s2">&quot;F&quot;</span><span class="p">,</span> <span class="s2">&quot;Female&quot;</span><span class="p">),</span>
-      <span class="p">(</span><span class="s2">&quot;O&quot;</span><span class="p">,</span> <span class="s2">&quot;Other&quot;</span><span class="p">),</span>
-      <span class="p">(</span><span class="s2">&quot;?&quot;</span><span class="p">,</span> <span class="s2">&quot;Unknown&quot;</span><span class="p">)</span>
+        <span class="p">(</span><span class="s2">&quot;M&quot;</span><span class="p">,</span> <span class="s2">&quot;Male&quot;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;F&quot;</span><span class="p">,</span> <span class="s2">&quot;Female&quot;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;O&quot;</span><span class="p">,</span> <span class="s2">&quot;Other&quot;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;?&quot;</span><span class="p">,</span> <span class="s2">&quot;Unknown&quot;</span><span class="p">)</span>
     <span class="p">)</span>
     <span class="n">gender</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
         <span class="n">max_length</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
@@ -376,10 +394,10 @@ we&#8217;ll use to put together our website.</p>
     <span class="n">name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
     <span class="n">branch</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
     <span class="n">GENDER_CHOICES</span> <span class="o">=</span> <span class="p">(</span>
-      <span class="p">(</span><span class="s2">&quot;M&quot;</span><span class="p">,</span> <span class="s2">&quot;Male&quot;</span><span class="p">),</span>
-      <span class="p">(</span><span class="s2">&quot;F&quot;</span><span class="p">,</span> <span class="s2">&quot;Female&quot;</span><span class="p">),</span>
-      <span class="p">(</span><span class="s2">&quot;O&quot;</span><span class="p">,</span> <span class="s2">&quot;Other&quot;</span><span class="p">),</span>
-      <span class="p">(</span><span class="s2">&quot;?&quot;</span><span class="p">,</span> <span class="s2">&quot;Unknown&quot;</span><span class="p">)</span>
+        <span class="p">(</span><span class="s2">&quot;M&quot;</span><span class="p">,</span> <span class="s2">&quot;Male&quot;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;F&quot;</span><span class="p">,</span> <span class="s2">&quot;Female&quot;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;O&quot;</span><span class="p">,</span> <span class="s2">&quot;Other&quot;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;?&quot;</span><span class="p">,</span> <span class="s2">&quot;Unknown&quot;</span><span class="p">)</span>
     <span class="p">)</span>
     <span class="n">gender</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
         <span class="n">max_length</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
@@ -403,8 +421,8 @@ we&#8217;ll use to put together our website.</p>
 <span class="hll">    <span class="n">notes</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">TextField</span><span class="p">(</span><span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </span></pre></div>
 </div>
-<p>Congratulations, you&#8217;ve written your first model. But it won&#8217;t be created as a real table in your database until you run what Django calls a &#8220;migration.&#8221; That&#8217;s just a fancy word for syncing our models files.</p>
-<p>Make sure to save your <a href="#id7"><span class="problematic" id="id8">``</span></a>models.py``file. Then design the migration for your new model.</p>
+<p>Congratulations, you&#8217;ve written your first model. But it won&#8217;t be created as a real table in your database until you run what Django calls a &#8220;migration.&#8221; That&#8217;s just a fancy word for syncing our models with our database.</p>
+<p>Make sure to save your <code class="docutils literal"><span class="pre">models.py``file.</span> <span class="pre">Then</span> <span class="pre">we'll</span> <span class="pre">``manage.py</span></code> to prepare the changes necessary to create your new model.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ python manage.py makemigrations academy
 </pre></div>
 </div>
@@ -412,6 +430,7 @@ we&#8217;ll use to put together our website.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ python manage.py migrate academy
 </pre></div>
 </div>
+<p>That&#8217;s it. You&#8217;ve made your database table.</p>
 </div>
 <div class="section" id="act-3-hello-loader">
 <h2>Act 3: Hello loader<a class="headerlink" href="#act-3-hello-loader" title="Permalink to this headline">¶</a></h2>
