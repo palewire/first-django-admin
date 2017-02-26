@@ -286,7 +286,7 @@ There should now be a new ``academy`` folder in your project. If you look inside
 
 We will only be using two of them in this tutorial. The file called ``models.py`` is where we will design our database tables. Another called ``admin.py`` is where we will configure the panels where reporters will be able to enrich the source data.
 
-But before we do any of that, we need to configure out project to include our new apps. Use your text editor to open the file ``settings.py`` in the ``project`` directory. Add our app, ``academy``, to the ``INSTALLED_APPS`` list you find there.
+But before we do any of that, we need to configure out project to include our new app. Use your text editor to open the file ``settings.py`` in the ``project`` directory. Add our app, ``academy``, to the ``INSTALLED_APPS`` list you find there.
 
 .. code-block:: python
   :emphasize-lines: 8
@@ -301,7 +301,11 @@ But before we do any of that, we need to configure out project to include our ne
         'academy',
     )
 
-Next open up the ``models.py`` file in the ``academy`` app's directory. Here we will use Django's built-in `models <https://docs.djangoproject.com/en/1.7/topics/db/models/>`_ system to design a database table to hold the source data.
+.. note::
+
+    Python, like most programming language, is very strict. When you add a new word to a list, as we did above, it always needs to be followed by a comma and surrounded by quotes. The identatations are also very stict and need to be consistent from line to line. Also, lines starting with ``#`` or surrounding by `"""` quotes are comments that will not be run as code and are instead there only as documentation.
+
+Next open up the ``models.py`` file in the ``academy`` app's directory. Here we will use Django's built-in `models <https://docs.djangoproject.com/en/1.10/topics/db/models/>`_ system to design a database table to hold the source data.
 
 Each table is defined using a Python `class <http://www.learnpython.org/en/Classes_and_Objects>`_ that inherits special powers `from Django <https://docs.djangoproject.com/en/dev/topics/db/models/>`_ allowing it to syncronize with an underlying database. Our work begins by creating our class and naming it after the data we'll put inside.
 
