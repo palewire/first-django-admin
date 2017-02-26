@@ -144,8 +144,7 @@ expand what you're able to do with Python. Later, we will use it to install ever
 needed to create a working web application.
 
 If you don't have it already, you can get pip by following
-`these instructions <https://pip.pypa.io/en/latest/installing.html>`_. In Windows, it's necessary to make sure that the
-Python ``Scripts`` directory is available on your system's ``PATH`` so it can be called from anywhere on the command line. `This screencast <http://showmedo.com/videotutorials/video?name=960000&fromSeriesID=96>`_ can help.
+`these instructions <https://pip.pypa.io/en/latest/installing.html>`_.s
 
 Verify pip is installed with the following.
 
