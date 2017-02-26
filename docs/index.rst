@@ -50,30 +50,19 @@ and working.
    language
 4. The `pip <https://pip.pypa.io/en/latest/installing.html>`_ package manager and `virtualenv <http://www.virtualenv.org/en/latest/>`_ environment manager for Python
 
-.. note::
+.. warning::
 
-  Depending on your experience and operating system, you might
-  already be ready to go with everything above. If so, move on to the next
-  chapter. If not, don't worry. And don't give up! It will be a bit of a
-  slog but the instructions below will point you in the right direction.
+    Stop and make sure you have all these tools installed and working properly. Otherwise, `you're gonna have a bad time <https://www.youtube.com/watch?v=ynxPshq8ERo>`_.
 
 .. _command-line-prereq:
 
 Command-line interface
 ~~~~~~~~~~~~~~~~~~~~~~
 
-Unless something is wrong with your computer, there should be a way to
-open a window that lets you type in commands. Different operating
-systems give this tool slightly different names, but they all have some
-form of it, and there are alternative programs you can install as well.
+Unless something is wrong with your computer, there should be a way to open a window that lets you type in commands. Different operating systems give this tool slightly different names, but they all have some form of it, and there are alternative programs you can install as well.
 
-On Windows you can find the command-line interface by opening the
-"command prompt." Here are instructions for `Windows
-8 <http://windows.microsoft.com/en-us/windows/command-prompt-faq#1TC=windows-8>`__
-and `earlier
-versions <http://windows.microsoft.com/en-us/windows-vista/open-a-command-prompt-window>`__. On Apple computers, you open the `"Terminal"
-application <http://blog.teamtreehouse.com/introduction-to-the-mac-os-x-command-line>`__. Ubuntu Linux comes with a program of the `same
-name <http://askubuntu.com/questions/38162/what-is-a-terminal-and-how-do-i-open-and-use-it>`__.
+On Windows you can find the command-line interface by opening the "command prompt." Here are `instructions <https://www.bleepingcomputer.com/tutorials/windows-command-prompt-introduction/>`_. On Apple computers, you open the `"Terminal" application <http://blog.teamtreehouse.com/introduction-to-the-mac-os-x-command-line>`_. Ubuntu Linux comes with a program of the `same name <http://askubuntu.com/questions/38162/what-is-a-terminal-and-how-do-i-open-and-use-it>`_.
+
 
 Text editor
 ~~~~~~~~~~~
