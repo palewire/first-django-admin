@@ -278,6 +278,8 @@ There should now be a new ``academy`` folder in your project. If you look inside
   academy/
       __init__.py
       admin.py
+      apps.py
+      migrations
       models.py
       tests.py
       views.py
