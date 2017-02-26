@@ -152,7 +152,7 @@ expand what you&#8217;re able to do with Python. Later, we will use it to instal
 needed to create a working web application.</p>
 <p>If you don&#8217;t have it already, you can get pip by following
 <a class="reference external" href="https://pip.pypa.io/en/latest/installing.html">these instructions</a>.s</p>
-<p>Verify pip is installed with the following.</p>
+<p>Verify pip is installed with the following command:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ pip -V
 </pre></div>
 </div>
@@ -164,13 +164,15 @@ for different projects on one computer. By developing your applications inside s
 virtualenv environments, you can use different versions of the same third-party Python libraries without a conflict.
 You can also more easily recreate your project on another machine, handy when
 you want to copy your code to a server that publishes pages on the Internet.</p>
-<p>You can check if virtualenv is installed with the following.</p>
+<p>You can check if virtualenv is installed with the following command:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ virtualenv --version
 </pre></div>
 </div>
-<p>If you don&#8217;t have it, install it with pip.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ pip install virtualenv
-<span class="c1"># If you&#39;re on a Mac or Linux and get an error saying you lack the right permissions, try it again as a superuser.</span>
+<p>If you don&#8217;t have virtualenv, install it with pip.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># On Windows:</span>
+$ pip install virtualenv
+<span class="c1"># On a Mac or Linux you will need to install it as a superuser with the sudo command.</span>
+<span class="c1"># When you are prompted for a password, use the same one that logs you into your computer</span>
 $ sudo pip install virtualenv
 </pre></div>
 </div>

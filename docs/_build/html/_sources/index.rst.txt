@@ -146,7 +146,7 @@ needed to create a working web application.
 If you don't have it already, you can get pip by following
 `these instructions <https://pip.pypa.io/en/latest/installing.html>`_.s
 
-Verify pip is installed with the following.
+Verify pip is installed with the following command:
 
 .. code-block:: bash
 
@@ -162,18 +162,20 @@ virtualenv environments, you can use different versions of the same third-party 
 You can also more easily recreate your project on another machine, handy when
 you want to copy your code to a server that publishes pages on the Internet.
 
-You can check if virtualenv is installed with the following.
+You can check if virtualenv is installed with the following command:
 
 .. code-block:: bash
 
     $ virtualenv --version
 
-If you don't have it, install it with pip.
+If you don't have virtualenv, install it with pip.
 
 .. code-block:: bash
 
+    # On Windows:
     $ pip install virtualenv
-    # If you're on a Mac or Linux and get an error saying you lack the right permissions, try it again as a superuser.
+    # On a Mac or Linux you will need to install it as a superuser with the sudo command.
+    # When you are prompted for a password, use the same one that logs you into your computer
     $ sudo pip install virtualenv
 
 If that doesn't work, `try following this advice <http://virtualenv.readthedocs.org/en/latest/installation.html>`_.
