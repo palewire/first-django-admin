@@ -6,9 +6,9 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>First Django admin &mdash; First Django Admin 0.1 documentation</title>
+    <title>First Django admin &#8212; First Django Admin 0.1 documentation</title>
     
-    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
@@ -17,54 +17,55 @@
         VERSION:     '0.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="First Django Admin 0.1 documentation" href="#" /> 
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
-        <li><a href="#">First Django Admin 0.1 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="#">First Django Admin 0.1 documentation</a> &#187;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="first-django-admin">
 <h1>First Django admin<a class="headerlink" href="#first-django-admin" title="Permalink to this headline">¶</a></h1>
 <p>A step-by-step guide to creating a simple web application that empowers you to enlist reporters in data entry and refinement.</p>
 <p>You will learn just enough about the <a class="reference external" href="https://www.djangoproject.com/">Django</a> framework to design database tables, load in data and create an administration panel for others to improve it. You will not bother with all the other web developer crap.</p>
-<p>This guide was developed by <a class="reference external" href="http://palewi.re/who-is-ben-welsh/">Ben Welsh</a> and Ken Schwencke
-for a workshop <a class="reference external" href="http://ire.org/conferences/nicar2015/hands-on-training/">on March 8</a> at
-the 2015 conference of the National Institute for Computer-Assisted Reporting in Atlanta. A modified
-version will be presented at the 2016 NICAR conference on <a class="reference external" href="http://www.ire.org/events-and-training/event/2198/2219/">March 13</a>.</p>
-<ul class="simple">
-<li>Code:
-<a class="reference external" href="https://github.com/ireapps/first-django-admin">github.com/ireapps/first-django-admin/</a></li>
-<li>Issues:
-<a class="reference external" href="https://github.com/ireapps/first-django-admin/issues">github.com/ireapps/first-django-admin/issues/</a></li>
-</ul>
 <div class="section" id="what-you-will-make">
 <h2>What you will make<a class="headerlink" href="#what-you-will-make" title="Permalink to this headline">¶</a></h2>
 <p>This tutorial will guide you through creating a custom Django administration panel
 where reporters can inspect, edit and augment a list of invitees to the <a class="reference external" href="http://www.oscars.org/">Academy of
 Motion Picture Arts and Sciences</a>, the elite organization that decides the Oscars.</p>
+<p>SCREENSHOT OF ADMIN TK</p>
 <p>In 2012, <a class="reference external" href="http://www.latimes.com/entertainment/movies/academy/la-et-unmasking-oscar-academy-project-html-htmlstory.html">a study by the Los Angeles Times</a> found that the group is overwhelmingly white and male, which led to renewed calls to diversify the Oscar voting pool. A new list was used to write <a class="reference external" href="http://www.latimes.com/entertainment/envelope/moviesnow/la-et-mn-diversity-oscar-academy-members-20131221-story.html">a follow-up story</a> in 2013. The analysis appeared on the front page <a class="reference external" href="http://www.latimes.com/entertainment/movies/la-et-mn-oscar-nominations-diversity-20150116-story.html#page=1">again in early 2015</a> when the academy
 was criticized after announcing a <a class="reference external" href="http://graphics.latimes.com/oscar-nominees-2015/">virtually all-white slate</a> of nominees.</p>
 <p>In the steps below, you will repeat The Times&#8217; work using the academy&#8217;s 2014 invitation list,
 creating a system to share the load of producing a follow-up story in <a class="reference external" href="http://graphics.latimes.com/oscars-2016-voters/">the vein of this 2016 update to the original analysis</a>.</p>
 <p>You are following in the footsteps of Times reporters <a class="reference external" href="http://www.latimes.com/la-bio-sandra-poindexter-staff.html">Sandra Poindexter</a> and <a class="reference external" href="http://www.latimes.com/la-bio-doug-smith-staff.html">Doug Smith</a>, who developed a similar administration panel as part of their investigation. They were inspired by a presentation made by <a class="reference external" href="http://mattwynn.net/">Matt Wynn</a> at a past conference of The National Institute for Computer-Assisted Reporting.</p>
+</div>
+<div class="section" id="about-the-authors">
+<h2>About the authors<a class="headerlink" href="#about-the-authors" title="Permalink to this headline">¶</a></h2>
+<p>This guide was developed by <a class="reference external" href="http://palewi.re/who-is-ben-welsh/">Ben Welsh</a> and Ken Schwencke
+for a workshop <a class="reference external" href="http://ire.org/conferences/nicar2015/hands-on-training/">on March 8</a> at
+the 2015 conference of the National Institute for Computer-Assisted Reporting (NICAR) in Atlanta. A modified
+version was presented at the 2016 NICAR conference on <a class="reference external" href="http://www.ire.org/events-and-training/event/2198/2219/">March 13</a>.</p>
+<p><a class="reference external" href="http://damihere.com">Dana Amihere</a> will co-teach this as a hands-on workshop March 5, 2017 at the annual NICAR conference in Jacksonville, Fla. Click <a class="reference external" href="http://ire.org/conferences/nicar2017/hands-on-training/">here</a> for more details and to sign up.</p>
 </div>
 <div class="section" id="prelude-prerequisites">
 <h2>Prelude: Prerequisites<a class="headerlink" href="#prelude-prerequisites" title="Permalink to this headline">¶</a></h2>
@@ -124,7 +125,7 @@ In Ubuntu Linux you can stick with the pre-installed
 <p>If you are using Mac OSX or a common flavor of Linux, Python is probably
 already installed and you can test to see what version, if any, is there
 waiting for you by typing the following into your terminal.</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ python -V
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>$ python -V
 </pre></div>
 </div>
 <div class="admonition note">
@@ -136,7 +137,7 @@ geeks use to show they&#8217;re working on the command line.</p>
 users) try downloading and installing it from
 <a class="reference external" href="http://www.python.org/download/releases/2.7.6/">here</a>.</p>
 <p>In Windows, it&#8217;s also crucial to make sure that the Python program is
-available on your system&#8217;s <tt class="docutils literal"><span class="pre">PATH</span></tt> so it can be called from anywhere on
+available on your system&#8217;s <code class="docutils literal"><span class="pre">PATH</span></code> so it can be called from anywhere on
 the command line. <a class="reference external" href="http://showmedo.com/videotutorials/video?name=960000&amp;fromSeriesID=96">This
 screencast</a>
 can guide you through that process.</p>
@@ -151,9 +152,9 @@ expand what you&#8217;re able to do with Python. Later, we will use it to instal
 needed to create a working web application.</p>
 <p>If you don&#8217;t have it already, you can get pip by following
 <a class="reference external" href="https://pip.pypa.io/en/latest/installing.html">these instructions</a>. In Windows, it&#8217;s necessary to make sure that the
-Python <tt class="docutils literal"><span class="pre">Scripts</span></tt> directory is available on your system&#8217;s <tt class="docutils literal"><span class="pre">PATH</span></tt> so it can be called from anywhere on the command line. <a class="reference external" href="http://showmedo.com/videotutorials/video?name=960000&amp;fromSeriesID=96">This screencast</a> can help.</p>
+Python <code class="docutils literal"><span class="pre">Scripts</span></code> directory is available on your system&#8217;s <code class="docutils literal"><span class="pre">PATH</span></code> so it can be called from anywhere on the command line. <a class="reference external" href="http://showmedo.com/videotutorials/video?name=960000&amp;fromSeriesID=96">This screencast</a> can help.</p>
 <p>Verify pip is installed with the following.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>pip -V
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ pip -V
 </pre></div>
 </div>
 <p>The <a class="reference external" href="http://www.virtualenv.org/en/latest/">virtualenv environment manager</a>
@@ -165,13 +166,13 @@ virtualenv environments, you can use different versions of the same third-party 
 You can also more easily recreate your project on another machine, handy when
 you want to copy your code to a server that publishes pages on the Internet.</p>
 <p>You can check if virtualenv is installed with the following.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>virtualenv --version
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ virtualenv --version
 </pre></div>
 </div>
 <p>If you don&#8217;t have it, install it with pip.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>pip install virtualenv
-<span class="c"># If you&#39;re on a Mac or Linux and get an error saying you lack the right permissions, try it again as a superuser.</span>
-<span class="nv">$ </span>sudo pip install virtualenv
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ pip install virtualenv
+<span class="c1"># If you&#39;re on a Mac or Linux and get an error saying you lack the right permissions, try it again as a superuser.</span>
+$ sudo pip install virtualenv
 </pre></div>
 </div>
 <p>If that doesn&#8217;t work, <a class="reference external" href="http://virtualenv.readthedocs.org/en/latest/installation.html">try following this advice</a>.</p>
@@ -180,51 +181,51 @@ you want to copy your code to a server that publishes pages on the Internet.</p>
 <div class="section" id="act-1-hello-django">
 <span id="activate"></span><h2>Act 1: Hello Django<a class="headerlink" href="#act-1-hello-django" title="Permalink to this headline">¶</a></h2>
 <p>Start by creating a new development environment with virtualenv. Name it after our application.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="c"># You don&#39;t have to type the &quot;$&quot; It&#39;s just a generic symbol</span>
-<span class="c"># geeks use to show they&#39;re working on the command line.</span>
-<span class="nv">$ </span>virtualenv first-django-admin
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># You don&#39;t have to type the &quot;$&quot; It&#39;s just a generic symbol</span>
+<span class="c1"># geeks use to show they&#39;re working on the command line.</span>
+$ virtualenv first-django-admin
 </pre></div>
 </div>
 <p>Jump into the directory it created.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">cd </span>first-django-admin
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> first-django-admin
 </pre></div>
 </div>
 <p>Turn on the new virtualenv, which will instruct your terminal to only use those libraries installed
 inside its sealed space. You only need to create the virtualenv once, but you&#8217;ll need to repeat these
 &#8220;activation&#8221; steps each time you return to working on this project.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="c"># In Linux or Mac OSX try this...</span>
-<span class="nv">$ </span>. bin/activate
-<span class="c"># In Windows it might take something more like...</span>
-<span class="nv">$ </span><span class="nb">cd </span>Scripts
-<span class="nv">$ </span>activate
-<span class="nv">$ </span><span class="nb">cd</span> ..
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># In Linux or Mac OSX try this...</span>
+$ . bin/activate
+<span class="c1"># In Windows it might take something more like...</span>
+$ <span class="nb">cd</span> Scripts
+$ activate
+$ <span class="nb">cd</span> ..
 </pre></div>
 </div>
 <p>Make a new directory and move into it.</p>
-<p>Use <tt class="docutils literal"><span class="pre">pip</span></tt> on the command line to install <a class="reference external" href="https://www.djangoproject.com/">Django</a>, a Python &#8220;framework&#8221;
+<p>Use <code class="docutils literal"><span class="pre">pip</span></code> on the command line to install <a class="reference external" href="https://www.djangoproject.com/">Django</a>, a Python &#8220;framework&#8221;
 we&#8217;ll use to put together our website.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>pip install Django
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ pip install Django
 </pre></div>
 </div>
-<p>Now use Django&#8217;s <tt class="docutils literal"><span class="pre">django-admin</span></tt> command to create a new &#8220;project&#8221; that will be organized according to the framework&#8217;s rules.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>django-admin startproject project
+<p>Now use Django&#8217;s <code class="docutils literal"><span class="pre">django-admin</span></code> command to create a new &#8220;project&#8221; that will be organized according to the framework&#8217;s rules.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ django-admin startproject project
 </pre></div>
 </div>
 <p>Now jump into the project and we&#8217;ll start setting it up.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">cd </span>project
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> project
 </pre></div>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Run the <tt class="docutils literal"><span class="pre">ls</span></tt> command (<tt class="docutils literal"><span class="pre">dir</span></tt> on Windows), which lists the files in your current location. Wonder what all those weird files are in your new directory? We&#8217;ll only need a couple for this tutorial, but you can read about all of them in the <a class="reference external" href="https://docs.djangoproject.com/en/1.7/intro/tutorial01/#creating-a-project">official Django documentation</a>.</p>
+<p class="last">Run the <code class="docutils literal"><span class="pre">ls</span></code> command (<code class="docutils literal"><span class="pre">dir</span></code> on Windows), which lists the files in your current location. Wonder what all those weird files are in your new directory? We&#8217;ll only need a couple for this tutorial, but you can read about all of them in the <a class="reference external" href="https://docs.djangoproject.com/en/1.7/intro/tutorial01/#creating-a-project">official Django documentation</a>.</p>
 </div>
 <p>There is a lot of <a class="reference external" href="https://docs.djangoproject.com/en/1.7/intro/tutorial01/#database-setup">configuration</a> that could be done at this point, but we&#8217;re going to advance with all of the Django defaults in place.</p>
-<p>The first step is creating your database, which will appear as new <a class="reference external" href="https://en.wikipedia.org/wiki/SQLite">SQLLite</a> file named <tt class="docutils literal"><span class="pre">db.sqlite3</span></tt>.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>python manage.py migrate
+<p>The first step is creating your database, which will appear as new <a class="reference external" href="https://en.wikipedia.org/wiki/SQLite">SQLLite</a> file named <code class="docutils literal"><span class="pre">db.sqlite3</span></code>.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ python manage.py migrate
 </pre></div>
 </div>
 <p>Fire up Django&#8217;s built-in web server.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>python manage.py runserver
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ python manage.py runserver
 </pre></div>
 </div>
 <p>Visit <a class="reference external" href="http://localhost:8000">localhost:8000</a> in your browser to see Django in action. Here&#8217;s what you should see.</p>
@@ -235,11 +236,11 @@ we&#8217;ll use to put together our website.</p>
 <h2>Act 2: Hello models<a class="headerlink" href="#act-2-hello-models" title="Permalink to this headline">¶</a></h2>
 <p>Now we create our app. In Django terms, an app is a collection of files that does something, like publish a blog or store public records. A project, like we made above, collects those apps and organizes them into a working website.</p>
 <p>You can create a new app with Django&#8217;s <a href="#id2"><span class="problematic" id="id3">``</span></a>startapp` command. Since we are aiming to make a list of people invited to join the academy, naming this one isn&#8217;t too hard.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>python manage.py startapp academy
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ python manage.py startapp academy
 </pre></div>
 </div>
-<p>There should now be a new <tt class="docutils literal"><span class="pre">academy</span></tt> folder in your project. If you look inside you will see that Django created a series of files common to every app.</p>
-<div class="highlight-txt"><div class="highlight"><pre>academy/
+<p>There should now be a new <code class="docutils literal"><span class="pre">academy</span></code> folder in your project. If you look inside you will see that Django created a series of files common to every app.</p>
+<div class="highlight-txt"><div class="highlight"><pre><span></span>academy/
     __init__.py
     admin.py
     models.py
@@ -247,24 +248,24 @@ we&#8217;ll use to put together our website.</p>
     views.py
 </pre></div>
 </div>
-<p>We will only be using two of them in this tutorial. The file called <tt class="docutils literal"><span class="pre">models.py</span></tt> is where we will design our database tables. Another called <tt class="docutils literal"><span class="pre">admin.py</span></tt> is where we will configure the panels where reporters will be able to enrich the source data.</p>
-<p>But before we do any of that, we need to configure out project to include our new apps. Use your text editor to open the file <tt class="docutils literal"><span class="pre">settings.py</span></tt> in the <tt class="docutils literal"><span class="pre">project</span></tt> directory. Add our app, <tt class="docutils literal"><span class="pre">academy</span></tt>, to the <tt class="docutils literal"><span class="pre">INSTALLED_APPS</span></tt> list you find there.</p>
-<div class="highlight-python"><div class="highlight"><pre>  <span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">(</span>
-      <span class="s">&#39;django.contrib.admin&#39;</span><span class="p">,</span>
-      <span class="s">&#39;django.contrib.auth&#39;</span><span class="p">,</span>
-      <span class="s">&#39;django.contrib.contenttypes&#39;</span><span class="p">,</span>
-      <span class="s">&#39;django.contrib.sessions&#39;</span><span class="p">,</span>
-      <span class="s">&#39;django.contrib.messages&#39;</span><span class="p">,</span>
-      <span class="s">&#39;django.contrib.staticfiles&#39;</span><span class="p">,</span>
-<span class="hll">      <span class="s">&#39;academy&#39;</span><span class="p">,</span>
+<p>We will only be using two of them in this tutorial. The file called <code class="docutils literal"><span class="pre">models.py</span></code> is where we will design our database tables. Another called <code class="docutils literal"><span class="pre">admin.py</span></code> is where we will configure the panels where reporters will be able to enrich the source data.</p>
+<p>But before we do any of that, we need to configure out project to include our new apps. Use your text editor to open the file <code class="docutils literal"><span class="pre">settings.py</span></code> in the <code class="docutils literal"><span class="pre">project</span></code> directory. Add our app, <code class="docutils literal"><span class="pre">academy</span></code>, to the <code class="docutils literal"><span class="pre">INSTALLED_APPS</span></code> list you find there.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>  <span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">(</span>
+      <span class="s1">&#39;django.contrib.admin&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;django.contrib.auth&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;django.contrib.contenttypes&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;django.contrib.sessions&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;django.contrib.messages&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;django.contrib.staticfiles&#39;</span><span class="p">,</span>
+<span class="hll">      <span class="s1">&#39;academy&#39;</span><span class="p">,</span>
 </span>  <span class="p">)</span>
 </pre></div>
 </div>
-<p>Next open up the <tt class="docutils literal"><span class="pre">models.py</span></tt> file in the <tt class="docutils literal"><span class="pre">academy</span></tt> app&#8217;s directory. Here we will use Django&#8217;s built-in <a class="reference external" href="https://docs.djangoproject.com/en/1.7/topics/db/models/">models</a> system to design a database table to hold the source data.</p>
+<p>Next open up the <code class="docutils literal"><span class="pre">models.py</span></code> file in the <code class="docutils literal"><span class="pre">academy</span></code> app&#8217;s directory. Here we will use Django&#8217;s built-in <a class="reference external" href="https://docs.djangoproject.com/en/1.7/topics/db/models/">models</a> system to design a database table to hold the source data.</p>
 <p>Each table is defined using a Python <a class="reference external" href="http://www.learnpython.org/en/Classes_and_Objects">class</a> that inherits special powers <a class="reference external" href="https://docs.djangoproject.com/en/dev/topics/db/models/">from Django</a> allowing it to syncronize with an underlying database. Our work begins by creating our class and naming it after the data we&#8217;ll put inside.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
 
-<span class="c"># Create your models here.</span>
+<span class="c1"># Create your models here.</span>
 <span class="hll"><span class="k">class</span> <span class="nc">Invite</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
 </span></pre></div>
 </div>
@@ -279,32 +280,32 @@ we&#8217;ll use to put together our website.</p>
 <p class="first admonition-title">Note</p>
 <p class="last">Watch out. You&#8217;ll need to carefully indent your code according to Python&#8217;s very <a class="reference external" href="http://www.diveintopython.net/getting_to_know_python/indenting_code.html">strict rules</a> for this to work.</p>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>  <span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span>  <span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
 
-  <span class="c"># Create your models here.</span>
+  <span class="c1"># Create your models here.</span>
   <span class="k">class</span> <span class="nc">Invite</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
 <span class="hll">      <span class="n">name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
 </span><span class="hll">      <span class="n">branch</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
 </span></pre></div>
 </div>
-<p>Now let&#8217;s add a few more fields that we will ask the reporters to figure out and fill in. We&#8217;ll use another Django trick, the <tt class="docutils literal"><span class="pre">choices</span></tt> option, to make some of them multiple-choice fields rather than free text.</p>
+<p>Now let&#8217;s add a few more fields that we will ask the reporters to figure out and fill in. We&#8217;ll use another Django trick, the <code class="docutils literal"><span class="pre">choices</span></code> option, to make some of them multiple-choice fields rather than free text.</p>
 <p>First gender.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
 
-<span class="c"># Create your models here.</span>
+<span class="c1"># Create your models here.</span>
 <span class="k">class</span> <span class="nc">Invite</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
     <span class="n">name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
     <span class="n">branch</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
 <span class="hll">    <span class="n">GENDER_CHOICES</span> <span class="o">=</span> <span class="p">(</span>
-</span><span class="hll">      <span class="p">(</span><span class="s">&quot;M&quot;</span><span class="p">,</span> <span class="s">&quot;Male&quot;</span><span class="p">),</span>
-</span><span class="hll">      <span class="p">(</span><span class="s">&quot;F&quot;</span><span class="p">,</span> <span class="s">&quot;Female&quot;</span><span class="p">),</span>
-</span><span class="hll">      <span class="p">(</span><span class="s">&quot;O&quot;</span><span class="p">,</span> <span class="s">&quot;Other&quot;</span><span class="p">),</span>
-</span><span class="hll">      <span class="p">(</span><span class="s">&quot;?&quot;</span><span class="p">,</span> <span class="s">&quot;Unknown&quot;</span><span class="p">)</span>
+</span><span class="hll">      <span class="p">(</span><span class="s2">&quot;M&quot;</span><span class="p">,</span> <span class="s2">&quot;Male&quot;</span><span class="p">),</span>
+</span><span class="hll">      <span class="p">(</span><span class="s2">&quot;F&quot;</span><span class="p">,</span> <span class="s2">&quot;Female&quot;</span><span class="p">),</span>
+</span><span class="hll">      <span class="p">(</span><span class="s2">&quot;O&quot;</span><span class="p">,</span> <span class="s2">&quot;Other&quot;</span><span class="p">),</span>
+</span><span class="hll">      <span class="p">(</span><span class="s2">&quot;?&quot;</span><span class="p">,</span> <span class="s2">&quot;Unknown&quot;</span><span class="p">)</span>
 </span><span class="hll">    <span class="p">)</span>
 </span><span class="hll">    <span class="n">gender</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
 </span><span class="hll">        <span class="n">max_length</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
 </span><span class="hll">        <span class="n">choices</span><span class="o">=</span><span class="n">GENDER_CHOICES</span><span class="p">,</span>
-</span><span class="hll">        <span class="n">default</span><span class="o">=</span><span class="s">&quot;?&quot;</span>
+</span><span class="hll">        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;?&quot;</span>
 </span><span class="hll">    <span class="p">)</span>
 </span></pre></div>
 </div>
@@ -312,123 +313,123 @@ we&#8217;ll use to put together our website.</p>
 <p class="first admonition-title">Note</p>
 <p class="last">When you create a choices list each option needs to have two values. The first one is what is written into the database, and is often more compact. the second one is what is displayed for user, and is often more verbose.</p>
 </div>
-<p>Then the invite&#8217;s date of birth. Since this type of field will start off empty we need to instruct the database to: 1) allow null values with <tt class="docutils literal"><span class="pre">null=True</span></tt> and allow entrants to leave it empty when they update records later <tt class="docutils literal"><span class="pre">blank=True</span></tt>.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
+<p>Then the invite&#8217;s date of birth. Since this type of field will start off empty we need to instruct the database to: 1) allow null values with <code class="docutils literal"><span class="pre">null=True</span></code> and allow entrants to leave it empty when they update records later <code class="docutils literal"><span class="pre">blank=True</span></code>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
 
-<span class="c"># Create your models here.</span>
+<span class="c1"># Create your models here.</span>
 <span class="k">class</span> <span class="nc">Invite</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
     <span class="n">name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
     <span class="n">branch</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
     <span class="n">GENDER_CHOICES</span> <span class="o">=</span> <span class="p">(</span>
-      <span class="p">(</span><span class="s">&quot;M&quot;</span><span class="p">,</span> <span class="s">&quot;Male&quot;</span><span class="p">),</span>
-      <span class="p">(</span><span class="s">&quot;F&quot;</span><span class="p">,</span> <span class="s">&quot;Female&quot;</span><span class="p">),</span>
-      <span class="p">(</span><span class="s">&quot;O&quot;</span><span class="p">,</span> <span class="s">&quot;Other&quot;</span><span class="p">),</span>
-      <span class="p">(</span><span class="s">&quot;?&quot;</span><span class="p">,</span> <span class="s">&quot;Unknown&quot;</span><span class="p">)</span>
+      <span class="p">(</span><span class="s2">&quot;M&quot;</span><span class="p">,</span> <span class="s2">&quot;Male&quot;</span><span class="p">),</span>
+      <span class="p">(</span><span class="s2">&quot;F&quot;</span><span class="p">,</span> <span class="s2">&quot;Female&quot;</span><span class="p">),</span>
+      <span class="p">(</span><span class="s2">&quot;O&quot;</span><span class="p">,</span> <span class="s2">&quot;Other&quot;</span><span class="p">),</span>
+      <span class="p">(</span><span class="s2">&quot;?&quot;</span><span class="p">,</span> <span class="s2">&quot;Unknown&quot;</span><span class="p">)</span>
     <span class="p">)</span>
     <span class="n">gender</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
         <span class="n">max_length</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
         <span class="n">choices</span><span class="o">=</span><span class="n">GENDER_CHOICES</span><span class="p">,</span>
-        <span class="n">default</span><span class="o">=</span><span class="s">&quot;?&quot;</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;?&quot;</span>
     <span class="p">)</span>
 <span class="hll">    <span class="n">date_of_birth</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateField</span><span class="p">(</span><span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </span></pre></div>
 </div>
 <p>Race.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
 
-<span class="c"># Create your models here.</span>
+<span class="c1"># Create your models here.</span>
 <span class="k">class</span> <span class="nc">Invite</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
     <span class="n">name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
     <span class="n">branch</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
     <span class="n">GENDER_CHOICES</span> <span class="o">=</span> <span class="p">(</span>
-      <span class="p">(</span><span class="s">&quot;M&quot;</span><span class="p">,</span> <span class="s">&quot;Male&quot;</span><span class="p">),</span>
-      <span class="p">(</span><span class="s">&quot;F&quot;</span><span class="p">,</span> <span class="s">&quot;Female&quot;</span><span class="p">),</span>
-      <span class="p">(</span><span class="s">&quot;O&quot;</span><span class="p">,</span> <span class="s">&quot;Other&quot;</span><span class="p">),</span>
-      <span class="p">(</span><span class="s">&quot;?&quot;</span><span class="p">,</span> <span class="s">&quot;Unknown&quot;</span><span class="p">)</span>
+      <span class="p">(</span><span class="s2">&quot;M&quot;</span><span class="p">,</span> <span class="s2">&quot;Male&quot;</span><span class="p">),</span>
+      <span class="p">(</span><span class="s2">&quot;F&quot;</span><span class="p">,</span> <span class="s2">&quot;Female&quot;</span><span class="p">),</span>
+      <span class="p">(</span><span class="s2">&quot;O&quot;</span><span class="p">,</span> <span class="s2">&quot;Other&quot;</span><span class="p">),</span>
+      <span class="p">(</span><span class="s2">&quot;?&quot;</span><span class="p">,</span> <span class="s2">&quot;Unknown&quot;</span><span class="p">)</span>
     <span class="p">)</span>
     <span class="n">gender</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
         <span class="n">max_length</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
         <span class="n">choices</span><span class="o">=</span><span class="n">GENDER_CHOICES</span><span class="p">,</span>
-        <span class="n">default</span><span class="o">=</span><span class="s">&quot;?&quot;</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;?&quot;</span>
     <span class="p">)</span>
     <span class="n">date_of_birth</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateField</span><span class="p">(</span><span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 <span class="hll">    <span class="n">RACE_CHOICES</span> <span class="o">=</span> <span class="p">(</span>
-</span><span class="hll">        <span class="p">(</span><span class="s">&quot;ASIAN&quot;</span><span class="p">,</span> <span class="s">&quot;Asian&quot;</span><span class="p">),</span>
-</span><span class="hll">        <span class="p">(</span><span class="s">&quot;BLACK&quot;</span><span class="p">,</span> <span class="s">&quot;Black&quot;</span><span class="p">),</span>
-</span><span class="hll">        <span class="p">(</span><span class="s">&quot;LATINO&quot;</span><span class="p">,</span> <span class="s">&quot;Latino&quot;</span><span class="p">),</span>
-</span><span class="hll">        <span class="p">(</span><span class="s">&quot;WHITE&quot;</span><span class="p">,</span> <span class="s">&quot;White&quot;</span><span class="p">),</span>
-</span><span class="hll">        <span class="p">(</span><span class="s">&quot;OTHER&quot;</span><span class="p">,</span> <span class="s">&quot;Other&quot;</span><span class="p">),</span>
-</span><span class="hll">        <span class="p">(</span><span class="s">&quot;?&quot;</span><span class="p">,</span> <span class="s">&quot;Unknown&quot;</span><span class="p">),</span>
+</span><span class="hll">        <span class="p">(</span><span class="s2">&quot;ASIAN&quot;</span><span class="p">,</span> <span class="s2">&quot;Asian&quot;</span><span class="p">),</span>
+</span><span class="hll">        <span class="p">(</span><span class="s2">&quot;BLACK&quot;</span><span class="p">,</span> <span class="s2">&quot;Black&quot;</span><span class="p">),</span>
+</span><span class="hll">        <span class="p">(</span><span class="s2">&quot;LATINO&quot;</span><span class="p">,</span> <span class="s2">&quot;Latino&quot;</span><span class="p">),</span>
+</span><span class="hll">        <span class="p">(</span><span class="s2">&quot;WHITE&quot;</span><span class="p">,</span> <span class="s2">&quot;White&quot;</span><span class="p">),</span>
+</span><span class="hll">        <span class="p">(</span><span class="s2">&quot;OTHER&quot;</span><span class="p">,</span> <span class="s2">&quot;Other&quot;</span><span class="p">),</span>
+</span><span class="hll">        <span class="p">(</span><span class="s2">&quot;?&quot;</span><span class="p">,</span> <span class="s2">&quot;Unknown&quot;</span><span class="p">),</span>
 </span><span class="hll">    <span class="p">)</span>
 </span><span class="hll">    <span class="n">race</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
 </span><span class="hll">        <span class="n">max_length</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
 </span><span class="hll">        <span class="n">choices</span><span class="o">=</span><span class="n">RACE_CHOICES</span><span class="p">,</span>
-</span><span class="hll">        <span class="n">default</span><span class="o">=</span><span class="s">&quot;?&quot;</span>
+</span><span class="hll">        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;?&quot;</span>
 </span><span class="hll">    <span class="p">)</span>
 </span></pre></div>
 </div>
 <p>Finally, an open-ended text field for reporters to leave notes about their decisions.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
 
-<span class="c"># Create your models here.</span>
+<span class="c1"># Create your models here.</span>
 <span class="k">class</span> <span class="nc">Invite</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
     <span class="n">name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
     <span class="n">branch</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
     <span class="n">GENDER_CHOICES</span> <span class="o">=</span> <span class="p">(</span>
-      <span class="p">(</span><span class="s">&quot;M&quot;</span><span class="p">,</span> <span class="s">&quot;Male&quot;</span><span class="p">),</span>
-      <span class="p">(</span><span class="s">&quot;F&quot;</span><span class="p">,</span> <span class="s">&quot;Female&quot;</span><span class="p">),</span>
-      <span class="p">(</span><span class="s">&quot;O&quot;</span><span class="p">,</span> <span class="s">&quot;Other&quot;</span><span class="p">),</span>
-      <span class="p">(</span><span class="s">&quot;?&quot;</span><span class="p">,</span> <span class="s">&quot;Unknown&quot;</span><span class="p">)</span>
+      <span class="p">(</span><span class="s2">&quot;M&quot;</span><span class="p">,</span> <span class="s2">&quot;Male&quot;</span><span class="p">),</span>
+      <span class="p">(</span><span class="s2">&quot;F&quot;</span><span class="p">,</span> <span class="s2">&quot;Female&quot;</span><span class="p">),</span>
+      <span class="p">(</span><span class="s2">&quot;O&quot;</span><span class="p">,</span> <span class="s2">&quot;Other&quot;</span><span class="p">),</span>
+      <span class="p">(</span><span class="s2">&quot;?&quot;</span><span class="p">,</span> <span class="s2">&quot;Unknown&quot;</span><span class="p">)</span>
     <span class="p">)</span>
     <span class="n">gender</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
         <span class="n">max_length</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
         <span class="n">choices</span><span class="o">=</span><span class="n">GENDER_CHOICES</span><span class="p">,</span>
-        <span class="n">default</span><span class="o">=</span><span class="s">&quot;?&quot;</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;?&quot;</span>
     <span class="p">)</span>
     <span class="n">date_of_birth</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateField</span><span class="p">(</span><span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
     <span class="n">RACE_CHOICES</span> <span class="o">=</span> <span class="p">(</span>
-        <span class="p">(</span><span class="s">&quot;ASIAN&quot;</span><span class="p">,</span> <span class="s">&quot;Asian&quot;</span><span class="p">),</span>
-        <span class="p">(</span><span class="s">&quot;BLACK&quot;</span><span class="p">,</span> <span class="s">&quot;Black&quot;</span><span class="p">),</span>
-        <span class="p">(</span><span class="s">&quot;LATINO&quot;</span><span class="p">,</span> <span class="s">&quot;Latino&quot;</span><span class="p">),</span>
-        <span class="p">(</span><span class="s">&quot;WHITE&quot;</span><span class="p">,</span> <span class="s">&quot;White&quot;</span><span class="p">),</span>
-        <span class="p">(</span><span class="s">&quot;OTHER&quot;</span><span class="p">,</span> <span class="s">&quot;Other&quot;</span><span class="p">),</span>
-        <span class="p">(</span><span class="s">&quot;?&quot;</span><span class="p">,</span> <span class="s">&quot;Unknown&quot;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;ASIAN&quot;</span><span class="p">,</span> <span class="s2">&quot;Asian&quot;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;BLACK&quot;</span><span class="p">,</span> <span class="s2">&quot;Black&quot;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;LATINO&quot;</span><span class="p">,</span> <span class="s2">&quot;Latino&quot;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;WHITE&quot;</span><span class="p">,</span> <span class="s2">&quot;White&quot;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;OTHER&quot;</span><span class="p">,</span> <span class="s2">&quot;Other&quot;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;?&quot;</span><span class="p">,</span> <span class="s2">&quot;Unknown&quot;</span><span class="p">),</span>
     <span class="p">)</span>
     <span class="n">race</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
         <span class="n">max_length</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
         <span class="n">choices</span><span class="o">=</span><span class="n">RACE_CHOICES</span><span class="p">,</span>
-        <span class="n">default</span><span class="o">=</span><span class="s">&quot;?&quot;</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;?&quot;</span>
     <span class="p">)</span>
 <span class="hll">    <span class="n">notes</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">TextField</span><span class="p">(</span><span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </span></pre></div>
 </div>
 <p>Congratulations, you&#8217;ve written your first model. But it won&#8217;t be created as a real table in your database until you run what Django calls a &#8220;migration.&#8221; That&#8217;s just a fancy word for syncing our models files.</p>
 <p>Make sure to save your <a href="#id4"><span class="problematic" id="id5">``</span></a>models.py``file. Then design the migration for your new model.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>python manage.py makemigrations academy
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ python manage.py makemigrations academy
 </pre></div>
 </div>
-<p>Now run the <tt class="docutils literal"><span class="pre">migrate</span></tt> command to execute it.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>python manage.py migrate academy
+<p>Now run the <code class="docutils literal"><span class="pre">migrate</span></code> command to execute it.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ python manage.py migrate academy
 </pre></div>
 </div>
 </div>
 <div class="section" id="act-3-hello-loader">
 <h2>Act 3: Hello loader<a class="headerlink" href="#act-3-hello-loader" title="Permalink to this headline">¶</a></h2>
 <p>Our next challenge is to load the source CSV file into the model.</p>
-<p>We are going to do this using Django&#8217;s system for <a class="reference external" href="https://docs.djangoproject.com/en/1.7/howto/custom-management-commands/">custom management commands</a>. It allows us to make our own <tt class="docutils literal"><span class="pre">manage.py</span></tt> commands like <tt class="docutils literal"><span class="pre">migrate</span></tt> and <tt class="docutils literal"><span class="pre">startapp</span></tt> that take advantage of Django&#8217;s bag of tricks and interact with the database.</p>
-<p>To do this, add a <tt class="docutils literal"><span class="pre">management/commands</span></tt> directory in our academy app, complete with the empty <tt class="docutils literal"><span class="pre">__init__.py</span></tt> files required by Python. You can do this in your operating system&#8217;s file explorer, or on the command line. From a Linux or OSX prompt that would look something like this.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="c"># The -p flag here makes both new directories</span>
-<span class="nv">$ </span>mkdir -p academy/management/commands
-<span class="c"># This creates the empty files on Macs or in Linux</span>
-<span class="nv">$ </span>touch academy/management/__init__.py
-<span class="nv">$ </span>touch academy/management/commands/__init__.py
-<span class="c"># If you&#39;re in Windows create them with your text editor</span>
-<span class="nv">$ </span>start notepad++ academy/management/__init__.py
-<span class="nv">$ </span>start notepad++ academy/management/commands/__init__.py
+<p>We are going to do this using Django&#8217;s system for <a class="reference external" href="https://docs.djangoproject.com/en/1.7/howto/custom-management-commands/">custom management commands</a>. It allows us to make our own <code class="docutils literal"><span class="pre">manage.py</span></code> commands like <code class="docutils literal"><span class="pre">migrate</span></code> and <code class="docutils literal"><span class="pre">startapp</span></code> that take advantage of Django&#8217;s bag of tricks and interact with the database.</p>
+<p>To do this, add a <code class="docutils literal"><span class="pre">management/commands</span></code> directory in our academy app, complete with the empty <code class="docutils literal"><span class="pre">__init__.py</span></code> files required by Python. You can do this in your operating system&#8217;s file explorer, or on the command line. From a Linux or OSX prompt that would look something like this.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># The -p flag here makes both new directories</span>
+$ mkdir -p academy/management/commands
+<span class="c1"># This creates the empty files on Macs or in Linux</span>
+$ touch academy/management/__init__.py
+$ touch academy/management/commands/__init__.py
+<span class="c1"># If you&#39;re in Windows create them with your text editor</span>
+$ start notepad++ academy/management/__init__.py
+$ start notepad++ academy/management/commands/__init__.py
 </pre></div>
 </div>
 <p>When you&#8217;re done the app&#8217;s directory should look something like this.</p>
-<div class="highlight-txt"><div class="highlight"><pre>academy/
+<div class="highlight-txt"><div class="highlight"><pre><span></span>academy/
     __init__.py
     admin.py
     models.py
@@ -440,39 +441,39 @@ we&#8217;ll use to put together our website.</p>
     views.py
 </pre></div>
 </div>
-<p>Create a new file in the <tt class="docutils literal"><span class="pre">management/commands</span></tt> directory where the new command will go. Let&#8217;s call it <tt class="docutils literal"><span class="pre">loadacademycsv.py</span></tt>.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="c"># Mac or Linux</span>
-<span class="nv">$ </span>touch academy/management/commands/loadacademycsv.py
-<span class="c"># Windows</span>
-<span class="nv">$ </span>start notepad++ academy/management/commands/loadacademycsv.py
+<p>Create a new file in the <code class="docutils literal"><span class="pre">management/commands</span></code> directory where the new command will go. Let&#8217;s call it <code class="docutils literal"><span class="pre">loadacademycsv.py</span></code>.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># Mac or Linux</span>
+$ touch academy/management/commands/loadacademycsv.py
+<span class="c1"># Windows</span>
+$ start notepad++ academy/management/commands/loadacademycsv.py
 </pre></div>
 </div>
 <p>Open it up and paste in the skeleton common to all management commands.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.core.management.base</span> <span class="kn">import</span> <span class="n">BaseCommand</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.core.management.base</span> <span class="kn">import</span> <span class="n">BaseCommand</span>
 
 <span class="k">class</span> <span class="nc">Command</span><span class="p">(</span><span class="n">BaseCommand</span><span class="p">):</span>
 
     <span class="k">def</span> <span class="nf">handle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">):</span>
-        <span class="k">print</span> <span class="s">&quot;Loading CSV&quot;</span>
+        <span class="k">print</span> <span class="s2">&quot;Loading CSV&quot;</span>
 </pre></div>
 </div>
-<p>Running is as simple as invoking its name with <tt class="docutils literal"><span class="pre">manage.py</span></tt>.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>python manage.py loadacademycsv
+<p>Running is as simple as invoking its name with <code class="docutils literal"><span class="pre">manage.py</span></code>.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ python manage.py loadacademycsv
 </pre></div>
 </div>
-<p>Download <a class="reference external" href="https://raw.githubusercontent.com/ireapps/first-django-admin/master/project/academy_invites_2014.csv">the source CSV file</a> from GitHub and store in your base directory next to <tt class="docutils literal"><span class="pre">manage.py</span></tt>.</p>
+<p>Download <a class="reference external" href="https://raw.githubusercontent.com/ireapps/first-django-admin/master/project/academy_invites_2014.csv">the source CSV file</a> from GitHub and store in your base directory next to <code class="docutils literal"><span class="pre">manage.py</span></code>.</p>
 <p>Return to the management command and introduce Python&#8217;s built-in <a class="reference external" href="https://docs.python.org/2/library/csv.html">csv module</a>.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="hll"><span class="kn">import</span> <span class="nn">csv</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="hll"><span class="kn">import</span> <span class="nn">csv</span>
 </span><span class="kn">from</span> <span class="nn">django.core.management.base</span> <span class="kn">import</span> <span class="n">BaseCommand</span>
 
 <span class="k">class</span> <span class="nc">Command</span><span class="p">(</span><span class="n">BaseCommand</span><span class="p">):</span>
 
     <span class="k">def</span> <span class="nf">handle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">):</span>
-        <span class="k">print</span> <span class="s">&quot;Loading CSV&quot;</span>
+        <span class="k">print</span> <span class="s2">&quot;Loading CSV&quot;</span>
 </pre></div>
 </div>
-<p>Next use Python <tt class="docutils literal"><span class="pre">os</span></tt> module and Django&#8217;s <tt class="docutils literal"><span class="pre">BASE_DIR</span></tt> setting to generate the full path to where you saved the csv file. By default, <tt class="docutils literal"><span class="pre">BASE_DIR</span></tt> is set to the root of you project, the same spot where you can find <tt class="docutils literal"><span class="pre">manage.py</span></tt>.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="hll"><span class="kn">import</span> <span class="nn">os</span>
+<p>Next use Python <code class="docutils literal"><span class="pre">os</span></code> module and Django&#8217;s <code class="docutils literal"><span class="pre">BASE_DIR</span></code> setting to generate the full path to where you saved the csv file. By default, <code class="docutils literal"><span class="pre">BASE_DIR</span></code> is set to the root of you project, the same spot where you can find <code class="docutils literal"><span class="pre">manage.py</span></code>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="hll"><span class="kn">import</span> <span class="nn">os</span>
 </span><span class="kn">import</span> <span class="nn">csv</span>
 <span class="hll"><span class="kn">from</span> <span class="nn">django.conf</span> <span class="kn">import</span> <span class="n">settings</span>
 </span><span class="kn">from</span> <span class="nn">django.core.management.base</span> <span class="kn">import</span> <span class="n">BaseCommand</span>
@@ -480,12 +481,12 @@ we&#8217;ll use to put together our website.</p>
 <span class="k">class</span> <span class="nc">Command</span><span class="p">(</span><span class="n">BaseCommand</span><span class="p">):</span>
 
     <span class="k">def</span> <span class="nf">handle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">):</span>
-        <span class="k">print</span> <span class="s">&quot;Loading CSV&quot;</span>
-<span class="hll">        <span class="n">csv_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">BASE_DIR</span><span class="p">,</span> <span class="s">&quot;academy_invites_2014.csv&quot;</span><span class="p">)</span>
+        <span class="k">print</span> <span class="s2">&quot;Loading CSV&quot;</span>
+<span class="hll">        <span class="n">csv_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">BASE_DIR</span><span class="p">,</span> <span class="s2">&quot;academy_invites_2014.csv&quot;</span><span class="p">)</span>
 </span></pre></div>
 </div>
-<p>Now access the file at that path with Python&#8217;s built-in <tt class="docutils literal"><span class="pre">open</span></tt> function. Feeding the file object it creates into the <tt class="docutils literal"><span class="pre">csv</span></tt> module&#8217;s <tt class="docutils literal"><span class="pre">DictReader</span></tt> will return a list with each row in the file as a dictionary.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">os</span>
+<p>Now access the file at that path with Python&#8217;s built-in <code class="docutils literal"><span class="pre">open</span></code> function. Feeding the file object it creates into the <code class="docutils literal"><span class="pre">csv</span></code> module&#8217;s <code class="docutils literal"><span class="pre">DictReader</span></code> will return a list with each row in the file as a dictionary.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">csv</span>
 <span class="kn">from</span> <span class="nn">django.conf</span> <span class="kn">import</span> <span class="n">settings</span>
 <span class="kn">from</span> <span class="nn">django.core.management.base</span> <span class="kn">import</span> <span class="n">BaseCommand</span>
@@ -493,14 +494,14 @@ we&#8217;ll use to put together our website.</p>
 <span class="k">class</span> <span class="nc">Command</span><span class="p">(</span><span class="n">BaseCommand</span><span class="p">):</span>
 
     <span class="k">def</span> <span class="nf">handle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">):</span>
-        <span class="k">print</span> <span class="s">&quot;Loading CSV&quot;</span>
-        <span class="n">csv_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">BASE_DIR</span><span class="p">,</span> <span class="s">&quot;academy_invites_2014.csv&quot;</span><span class="p">)</span>
-<span class="hll">        <span class="n">csv_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">csv_path</span><span class="p">,</span> <span class="s">&#39;rb&#39;</span><span class="p">)</span>
+        <span class="k">print</span> <span class="s2">&quot;Loading CSV&quot;</span>
+        <span class="n">csv_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">BASE_DIR</span><span class="p">,</span> <span class="s2">&quot;academy_invites_2014.csv&quot;</span><span class="p">)</span>
+<span class="hll">        <span class="n">csv_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">csv_path</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
 </span><span class="hll">        <span class="n">csv_reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">csv_file</span><span class="p">)</span>
 </span></pre></div>
 </div>
 <p>Create a loop that walks through the list, printing out each row as it goes by.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">os</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">csv</span>
 <span class="kn">from</span> <span class="nn">django.conf</span> <span class="kn">import</span> <span class="n">settings</span>
 <span class="kn">from</span> <span class="nn">django.core.management.base</span> <span class="kn">import</span> <span class="n">BaseCommand</span>
@@ -508,20 +509,20 @@ we&#8217;ll use to put together our website.</p>
 <span class="k">class</span> <span class="nc">Command</span><span class="p">(</span><span class="n">BaseCommand</span><span class="p">):</span>
 
     <span class="k">def</span> <span class="nf">handle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">):</span>
-        <span class="k">print</span> <span class="s">&quot;Loading CSV&quot;</span>
-        <span class="n">csv_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">BASE_DIR</span><span class="p">,</span> <span class="s">&quot;academy_invites_2014.csv&quot;</span><span class="p">)</span>
-        <span class="n">csv_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">csv_path</span><span class="p">,</span> <span class="s">&#39;rb&#39;</span><span class="p">)</span>
+        <span class="k">print</span> <span class="s2">&quot;Loading CSV&quot;</span>
+        <span class="n">csv_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">BASE_DIR</span><span class="p">,</span> <span class="s2">&quot;academy_invites_2014.csv&quot;</span><span class="p">)</span>
+        <span class="n">csv_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">csv_path</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
         <span class="n">csv_reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">csv_file</span><span class="p">)</span>
 <span class="hll">        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">csv_reader</span><span class="p">:</span>
 </span><span class="hll">            <span class="k">print</span> <span class="n">row</span>
 </span></pre></div>
 </div>
 <p>Run it to see what we mean.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>python manage.py loadacademycsv
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ python manage.py loadacademycsv
 </pre></div>
 </div>
 <p>Import our model into the command and use it to save the CSV records to the database.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">os</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">csv</span>
 <span class="kn">from</span> <span class="nn">django.conf</span> <span class="kn">import</span> <span class="n">settings</span>
 <span class="hll"><span class="kn">from</span> <span class="nn">academy.models</span> <span class="kn">import</span> <span class="n">Invite</span>
@@ -530,39 +531,39 @@ we&#8217;ll use to put together our website.</p>
 <span class="k">class</span> <span class="nc">Command</span><span class="p">(</span><span class="n">BaseCommand</span><span class="p">):</span>
 
     <span class="k">def</span> <span class="nf">handle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">):</span>
-        <span class="k">print</span> <span class="s">&quot;Loading CSV&quot;</span>
-        <span class="n">csv_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">BASE_DIR</span><span class="p">,</span> <span class="s">&quot;academy_invites_2014.csv&quot;</span><span class="p">)</span>
-        <span class="n">csv_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">csv_path</span><span class="p">,</span> <span class="s">&#39;rb&#39;</span><span class="p">)</span>
+        <span class="k">print</span> <span class="s2">&quot;Loading CSV&quot;</span>
+        <span class="n">csv_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">BASE_DIR</span><span class="p">,</span> <span class="s2">&quot;academy_invites_2014.csv&quot;</span><span class="p">)</span>
+        <span class="n">csv_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">csv_path</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
         <span class="n">csv_reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">csv_file</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">csv_reader</span><span class="p">:</span>
 <span class="hll">            <span class="n">obj</span> <span class="o">=</span> <span class="n">Invite</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
-</span><span class="hll">                <span class="n">name</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s">&#39;Name&#39;</span><span class="p">],</span>
-</span><span class="hll">                <span class="n">branch</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s">&#39;Branch&#39;</span><span class="p">]</span>
+</span><span class="hll">                <span class="n">name</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">],</span>
+</span><span class="hll">                <span class="n">branch</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;Branch&#39;</span><span class="p">]</span>
 </span><span class="hll">            <span class="p">)</span>
 </span><span class="hll">            <span class="k">print</span> <span class="n">obj</span>
 </span></pre></div>
 </div>
 <p>Run it again and you&#8217;ve done it. The CSV is loaded into the database.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>python manage.py loadacademycsv
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ python manage.py loadacademycsv
 </pre></div>
 </div>
 </div>
 <div class="section" id="act-4-hello-admin">
 <h2>Act 4: Hello admin<a class="headerlink" href="#act-4-hello-admin" title="Permalink to this headline">¶</a></h2>
 <p>One of Django&#8217;s unique features is that it comes with a custom administration that allows users to view, edit and create records. To see it in action, create a new superuser with permission to edit all records.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>python manage.py createsuperuser
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ python manage.py createsuperuser
 </pre></div>
 </div>
 <p>Then fire up the Django test server.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>python manage.py runserver
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ python manage.py runserver
 </pre></div>
 </div>
 <p>And visit <a class="reference external" href="http://localhost:8000/admin/">localhost:8000/admin/</a> and log in using the credentials you just created.</p>
 <img alt="_images/hello-admin-login.png" src="_images/hello-admin-login.png" />
 <p>Without any additional configuration you will see administration panels for the apps installed with Django by default.</p>
 <img alt="_images/hello-admin-noconfig.png" src="_images/hello-admin-noconfig.png" />
-<p>Adding panels for your own models is done in the <tt class="docutils literal"><span class="pre">admin.py</span></tt> file included with each app. Open <tt class="docutils literal"><span class="pre">academy/admin.py</span></tt> to start in.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
+<p>Adding panels for your own models is done in the <code class="docutils literal"><span class="pre">admin.py</span></code> file included with each app. Open <code class="docutils literal"><span class="pre">academy/admin.py</span></code> to start in.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
 <span class="kn">from</span> <span class="nn">academy.models</span> <span class="kn">import</span> <span class="n">Invite</span>
 
 <span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Invite</span><span class="p">)</span>
@@ -573,11 +574,11 @@ we&#8217;ll use to put together our website.</p>
 <p>Click on &#8220;Invite&#8221; and you&#8217;ll see all the records we loaded into the database a list.</p>
 <img alt="_images/hello-admin-list.png" src="_images/hello-admin-list.png" />
 <p>Configure the columns that appear in the list.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
 <span class="kn">from</span> <span class="nn">academy.models</span> <span class="kn">import</span> <span class="n">Invite</span>
 
 <span class="hll"><span class="k">class</span> <span class="nc">InviteAdmin</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">ModelAdmin</span><span class="p">):</span>
-</span><span class="hll">    <span class="n">list_display</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;name&quot;</span><span class="p">,</span> <span class="s">&quot;branch&quot;</span><span class="p">,</span> <span class="s">&quot;gender&quot;</span><span class="p">,</span> <span class="s">&quot;date_of_birth&quot;</span><span class="p">,</span> <span class="s">&quot;race&quot;</span><span class="p">)</span>
+</span><span class="hll">    <span class="n">list_display</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;branch&quot;</span><span class="p">,</span> <span class="s2">&quot;gender&quot;</span><span class="p">,</span> <span class="s2">&quot;date_of_birth&quot;</span><span class="p">,</span> <span class="s2">&quot;race&quot;</span><span class="p">)</span>
 </span><span class="hll">
 </span><span class="hll"><span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Invite</span><span class="p">,</span> <span class="n">InviteAdmin</span><span class="p">)</span>
 </span></pre></div>
@@ -585,12 +586,12 @@ we&#8217;ll use to put together our website.</p>
 <p>Reload.</p>
 <img alt="_images/hello-admin-columns.png" src="_images/hello-admin-columns.png" />
 <p>Add a filter.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
 <span class="kn">from</span> <span class="nn">academy.models</span> <span class="kn">import</span> <span class="n">Invite</span>
 
 <span class="k">class</span> <span class="nc">InviteAdmin</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">ModelAdmin</span><span class="p">):</span>
-    <span class="n">list_display</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;name&quot;</span><span class="p">,</span> <span class="s">&quot;branch&quot;</span><span class="p">,</span> <span class="s">&quot;gender&quot;</span><span class="p">,</span> <span class="s">&quot;date_of_birth&quot;</span><span class="p">,</span> <span class="s">&quot;race&quot;</span><span class="p">)</span>
-<span class="hll">    <span class="n">list_filter</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;branch&quot;</span><span class="p">,</span> <span class="s">&quot;gender&quot;</span><span class="p">,</span> <span class="s">&quot;race&quot;</span><span class="p">)</span>
+    <span class="n">list_display</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;branch&quot;</span><span class="p">,</span> <span class="s2">&quot;gender&quot;</span><span class="p">,</span> <span class="s2">&quot;date_of_birth&quot;</span><span class="p">,</span> <span class="s2">&quot;race&quot;</span><span class="p">)</span>
+<span class="hll">    <span class="n">list_filter</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;branch&quot;</span><span class="p">,</span> <span class="s2">&quot;gender&quot;</span><span class="p">,</span> <span class="s2">&quot;race&quot;</span><span class="p">)</span>
 </span>
 <span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Invite</span><span class="p">,</span> <span class="n">InviteAdmin</span><span class="p">)</span>
 </pre></div>
@@ -598,13 +599,13 @@ we&#8217;ll use to put together our website.</p>
 <p>Reload.</p>
 <img alt="_images/hello-admin-filter.png" src="_images/hello-admin-filter.png" />
 <p>And now a search.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
 <span class="kn">from</span> <span class="nn">academy.models</span> <span class="kn">import</span> <span class="n">Invite</span>
 
 <span class="k">class</span> <span class="nc">InviteAdmin</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">ModelAdmin</span><span class="p">):</span>
-    <span class="n">list_display</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;name&quot;</span><span class="p">,</span> <span class="s">&quot;branch&quot;</span><span class="p">,</span> <span class="s">&quot;gender&quot;</span><span class="p">,</span> <span class="s">&quot;date_of_birth&quot;</span><span class="p">,</span> <span class="s">&quot;race&quot;</span><span class="p">)</span>
-    <span class="n">list_filter</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;branch&quot;</span><span class="p">,</span> <span class="s">&quot;gender&quot;</span><span class="p">,</span> <span class="s">&quot;race&quot;</span><span class="p">)</span>
-<span class="hll">    <span class="n">search_fields</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;name&quot;</span><span class="p">,)</span>
+    <span class="n">list_display</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;branch&quot;</span><span class="p">,</span> <span class="s2">&quot;gender&quot;</span><span class="p">,</span> <span class="s2">&quot;date_of_birth&quot;</span><span class="p">,</span> <span class="s2">&quot;race&quot;</span><span class="p">)</span>
+    <span class="n">list_filter</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;branch&quot;</span><span class="p">,</span> <span class="s2">&quot;gender&quot;</span><span class="p">,</span> <span class="s2">&quot;race&quot;</span><span class="p">)</span>
+<span class="hll">    <span class="n">search_fields</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,)</span>
 </span>
 <span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Invite</span><span class="p">,</span> <span class="n">InviteAdmin</span><span class="p">)</span>
 </pre></div>
@@ -623,18 +624,18 @@ we&#8217;ll use to put together our website.</p>
 <img alt="_images/hello-newsroom-staffstatus.png" src="_images/hello-newsroom-staffstatus.png" />
 <p>Lower down, choose which permissions to give this user. In this example, since the source data are already loaded the reporter will only have authorization to edit records, not create or delete them.</p>
 <img alt="_images/hello-newsroom-permissions.png" src="_images/hello-newsroom-permissions.png" />
-<p>We&#8217;re getting close. One problem, though. That <tt class="docutils literal"><span class="pre">localhost</span></tt> address we&#8217;ve been using isn&#8217;t on the Internet. It only exists on your machine.</p>
+<p>We&#8217;re getting close. One problem, though. That <code class="docutils literal"><span class="pre">localhost</span></code> address we&#8217;ve been using isn&#8217;t on the Internet. It only exists on your machine.</p>
 <p>There are numerous ways to deploy your Django application so other people can access it. You could use the <a class="reference external" href="https://docs.djangoproject.com/en/1.7/howto/deployment/">Apache</a> webserver. You could try a cloud service like <a class="reference external" href="https://devcenter.heroku.com/articles/getting-started-with-django">Heroku</a>.</p>
 <p>But if all you need is for other people inside your office network (often referred to as an &#8220;Intranet&#8221;) to log in, here&#8217;s a simple trick that will work in most cases.</p>
 <p>Return to your command line and try this.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>python manage.py runserver 0.0.0.0:8000
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ python manage.py runserver <span class="m">0</span>.0.0.0:8000
 </pre></div>
 </div>
 <p>Now all you need to do is find your computer&#8217;s IP address. The method varies depending on your operating system. Good instructions are <a class="reference external" href="http://home.huck.psu.edu/it/how-to/how-to-ip-address">available here</a>. Though it mostly boils down to opening a new command line terminal and typing in one of the following.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="c"># In OSX or Linux</span>
-<span class="nv">$ </span>ifconfig
-<span class="c"># In Windows</span>
-<span class="nv">$ </span>ipconfig
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># In OSX or Linux</span>
+$ ifconfig
+<span class="c1"># In Windows</span>
+$ ipconfig
 </pre></div>
 </div>
 <p>Then within the code that comes out you&#8217;ll see a series of numbers formatted something like 172.19.131.101 after a label like &#8220;inet&#8221; or &#8220;IPv4 Address&#8221;.</p>
@@ -647,43 +648,43 @@ we&#8217;ll use to put together our website.</p>
 <h2>Act 6: Hello homework<a class="headerlink" href="#act-6-hello-homework" title="Permalink to this headline">¶</a></h2>
 <p>There are two constants in this kind of work: 1) Your models will change. 2) Reporters need to be told what to do.</p>
 <p>With that in mind, let&#8217;s alter our model so we have a place for a reporter&#8217;s name. Then we will assign each invitee to a reporter to finish.</p>
-<p>First, let&#8217;s add a character field and some choices for the reporter&#8217;s name. Open your <tt class="docutils literal"><span class="pre">models.py</span></tt> file and add them.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
+<p>First, let&#8217;s add a character field and some choices for the reporter&#8217;s name. Open your <code class="docutils literal"><span class="pre">models.py</span></code> file and add them.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
 
-<span class="c"># Create your models here.</span>
+<span class="c1"># Create your models here.</span>
 <span class="k">class</span> <span class="nc">Invite</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
     <span class="n">name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
     <span class="n">branch</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
     <span class="n">GENDER_CHOICES</span> <span class="o">=</span> <span class="p">(</span>
-      <span class="p">(</span><span class="s">&quot;M&quot;</span><span class="p">,</span> <span class="s">&quot;Male&quot;</span><span class="p">),</span>
-      <span class="p">(</span><span class="s">&quot;F&quot;</span><span class="p">,</span> <span class="s">&quot;Female&quot;</span><span class="p">),</span>
-      <span class="p">(</span><span class="s">&quot;O&quot;</span><span class="p">,</span> <span class="s">&quot;Other&quot;</span><span class="p">),</span>
-      <span class="p">(</span><span class="s">&quot;?&quot;</span><span class="p">,</span> <span class="s">&quot;Unknown&quot;</span><span class="p">)</span>
+      <span class="p">(</span><span class="s2">&quot;M&quot;</span><span class="p">,</span> <span class="s2">&quot;Male&quot;</span><span class="p">),</span>
+      <span class="p">(</span><span class="s2">&quot;F&quot;</span><span class="p">,</span> <span class="s2">&quot;Female&quot;</span><span class="p">),</span>
+      <span class="p">(</span><span class="s2">&quot;O&quot;</span><span class="p">,</span> <span class="s2">&quot;Other&quot;</span><span class="p">),</span>
+      <span class="p">(</span><span class="s2">&quot;?&quot;</span><span class="p">,</span> <span class="s2">&quot;Unknown&quot;</span><span class="p">)</span>
     <span class="p">)</span>
     <span class="n">gender</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
         <span class="n">max_length</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
         <span class="n">choices</span><span class="o">=</span><span class="n">GENDER_CHOICES</span><span class="p">,</span>
-        <span class="n">default</span><span class="o">=</span><span class="s">&quot;?&quot;</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;?&quot;</span>
     <span class="p">)</span>
     <span class="n">date_of_birth</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateField</span><span class="p">(</span><span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
     <span class="n">RACE_CHOICES</span> <span class="o">=</span> <span class="p">(</span>
-        <span class="p">(</span><span class="s">&quot;ASIAN&quot;</span><span class="p">,</span> <span class="s">&quot;Asian&quot;</span><span class="p">),</span>
-        <span class="p">(</span><span class="s">&quot;BLACK&quot;</span><span class="p">,</span> <span class="s">&quot;Black&quot;</span><span class="p">),</span>
-        <span class="p">(</span><span class="s">&quot;LATINO&quot;</span><span class="p">,</span> <span class="s">&quot;Latino&quot;</span><span class="p">),</span>
-        <span class="p">(</span><span class="s">&quot;WHITE&quot;</span><span class="p">,</span> <span class="s">&quot;White&quot;</span><span class="p">),</span>
-        <span class="p">(</span><span class="s">&quot;OTHER&quot;</span><span class="p">,</span> <span class="s">&quot;Other&quot;</span><span class="p">),</span>
-        <span class="p">(</span><span class="s">&quot;?&quot;</span><span class="p">,</span> <span class="s">&quot;Unknown&quot;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;ASIAN&quot;</span><span class="p">,</span> <span class="s2">&quot;Asian&quot;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;BLACK&quot;</span><span class="p">,</span> <span class="s2">&quot;Black&quot;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;LATINO&quot;</span><span class="p">,</span> <span class="s2">&quot;Latino&quot;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;WHITE&quot;</span><span class="p">,</span> <span class="s2">&quot;White&quot;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;OTHER&quot;</span><span class="p">,</span> <span class="s2">&quot;Other&quot;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;?&quot;</span><span class="p">,</span> <span class="s2">&quot;Unknown&quot;</span><span class="p">),</span>
     <span class="p">)</span>
     <span class="n">race</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
         <span class="n">max_length</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
         <span class="n">choices</span><span class="o">=</span><span class="n">RACE_CHOICES</span><span class="p">,</span>
-        <span class="n">default</span><span class="o">=</span><span class="s">&quot;?&quot;</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;?&quot;</span>
     <span class="p">)</span>
     <span class="n">notes</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">TextField</span><span class="p">(</span><span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 <span class="hll">    <span class="n">REPORTER_CHOICES</span> <span class="o">=</span> <span class="p">(</span>
-</span><span class="hll">        <span class="p">(</span><span class="s">&quot;lois-lane&quot;</span><span class="p">,</span> <span class="s">&quot;Lois Lane&quot;</span><span class="p">),</span>
-</span><span class="hll">        <span class="p">(</span><span class="s">&quot;clark-kent&quot;</span><span class="p">,</span> <span class="s">&quot;Clark Kent&quot;</span><span class="p">),</span>
-</span><span class="hll">        <span class="p">(</span><span class="s">&quot;jimmy-olson&quot;</span><span class="p">,</span> <span class="s">&quot;Jimmy Olson&quot;</span><span class="p">)</span>
+</span><span class="hll">        <span class="p">(</span><span class="s2">&quot;lois-lane&quot;</span><span class="p">,</span> <span class="s2">&quot;Lois Lane&quot;</span><span class="p">),</span>
+</span><span class="hll">        <span class="p">(</span><span class="s2">&quot;clark-kent&quot;</span><span class="p">,</span> <span class="s2">&quot;Clark Kent&quot;</span><span class="p">),</span>
+</span><span class="hll">        <span class="p">(</span><span class="s2">&quot;jimmy-olson&quot;</span><span class="p">,</span> <span class="s2">&quot;Jimmy Olson&quot;</span><span class="p">)</span>
 </span><span class="hll">    <span class="p">)</span>
 </span><span class="hll">    <span class="n">reporter</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
 </span><span class="hll">        <span class="n">max_length</span><span class="o">=</span><span class="mi">255</span><span class="p">,</span>
@@ -693,59 +694,59 @@ we&#8217;ll use to put together our website.</p>
 </span></pre></div>
 </div>
 <p>Great. Save it and let&#8217;s run:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>python manage.py runserver
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ python manage.py runserver
 </pre></div>
 </div>
 <p>Now go to <a class="reference external" href="http://localhost:8000/admin/">http://localhost:8000/admin/</a> and click on &#8216;Invites.&#8217; You should see this:</p>
 <img alt="_images/hello-newsroom-nomigrationerror.png" src="_images/hello-newsroom-nomigrationerror.png" />
-<p>Uh oh. What happened? Well, in Django parlance, we are missing a migration. While your <tt class="docutils literal"><span class="pre">models.py</span></tt> file describes your database tables, simply changing the file won&#8217;t change your database. Django needs some instructions on how to create, delete or migrate fields in an explicit way. This is where migrations come in. Migrations explain how to modify your database, including the ability to &#8220;roll back&#8221; your database tables to a previous state.</p>
-<p>Thankfully, in newer versions of Django, this feature is built in. Kill your <tt class="docutils literal"><span class="pre">runserver</span></tt> by hitting <tt class="docutils literal"><span class="pre">ctrl-c</span></tt>, and run a command:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="c"># Create a migration</span>
-<span class="nv">$ </span>python manage.py makemigrations academy
+<p>Uh oh. What happened? Well, in Django parlance, we are missing a migration. While your <code class="docutils literal"><span class="pre">models.py</span></code> file describes your database tables, simply changing the file won&#8217;t change your database. Django needs some instructions on how to create, delete or migrate fields in an explicit way. This is where migrations come in. Migrations explain how to modify your database, including the ability to &#8220;roll back&#8221; your database tables to a previous state.</p>
+<p>Thankfully, in newer versions of Django, this feature is built in. Kill your <code class="docutils literal"><span class="pre">runserver</span></code> by hitting <code class="docutils literal"><span class="pre">ctrl-c</span></code>, and run a command:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># Create a migration</span>
+$ python manage.py makemigrations academy
 </pre></div>
 </div>
-<p>This creates a file that says we want to add a reporter field to our database.  Let&#8217;s check to see what we did. List the contents of <tt class="docutils literal"><span class="pre">academy/migrations/</span></tt></p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="c"># In OSX or Linux</span>
-<span class="nv">$ </span>ls academy/migrations/
-<span class="c"># In Windows</span>
-<span class="nv">$ </span>dir academy/migrations
+<p>This creates a file that says we want to add a reporter field to our database.  Let&#8217;s check to see what we did. List the contents of <code class="docutils literal"><span class="pre">academy/migrations/</span></code></p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># In OSX or Linux</span>
+$ ls academy/migrations/
+<span class="c1"># In Windows</span>
+$ dir academy/migrations
 </pre></div>
 </div>
-<p>You should see that there are two migration files there: <tt class="docutils literal"><span class="pre">0001_initial.py</span></tt> and <tt class="docutils literal"><span class="pre">0002_invite_reporter.py</span></tt>. When you created your table before, you ran the <tt class="docutils literal"><span class="pre">makemigrations</span></tt> command as well, which created the initial file. Every time you make a migration, Django will add another file to this folder.</p>
+<p>You should see that there are two migration files there: <code class="docutils literal"><span class="pre">0001_initial.py</span></code> and <code class="docutils literal"><span class="pre">0002_invite_reporter.py</span></code>. When you created your table before, you ran the <code class="docutils literal"><span class="pre">makemigrations</span></code> command as well, which created the initial file. Every time you make a migration, Django will add another file to this folder.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">If you&#8217;re using <tt class="docutils literal"><span class="pre">git</span></tt> to track your project, it&#8217;s important to add these migrations to your git repository. Otherwise people collaborating with you won&#8217;t know what changes you have made to the database.</p>
+<p class="last">If you&#8217;re using <code class="docutils literal"><span class="pre">git</span></code> to track your project, it&#8217;s important to add these migrations to your git repository. Otherwise people collaborating with you won&#8217;t know what changes you have made to the database.</p>
 </div>
-<p>Now we have to apply the migration. Your changes won&#8217;t be applied to the database until you run <tt class="docutils literal"><span class="pre">migrate</span></tt>, so let&#8217;s do that now</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="c"># Actually apply the migrations</span>
-<span class="nv">$ </span>python manage.py migrate academy
+<p>Now we have to apply the migration. Your changes won&#8217;t be applied to the database until you run <code class="docutils literal"><span class="pre">migrate</span></code>, so let&#8217;s do that now</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># Actually apply the migrations</span>
+$ python manage.py migrate academy
 </pre></div>
 </div>
 <p>Excellent. Run your server and check out an invite now. You should see a dropdown like this:</p>
 <img alt="_images/hello-newsroom-reporter.png" src="_images/hello-newsroom-reporter.png" />
-<p>Wouldn&#8217;t it be great if you could see this information at a glance, though? Pop open your <tt class="docutils literal"><span class="pre">admin.py</span></tt> file and let&#8217;s do just that. We will add &#8220;reporter&#8221; to the end of our <tt class="docutils literal"><span class="pre">list_display</span></tt> list.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
+<p>Wouldn&#8217;t it be great if you could see this information at a glance, though? Pop open your <code class="docutils literal"><span class="pre">admin.py</span></code> file and let&#8217;s do just that. We will add &#8220;reporter&#8221; to the end of our <code class="docutils literal"><span class="pre">list_display</span></code> list.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
 <span class="kn">from</span> <span class="nn">academy.models</span> <span class="kn">import</span> <span class="n">Invite</span>
 
 <span class="k">class</span> <span class="nc">InviteAdmin</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">ModelAdmin</span><span class="p">):</span>
-<span class="hll">    <span class="n">list_display</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;name&quot;</span><span class="p">,</span> <span class="s">&quot;branch&quot;</span><span class="p">,</span> <span class="s">&quot;gender&quot;</span><span class="p">,</span> <span class="s">&quot;date_of_birth&quot;</span><span class="p">,</span> <span class="s">&quot;race&quot;</span><span class="p">,</span> <span class="s">&quot;reporter&quot;</span><span class="p">,)</span>
-</span>    <span class="n">list_filter</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;branch&quot;</span><span class="p">,</span> <span class="s">&quot;gender&quot;</span><span class="p">,</span> <span class="s">&quot;race&quot;</span><span class="p">,)</span>
-    <span class="n">search_fields</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;name&quot;</span><span class="p">,)</span>
+<span class="hll">    <span class="n">list_display</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;branch&quot;</span><span class="p">,</span> <span class="s2">&quot;gender&quot;</span><span class="p">,</span> <span class="s2">&quot;date_of_birth&quot;</span><span class="p">,</span> <span class="s2">&quot;race&quot;</span><span class="p">,</span> <span class="s2">&quot;reporter&quot;</span><span class="p">,)</span>
+</span>    <span class="n">list_filter</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;branch&quot;</span><span class="p">,</span> <span class="s2">&quot;gender&quot;</span><span class="p">,</span> <span class="s2">&quot;race&quot;</span><span class="p">,)</span>
+    <span class="n">search_fields</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,)</span>
 
 <span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Invite</span><span class="p">,</span> <span class="n">InviteAdmin</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Now fire up your runserver again and check out the invite list:</p>
 <img alt="_images/hello-newsroom-nones.png" src="_images/hello-newsroom-nones.png" />
-<p>That&#8217;s a whole lot of Nones though, and do you really want to go into each page and select the name from a dropdown to assign it? No, you do not. Let&#8217;s make one quick change to the <tt class="docutils literal"><span class="pre">admin.py</span></tt> file to speed this up. We are going to use a feature called <tt class="docutils literal"><span class="pre">list_editable</span></tt> to make changes directly from the invite list:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
+<p>That&#8217;s a whole lot of Nones though, and do you really want to go into each page and select the name from a dropdown to assign it? No, you do not. Let&#8217;s make one quick change to the <code class="docutils literal"><span class="pre">admin.py</span></code> file to speed this up. We are going to use a feature called <code class="docutils literal"><span class="pre">list_editable</span></code> to make changes directly from the invite list:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
 <span class="kn">from</span> <span class="nn">academy.models</span> <span class="kn">import</span> <span class="n">Invite</span>
 
 <span class="k">class</span> <span class="nc">InviteAdmin</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">ModelAdmin</span><span class="p">):</span>
-    <span class="n">list_display</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;name&quot;</span><span class="p">,</span> <span class="s">&quot;branch&quot;</span><span class="p">,</span> <span class="s">&quot;gender&quot;</span><span class="p">,</span> <span class="s">&quot;date_of_birth&quot;</span><span class="p">,</span> <span class="s">&quot;race&quot;</span><span class="p">,</span> <span class="s">&quot;reporter&quot;</span><span class="p">,)</span>
-    <span class="n">list_filter</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;branch&quot;</span><span class="p">,</span> <span class="s">&quot;gender&quot;</span><span class="p">,</span> <span class="s">&quot;race&quot;</span><span class="p">,)</span>
-<span class="hll">    <span class="n">list_editable</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;reporter&quot;</span><span class="p">,)</span>
-</span>    <span class="n">search_fields</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;name&quot;</span><span class="p">,)</span>
+    <span class="n">list_display</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;branch&quot;</span><span class="p">,</span> <span class="s2">&quot;gender&quot;</span><span class="p">,</span> <span class="s2">&quot;date_of_birth&quot;</span><span class="p">,</span> <span class="s2">&quot;race&quot;</span><span class="p">,</span> <span class="s2">&quot;reporter&quot;</span><span class="p">,)</span>
+    <span class="n">list_filter</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;branch&quot;</span><span class="p">,</span> <span class="s2">&quot;gender&quot;</span><span class="p">,</span> <span class="s2">&quot;race&quot;</span><span class="p">,)</span>
+<span class="hll">    <span class="n">list_editable</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;reporter&quot;</span><span class="p">,)</span>
+</span>    <span class="n">search_fields</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,)</span>
 
 <span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Invite</span><span class="p">,</span> <span class="n">InviteAdmin</span><span class="p">)</span>
 </pre></div>
@@ -753,16 +754,16 @@ we&#8217;ll use to put together our website.</p>
 <p>Ready? Save the file and open up the invite list again.</p>
 <img alt="_images/hello-newsroom-list-editable.png" src="_images/hello-newsroom-list-editable.png" />
 <p>Now you can edit the reporter field directly from the admin list! Select a few reporters from a few dropdowns and then scroll to the bottom of the page and hit Save. Congratulations, you&#8217;ve just doled out some work.</p>
-<p>The admin&#8217;s <tt class="docutils literal"><span class="pre">list_editable</span></tt> is a powerful little option that lets you do a lot of work in a little time. When you&#8217;ve assigned enough people, you can turn the feature back off by removing or commenting out the <tt class="docutils literal"><span class="pre">list_editable</span></tt> line in the admin.</p>
-<p>If you want to go further and filter by reporter so, for example, you could see all of Jimmy Olson&#8217;s assignments at a glance, simply add &#8220;reporter&#8221; to the <tt class="docutils literal"><span class="pre">list_filter</span></tt> list.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
+<p>The admin&#8217;s <code class="docutils literal"><span class="pre">list_editable</span></code> is a powerful little option that lets you do a lot of work in a little time. When you&#8217;ve assigned enough people, you can turn the feature back off by removing or commenting out the <code class="docutils literal"><span class="pre">list_editable</span></code> line in the admin.</p>
+<p>If you want to go further and filter by reporter so, for example, you could see all of Jimmy Olson&#8217;s assignments at a glance, simply add &#8220;reporter&#8221; to the <code class="docutils literal"><span class="pre">list_filter</span></code> list.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
 <span class="kn">from</span> <span class="nn">academy.models</span> <span class="kn">import</span> <span class="n">Invite</span>
 
 <span class="k">class</span> <span class="nc">InviteAdmin</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">ModelAdmin</span><span class="p">):</span>
-    <span class="n">list_display</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;name&quot;</span><span class="p">,</span> <span class="s">&quot;branch&quot;</span><span class="p">,</span> <span class="s">&quot;gender&quot;</span><span class="p">,</span> <span class="s">&quot;date_of_birth&quot;</span><span class="p">,</span> <span class="s">&quot;race&quot;</span><span class="p">,</span> <span class="s">&quot;reporter&quot;</span><span class="p">,)</span>
-<span class="hll">    <span class="n">list_filter</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;branch&quot;</span><span class="p">,</span> <span class="s">&quot;gender&quot;</span><span class="p">,</span> <span class="s">&quot;race&quot;</span><span class="p">,</span> <span class="s">&quot;reporter&quot;</span><span class="p">,)</span>
-</span>    <span class="n">list_editable</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;reporter&quot;</span><span class="p">,)</span>
-    <span class="n">search_fields</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;name&quot;</span><span class="p">,)</span>
+    <span class="n">list_display</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;branch&quot;</span><span class="p">,</span> <span class="s2">&quot;gender&quot;</span><span class="p">,</span> <span class="s2">&quot;date_of_birth&quot;</span><span class="p">,</span> <span class="s2">&quot;race&quot;</span><span class="p">,</span> <span class="s2">&quot;reporter&quot;</span><span class="p">,)</span>
+<span class="hll">    <span class="n">list_filter</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;branch&quot;</span><span class="p">,</span> <span class="s2">&quot;gender&quot;</span><span class="p">,</span> <span class="s2">&quot;race&quot;</span><span class="p">,</span> <span class="s2">&quot;reporter&quot;</span><span class="p">,)</span>
+</span>    <span class="n">list_editable</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;reporter&quot;</span><span class="p">,)</span>
+    <span class="n">search_fields</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,)</span>
 
 <span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Invite</span><span class="p">,</span> <span class="n">InviteAdmin</span><span class="p">)</span>
 </pre></div>
@@ -772,41 +773,41 @@ we&#8217;ll use to put together our website.</p>
 <h2>Epilogue: Hello dumper<a class="headerlink" href="#epilogue-hello-dumper" title="Permalink to this headline">¶</a></h2>
 <p>Alright, so let&#8217;s assume you work with some industrious reporters. They roll through all the records and you&#8217;ve got the gender, race and age entered for everybody in the database.</p>
 <p>Here&#8217;s how you can get the data back out as a CSV. We&#8217;ll start by creating a new management command much like the one we made for the loader.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="c"># Mac or Linux</span>
-<span class="nv">$ </span>touch academy/management/commands/dumpacademycsv.py
-<span class="c"># Windows</span>
-<span class="nv">$ </span>start notepad++ academy/management/commands/dumpacademycsv.py
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># Mac or Linux</span>
+$ touch academy/management/commands/dumpacademycsv.py
+<span class="c1"># Windows</span>
+$ start notepad++ academy/management/commands/dumpacademycsv.py
 </pre></div>
 </div>
 <p>Open it up and paste in the barebones of a management command.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.core.management.base</span> <span class="kn">import</span> <span class="n">BaseCommand</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.core.management.base</span> <span class="kn">import</span> <span class="n">BaseCommand</span>
 
 <span class="k">class</span> <span class="nc">Command</span><span class="p">(</span><span class="n">BaseCommand</span><span class="p">):</span>
 
     <span class="k">def</span> <span class="nf">handle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">):</span>
-        <span class="k">print</span> <span class="s">&quot;Dumping CSV&quot;</span>
+        <span class="k">print</span> <span class="s2">&quot;Dumping CSV&quot;</span>
 </pre></div>
 </div>
 <p>Import our Invite model and create a loop that runs through all the records
 and prints out each field.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="hll"><span class="kn">from</span> <span class="nn">academy.models</span> <span class="kn">import</span> <span class="n">Invite</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="hll"><span class="kn">from</span> <span class="nn">academy.models</span> <span class="kn">import</span> <span class="n">Invite</span>
 </span><span class="kn">from</span> <span class="nn">django.core.management.base</span> <span class="kn">import</span> <span class="n">BaseCommand</span>
 
 <span class="k">class</span> <span class="nc">Command</span><span class="p">(</span><span class="n">BaseCommand</span><span class="p">):</span>
 
     <span class="k">def</span> <span class="nf">handle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">):</span>
-        <span class="k">print</span> <span class="s">&quot;Dumping CSV&quot;</span>
+        <span class="k">print</span> <span class="s2">&quot;Dumping CSV&quot;</span>
 <span class="hll">        <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">Invite</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
 </span><span class="hll">            <span class="n">row</span> <span class="o">=</span> <span class="p">[</span><span class="n">obj</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">branch</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">gender</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">date_of_birth</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">race</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">notes</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">reporter</span><span class="p">]</span>
 </span><span class="hll">            <span class="k">print</span> <span class="n">row</span>
 </span></pre></div>
 </div>
 <p>Save the file and run the command. You should see all the data printed out in lists.</p>
-<div class="highlight-python"><div class="highlight"><pre>$ python manage.py dumpacademycsv
+<div class="highlight-python"><div class="highlight"><pre><span></span>$ python manage.py dumpacademycsv
 </pre></div>
 </div>
 <p>Now introduce the csv module to output those rows to a new file.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="hll"><span class="kn">import</span> <span class="nn">os</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="hll"><span class="kn">import</span> <span class="nn">os</span>
 </span><span class="hll"><span class="kn">import</span> <span class="nn">csv</span>
 </span><span class="hll"><span class="kn">from</span> <span class="nn">django.conf</span> <span class="kn">import</span> <span class="n">settings</span>
 </span><span class="kn">from</span> <span class="nn">academy.models</span> <span class="kn">import</span> <span class="n">Invite</span>
@@ -815,21 +816,21 @@ and prints out each field.</p>
 <span class="k">class</span> <span class="nc">Command</span><span class="p">(</span><span class="n">BaseCommand</span><span class="p">):</span>
 
     <span class="k">def</span> <span class="nf">handle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">):</span>
-        <span class="k">print</span> <span class="s">&quot;Dumping CSV&quot;</span>
-<span class="hll">        <span class="n">csv_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">BASE_DIR</span><span class="p">,</span> <span class="s">&quot;dump.csv&quot;</span><span class="p">)</span>
-</span><span class="hll">        <span class="n">csv_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">csv_path</span><span class="p">,</span> <span class="s">&#39;wb&#39;</span><span class="p">)</span>
+        <span class="k">print</span> <span class="s2">&quot;Dumping CSV&quot;</span>
+<span class="hll">        <span class="n">csv_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">BASE_DIR</span><span class="p">,</span> <span class="s2">&quot;dump.csv&quot;</span><span class="p">)</span>
+</span><span class="hll">        <span class="n">csv_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">csv_path</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span>
 </span><span class="hll">        <span class="n">csv_writer</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">csv_file</span><span class="p">)</span>
-</span><span class="hll">        <span class="n">csv_writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="s">&#39;name&#39;</span><span class="p">,</span> <span class="s">&#39;branch&#39;</span><span class="p">,</span> <span class="s">&#39;gender&#39;</span><span class="p">,</span> <span class="s">&#39;date_of_birth&#39;</span><span class="p">,</span> <span class="s">&#39;race&#39;</span><span class="p">,</span> <span class="s">&#39;notes&#39;</span><span class="p">,</span> <span class="s">&#39;reporter&#39;</span><span class="p">])</span>
+</span><span class="hll">        <span class="n">csv_writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;branch&#39;</span><span class="p">,</span> <span class="s1">&#39;gender&#39;</span><span class="p">,</span> <span class="s1">&#39;date_of_birth&#39;</span><span class="p">,</span> <span class="s1">&#39;race&#39;</span><span class="p">,</span> <span class="s1">&#39;notes&#39;</span><span class="p">,</span> <span class="s1">&#39;reporter&#39;</span><span class="p">])</span>
 </span>        <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">Invite</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
             <span class="n">row</span> <span class="o">=</span> <span class="p">[</span><span class="n">obj</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">branch</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">gender</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">date_of_birth</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">race</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">notes</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">reporter</span><span class="p">]</span>
 <span class="hll">            <span class="n">csv_writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
 </span></pre></div>
 </div>
 <p>Run our new command once more.</p>
-<div class="highlight-python"><div class="highlight"><pre>$ python manage.py dumpacademycsv
+<div class="highlight-python"><div class="highlight"><pre><span></span>$ python manage.py dumpacademycsv
 </pre></div>
 </div>
-<p>Now open up <tt class="docutils literal"><span class="pre">dump.csv</span></tt> in your base directory and your export should be good to go.</p>
+<p>Now open up <code class="docutils literal"><span class="pre">dump.csv</span></code> in your base directory and your export should be good to go.</p>
 </div>
 </div>
 
@@ -837,12 +838,13 @@ and prints out each field.</p>
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h3><a href="#">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">First Django admin</a><ul>
 <li><a class="reference internal" href="#what-you-will-make">What you will make</a></li>
+<li><a class="reference internal" href="#about-the-authors">About the authors</a></li>
 <li><a class="reference internal" href="#prelude-prerequisites">Prelude: Prerequisites</a></li>
 <li><a class="reference internal" href="#act-1-hello-django">Act 1: Hello Django</a></li>
 <li><a class="reference internal" href="#act-2-hello-models">Act 2: Hello models</a></li>
@@ -855,40 +857,39 @@ and prints out each field.</p>
 </li>
 </ul>
 
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="_sources/index.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              >index</a></li>
-        <li><a href="#">First Django Admin 0.1 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="#">First Django Admin 0.1 documentation</a> &#187;</li> 
       </ul>
     </div>
-    <div class="footer">
-        &copy; Copyright 2015, Investigative Reporters and Editors.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2015, Investigative Reporters and Editors.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.3.
     </div>
   </body>
 </html>
