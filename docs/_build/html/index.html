@@ -246,7 +246,7 @@ we&#8217;ll use to put together our website.</p>
     __init__.py
     admin.py
     apps.py
-    migrations
+    migrations/
     models.py
     tests.py
     views.py
@@ -435,14 +435,17 @@ we&#8217;ll use to put together our website.</p>
 <div class="section" id="act-3-hello-loader">
 <h2>Act 3: Hello loader<a class="headerlink" href="#act-3-hello-loader" title="Permalink to this headline">¶</a></h2>
 <p>Our next challenge is to load the source CSV file into the model.</p>
-<p>We are going to do this using Django&#8217;s system for <a class="reference external" href="https://docs.djangoproject.com/en/1.7/howto/custom-management-commands/">custom management commands</a>. It allows us to make our own <code class="docutils literal"><span class="pre">manage.py</span></code> commands like <code class="docutils literal"><span class="pre">migrate</span></code> and <code class="docutils literal"><span class="pre">startapp</span></code> that take advantage of Django&#8217;s bag of tricks and interact with the database.</p>
-<p>To do this, add a <code class="docutils literal"><span class="pre">management/commands</span></code> directory in our academy app, complete with the empty <code class="docutils literal"><span class="pre">__init__.py</span></code> files required by Python. You can do this in your operating system&#8217;s file explorer, or on the command line. From a Linux or OSX prompt that would look something like this.</p>
+<p>We are going to do this using Django&#8217;s system for <a class="reference external" href="https://docs.djangoproject.com/en/1.10/howto/custom-management-commands/">management commands</a>. It allows us to make our own <code class="docutils literal"><span class="pre">manage.py</span></code> commands like <code class="docutils literal"><span class="pre">migrate</span></code> and <code class="docutils literal"><span class="pre">startapp</span></code> that take advantage of Django&#8217;s bag of tricks and interact with the database.</p>
+<p>To do this, add a <code class="docutils literal"><span class="pre">management/commands</span></code> directory in our academy app, complete with empty <code class="docutils literal"><span class="pre">__init__.py</span></code> files required by Python. You can do this in your operating system&#8217;s file explorer, or on the command line. From a Linux or OSX prompt that would look something like this.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># The -p flag here makes both new directories</span>
 $ mkdir -p academy/management/commands
 <span class="c1"># This creates the empty files on Macs or in Linux</span>
 $ touch academy/management/__init__.py
 $ touch academy/management/commands/__init__.py
-<span class="c1"># If you&#39;re in Windows create them with your text editor</span>
+</pre></div>
+</div>
+<p>From Windows something more like this:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># If you&#39;re in Windows create them with your text editor</span>
 $ start notepad++ academy/management/__init__.py
 $ start notepad++ academy/management/commands/__init__.py
 </pre></div>
@@ -451,11 +454,13 @@ $ start notepad++ academy/management/commands/__init__.py
 <div class="highlight-txt"><div class="highlight"><pre><span></span>academy/
     __init__.py
     admin.py
+    apps.py
     models.py
     management/
         __init__.py
         commands/
             __init__.py
+    migrations/
     tests.py
     views.py
 </pre></div>
@@ -476,12 +481,12 @@ $ start notepad++ academy/management/commands/loadacademycsv.py
         <span class="k">print</span> <span class="s2">&quot;Loading CSV&quot;</span>
 </pre></div>
 </div>
-<p>Running is as simple as invoking its name with <code class="docutils literal"><span class="pre">manage.py</span></code>.</p>
+<p>Running its is as simple as invoking its name with <code class="docutils literal"><span class="pre">manage.py</span></code>.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ python manage.py loadacademycsv
 </pre></div>
 </div>
 <p>Download <a class="reference external" href="https://raw.githubusercontent.com/ireapps/first-django-admin/master/project/academy_invites_2014.csv">the source CSV file</a> from GitHub and store in your base directory next to <code class="docutils literal"><span class="pre">manage.py</span></code>.</p>
-<p>Return to the management command and introduce Python&#8217;s built-in <a class="reference external" href="https://docs.python.org/2/library/csv.html">csv module</a>.</p>
+<p>Return to the management command and introduce Python&#8217;s built-in <a class="reference external" href="https://docs.python.org/2/library/csv.html">csv module</a>, which can read and files CSV files.</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="hll"><span class="kn">import</span> <span class="nn">csv</span>
 </span><span class="kn">from</span> <span class="nn">django.core.management.base</span> <span class="kn">import</span> <span class="n">BaseCommand</span>
 
@@ -491,45 +496,55 @@ $ start notepad++ academy/management/commands/loadacademycsv.py
         <span class="k">print</span> <span class="s2">&quot;Loading CSV&quot;</span>
 </pre></div>
 </div>
-<p>Next use Python <code class="docutils literal"><span class="pre">os</span></code> module and Django&#8217;s <code class="docutils literal"><span class="pre">BASE_DIR</span></code> setting to generate the full path to where you saved the csv file. By default, <code class="docutils literal"><span class="pre">BASE_DIR</span></code> is set to the root of you project, the same spot where you can find <code class="docutils literal"><span class="pre">manage.py</span></code>.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="hll"><span class="kn">import</span> <span class="nn">os</span>
-</span><span class="kn">import</span> <span class="nn">csv</span>
-<span class="hll"><span class="kn">from</span> <span class="nn">django.conf</span> <span class="kn">import</span> <span class="n">settings</span>
-</span><span class="kn">from</span> <span class="nn">django.core.management.base</span> <span class="kn">import</span> <span class="n">BaseCommand</span>
-
-<span class="k">class</span> <span class="nc">Command</span><span class="p">(</span><span class="n">BaseCommand</span><span class="p">):</span>
-
-    <span class="k">def</span> <span class="nf">handle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">):</span>
-        <span class="k">print</span> <span class="s2">&quot;Loading CSV&quot;</span>
-<span class="hll">        <span class="n">csv_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">BASE_DIR</span><span class="p">,</span> <span class="s2">&quot;academy_invites_2014.csv&quot;</span><span class="p">)</span>
-</span></pre></div>
-</div>
-<p>Now access the file at that path with Python&#8217;s built-in <code class="docutils literal"><span class="pre">open</span></code> function. Feeding the file object it creates into the <code class="docutils literal"><span class="pre">csv</span></code> module&#8217;s <code class="docutils literal"><span class="pre">DictReader</span></code> will return a list with each row in the file as a dictionary.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">csv</span>
-<span class="kn">from</span> <span class="nn">django.conf</span> <span class="kn">import</span> <span class="n">settings</span>
+<p>Next add a variable beneath the print command that contains the path to where you&#8217;ve saved the CSV file. If you&#8217;ve saved it next to manage.py, that is as simple as starting off with &#8221;./&#8221;.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">csv</span>
 <span class="kn">from</span> <span class="nn">django.core.management.base</span> <span class="kn">import</span> <span class="n">BaseCommand</span>
 
 <span class="k">class</span> <span class="nc">Command</span><span class="p">(</span><span class="n">BaseCommand</span><span class="p">):</span>
 
     <span class="k">def</span> <span class="nf">handle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">):</span>
         <span class="k">print</span> <span class="s2">&quot;Loading CSV&quot;</span>
-        <span class="n">csv_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">BASE_DIR</span><span class="p">,</span> <span class="s2">&quot;academy_invites_2014.csv&quot;</span><span class="p">)</span>
+<span class="hll">        <span class="n">csv_path</span> <span class="o">=</span> <span class="s2">&quot;./academy_invites_2014.csv&quot;</span>
+</span></pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">In case you don&#8217;t already know a “variable” is a fancy computer programming word for a named shortcut where we save our work as we go.</p>
+</div>
+<p>Now access the file at that path with Python&#8217;s built-in <code class="docutils literal"><span class="pre">open</span></code> function.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">from</span> <span class="nn">django.core.management.base</span> <span class="kn">import</span> <span class="n">BaseCommand</span>
+
+<span class="k">class</span> <span class="nc">Command</span><span class="p">(</span><span class="n">BaseCommand</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">handle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">):</span>
+        <span class="k">print</span> <span class="s2">&quot;Loading CSV&quot;</span>
+        <span class="n">csv_path</span> <span class="o">=</span> <span class="s2">&quot;./academy_invites_2014.csv&quot;</span>
 <span class="hll">        <span class="n">csv_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">csv_path</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
-</span><span class="hll">        <span class="n">csv_reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">csv_file</span><span class="p">)</span>
+</span></pre></div>
+</div>
+<p>Feeding the file object it creates into the <code class="docutils literal"><span class="pre">csv</span></code> module&#8217;s <code class="docutils literal"><span class="pre">DictReader</span></code> will return a list with each row read to work with.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">from</span> <span class="nn">django.core.management.base</span> <span class="kn">import</span> <span class="n">BaseCommand</span>
+
+<span class="k">class</span> <span class="nc">Command</span><span class="p">(</span><span class="n">BaseCommand</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">handle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">):</span>
+        <span class="k">print</span> <span class="s2">&quot;Loading CSV&quot;</span>
+        <span class="n">csv_path</span> <span class="o">=</span> <span class="s2">&quot;./academy_invites_2014.csv&quot;</span>
+        <span class="n">csv_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">csv_path</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
+<span class="hll">        <span class="n">csv_reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">csv_file</span><span class="p">)</span>
 </span></pre></div>
 </div>
 <p>Create a loop that walks through the list, printing out each row as it goes by.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">csv</span>
-<span class="kn">from</span> <span class="nn">django.conf</span> <span class="kn">import</span> <span class="n">settings</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">csv</span>
 <span class="kn">from</span> <span class="nn">django.core.management.base</span> <span class="kn">import</span> <span class="n">BaseCommand</span>
 
 <span class="k">class</span> <span class="nc">Command</span><span class="p">(</span><span class="n">BaseCommand</span><span class="p">):</span>
 
     <span class="k">def</span> <span class="nf">handle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">):</span>
         <span class="k">print</span> <span class="s2">&quot;Loading CSV&quot;</span>
-        <span class="n">csv_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">BASE_DIR</span><span class="p">,</span> <span class="s2">&quot;academy_invites_2014.csv&quot;</span><span class="p">)</span>
+        <span class="n">csv_path</span> <span class="o">=</span> <span class="s2">&quot;./academy_invites_2014.csv&quot;</span>
         <span class="n">csv_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">csv_path</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
         <span class="n">csv_reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">csv_file</span><span class="p">)</span>
 <span class="hll">        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">csv_reader</span><span class="p">:</span>
@@ -541,9 +556,7 @@ $ start notepad++ academy/management/commands/loadacademycsv.py
 </pre></div>
 </div>
 <p>Import our model into the command and use it to save the CSV records to the database.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">csv</span>
-<span class="kn">from</span> <span class="nn">django.conf</span> <span class="kn">import</span> <span class="n">settings</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">csv</span>
 <span class="hll"><span class="kn">from</span> <span class="nn">academy.models</span> <span class="kn">import</span> <span class="n">Invite</span>
 </span><span class="kn">from</span> <span class="nn">django.core.management.base</span> <span class="kn">import</span> <span class="n">BaseCommand</span>
 
@@ -551,7 +564,7 @@ $ start notepad++ academy/management/commands/loadacademycsv.py
 
     <span class="k">def</span> <span class="nf">handle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">):</span>
         <span class="k">print</span> <span class="s2">&quot;Loading CSV&quot;</span>
-        <span class="n">csv_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">BASE_DIR</span><span class="p">,</span> <span class="s2">&quot;academy_invites_2014.csv&quot;</span><span class="p">)</span>
+        <span class="n">csv_path</span> <span class="o">=</span> <span class="s2">&quot;./academy_invites_2014.csv&quot;</span>
         <span class="n">csv_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">csv_path</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
         <span class="n">csv_reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">csv_file</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">csv_reader</span><span class="p">:</span>
@@ -590,7 +603,7 @@ $ start notepad++ academy/management/commands/loadacademycsv.py
 </div>
 <p>Now reload <a class="reference external" href="http://localhost:8000/admin/">localhost:8000/admin/</a> and you&#8217;ll see it added to the index app list.</p>
 <img alt="_images/hello-admin-module.png" src="_images/hello-admin-module.png" />
-<p>Click on &#8220;Invite&#8221; and you&#8217;ll see all the records we loaded into the database a list.</p>
+<p>Click on &#8220;Invite&#8221; and you&#8217;ll see all the records we loaded into the database as a list.</p>
 <img alt="_images/hello-admin-list.png" src="_images/hello-admin-list.png" />
 <p>Configure the columns that appear in the list.</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
@@ -644,13 +657,13 @@ $ start notepad++ academy/management/commands/loadacademycsv.py
 <p>Lower down, choose which permissions to give this user. In this example, since the source data are already loaded the reporter will only have authorization to edit records, not create or delete them.</p>
 <img alt="_images/hello-newsroom-permissions.png" src="_images/hello-newsroom-permissions.png" />
 <p>We&#8217;re getting close. One problem, though. That <code class="docutils literal"><span class="pre">localhost</span></code> address we&#8217;ve been using isn&#8217;t on the Internet. It only exists on your machine.</p>
-<p>There are numerous ways to deploy your Django application so other people can access it. You could use the <a class="reference external" href="https://docs.djangoproject.com/en/1.7/howto/deployment/">Apache</a> webserver. You could try a cloud service like <a class="reference external" href="https://devcenter.heroku.com/articles/getting-started-with-django">Heroku</a>.</p>
+<p>There are numerous ways to deploy your Django application so other people can access it. You could use the <a class="reference external" href="https://docs.djangoproject.com/en/1.10/howto/deployment/">Apache</a> webserver. You could try a cloud service like <a class="reference external" href="https://devcenter.heroku.com/articles/getting-started-with-django">Heroku</a>.</p>
 <p>But if all you need is for other people inside your office network (often referred to as an &#8220;Intranet&#8221;) to log in, here&#8217;s a simple trick that will work in most cases.</p>
-<p>Return to your command line and try this.</p>
+<p>Return to your command line, hit <code class="docutils literal"><span class="pre">CTRL-C</span></code> and try this.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ python manage.py runserver <span class="m">0</span>.0.0.0:8000
 </pre></div>
 </div>
-<p>Now all you need to do is find your computer&#8217;s IP address. The method varies depending on your operating system. Good instructions are <a class="reference external" href="http://home.huck.psu.edu/it/how-to/how-to-ip-address">available here</a>. Though it mostly boils down to opening a new command line terminal and typing in one of the following.</p>
+<p>Now all you need to do is find your computer&#8217;s IP address and others in your office will soon be able to access it. The method varies depending on your operating system. Good instructions are <a class="reference external" href="http://home.huck.psu.edu/it/how-to/how-to-ip-address">available here</a>. Though it mostly boils down to opening a new command line terminal and typing in one of the following.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># In OSX or Linux</span>
 $ ifconfig
 <span class="c1"># In Windows</span>
@@ -658,8 +671,15 @@ $ ipconfig
 </pre></div>
 </div>
 <p>Then within the code that comes out you&#8217;ll see a series of numbers formatted something like 172.19.131.101 after a label like &#8220;inet&#8221; or &#8220;IPv4 Address&#8221;.</p>
-<p>Copy and paste that into your browser to <a class="reference external" href="http://XXX.YY.ZZZ.QQ:8000/admin/">http://xxx.xx.xxx.xx:8000/admin/</a> and see what happens. If your Django site appears, you&#8217;re off to a good start.</p>
-<p>Now visit your colleagues computer across the newsroom and if the same address works, you&#8217;re ready to roll.</p>
+<p>Copy and paste that into your clipboard. Open up the <code class="docutils literal"><span class="pre">settings.py</span></code> file and add it, along with localhost, to the empty <code class="docutils literal"><span class="pre">ALLOWED_HOSTS</span></code> setting. This list controls what web addresses are able to access your database.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">ALLOWED_HOSTS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;localhost&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;192.168.1.79&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>Save that file and then go to your browser and paste that same IP address into a pattern like <a class="reference external" href="http://XXX.YY.ZZZ.QQ:8000/admin/">http://xxx.xx.xxx.xx:8000/admin/</a> and see what happens. If your Django site appears, you&#8217;re off to a good start.</p>
+<p>Now visit your colleagues&#8217; computers across the newsroom and if the same address works. If it does, you&#8217;re ready to roll.</p>
 <img alt="_images/hello-newsroom-permissions.png" src="_images/hello-newsroom-permissions.png" />
 <p>Now as long as the runserver command is up and running back at your computer, your data entry website is online. Congratulations!</p>
 </div>

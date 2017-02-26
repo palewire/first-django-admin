@@ -279,7 +279,7 @@ There should now be a new ``academy`` folder in your project. If you look inside
       __init__.py
       admin.py
       apps.py
-      migrations
+      migrations/
       models.py
       tests.py
       views.py
@@ -500,9 +500,9 @@ Act 3: Hello loader
 
 Our next challenge is to load the source CSV file into the model.
 
-We are going to do this using Django's system for `custom management commands <https://docs.djangoproject.com/en/1.7/howto/custom-management-commands/>`_. It allows us to make our own ``manage.py`` commands like ``migrate`` and ``startapp`` that take advantage of Django's bag of tricks and interact with the database.
+We are going to do this using Django's system for `management commands <https://docs.djangoproject.com/en/1.10/howto/custom-management-commands/>`_. It allows us to make our own ``manage.py`` commands like ``migrate`` and ``startapp`` that take advantage of Django's bag of tricks and interact with the database.
 
-To do this, add a ``management/commands`` directory in our academy app, complete with the empty ``__init__.py`` files required by Python. You can do this in your operating system's file explorer, or on the command line. From a Linux or OSX prompt that would look something like this.
+To do this, add a ``management/commands`` directory in our academy app, complete with empty ``__init__.py`` files required by Python. You can do this in your operating system's file explorer, or on the command line. From a Linux or OSX prompt that would look something like this.
 
 .. code-block:: bash
 
@@ -511,6 +511,11 @@ To do this, add a ``management/commands`` directory in our academy app, complete
   # This creates the empty files on Macs or in Linux
   $ touch academy/management/__init__.py
   $ touch academy/management/commands/__init__.py
+
+From Windows something more like this:
+
+.. code-block:: bash
+
   # If you're in Windows create them with your text editor
   $ start notepad++ academy/management/__init__.py
   $ start notepad++ academy/management/commands/__init__.py
@@ -522,11 +527,13 @@ When you're done the app's directory should look something like this.
   academy/
       __init__.py
       admin.py
+      apps.py
       models.py
       management/
           __init__.py
           commands/
               __init__.py
+      migrations/
       tests.py
       views.py
 
@@ -550,15 +557,15 @@ Open it up and paste in the skeleton common to all management commands.
       def handle(self, *args, **options):
           print "Loading CSV"
 
-Running is as simple as invoking its name with ``manage.py``.
+Running its is as simple as invoking its name with ``manage.py``.
 
 .. code-block:: bash
 
   $ python manage.py loadacademycsv
 
-Download `the source CSV file <https://raw.githubusercontent.com/ireapps/first-django-admin/master/project/academy_invites_2014.csv>`_ from GitHub and store in your base directory next to ``manage.py``.
+Download `the source CSV file  <https://raw.githubusercontent.com/ireapps/first-django-admin/master/project/academy_invites_2014.csv>`_ from GitHub and store in your base directory next to ``manage.py``.
 
-Return to the management command and introduce Python's built-in `csv module <https://docs.python.org/2/library/csv.html>`_.
+Return to the management command and introduce Python's built-in `csv module <https://docs.python.org/2/library/csv.html>`_, which can read and files CSV files.
 
 .. code-block:: python
   :emphasize-lines: 1
@@ -571,55 +578,68 @@ Return to the management command and introduce Python's built-in `csv module <ht
       def handle(self, *args, **options):
           print "Loading CSV"
 
-Next use Python ``os`` module and Django's ``BASE_DIR`` setting to generate the full path to where you saved the csv file. By default, ``BASE_DIR`` is set to the root of you project, the same spot where you can find ``manage.py``.
+Next add a variable beneath the print command that contains the path to where you've saved the CSV file. If you've saved it next to manage.py, that is as simple as starting off with "./".
 
 .. code-block:: python
-  :emphasize-lines: 1,3,10
+  :emphasize-lines: 8
 
-  import os
   import csv
-  from django.conf import settings
   from django.core.management.base import BaseCommand
 
   class Command(BaseCommand):
 
       def handle(self, *args, **options):
           print "Loading CSV"
-          csv_path = os.path.join(settings.BASE_DIR, "academy_invites_2014.csv")
+          csv_path = "./academy_invites_2014.csv"
 
-Now access the file at that path with Python's built-in ``open`` function. Feeding the file object it creates into the ``csv`` module's ``DictReader`` will return a list with each row in the file as a dictionary.
+.. note::
+
+    In case you don't already know a “variable” is a fancy computer programming word for a named shortcut where we save our work as we go.
+
+Now access the file at that path with Python's built-in ``open`` function.
 
 .. code-block:: python
-  :emphasize-lines: 11,12
+  :emphasize-lines: 9
 
-  import os
   import csv
-  from django.conf import settings
   from django.core.management.base import BaseCommand
 
   class Command(BaseCommand):
 
       def handle(self, *args, **options):
           print "Loading CSV"
-          csv_path = os.path.join(settings.BASE_DIR, "academy_invites_2014.csv")
+          csv_path = "./academy_invites_2014.csv"
+          csv_file = open(csv_path, 'rb')
+
+Feeding the file object it creates into the ``csv`` module's ``DictReader`` will return a list with each row read to work with.
+
+.. code-block:: python
+  :emphasize-lines: 10
+
+  import csv
+  from django.core.management.base import BaseCommand
+
+  class Command(BaseCommand):
+
+      def handle(self, *args, **options):
+          print "Loading CSV"
+          csv_path = "./academy_invites_2014.csv"
           csv_file = open(csv_path, 'rb')
           csv_reader = csv.DictReader(csv_file)
 
 Create a loop that walks through the list, printing out each row as it goes by.
 
 .. code-block:: python
-  :emphasize-lines: 13,14
+  :emphasize-lines: 11-12
 
-  import os
   import csv
-  from django.conf import settings
   from django.core.management.base import BaseCommand
 
   class Command(BaseCommand):
 
       def handle(self, *args, **options):
           print "Loading CSV"
-          csv_path = os.path.join(settings.BASE_DIR, "academy_invites_2014.csv")
+          csv_path = "./academy_invites_2014.csv"
           csv_file = open(csv_path, 'rb')
           csv_reader = csv.DictReader(csv_file)
           for row in csv_reader:
@@ -634,11 +654,9 @@ Run it to see what we mean.
 Import our model into the command and use it to save the CSV records to the database.
 
 .. code-block:: python
-  :emphasize-lines: 4,15-19
+  :emphasize-lines: 2,13-17
 
-  import os
   import csv
-  from django.conf import settings
   from academy.models import Invite
   from django.core.management.base import BaseCommand
 
@@ -646,7 +664,7 @@ Import our model into the command and use it to save the CSV records to the data
 
       def handle(self, *args, **options):
           print "Loading CSV"
-          csv_path = os.path.join(settings.BASE_DIR, "academy_invites_2014.csv")
+          csv_path = "./academy_invites_2014.csv"
           csv_file = open(csv_path, 'rb')
           csv_reader = csv.DictReader(csv_file)
           for row in csv_reader:
@@ -698,7 +716,7 @@ Now reload `localhost:8000/admin/ <http://localhost:8000/admin/>`_ and you'll se
 
 .. image:: /_static/hello-admin-module.png
 
-Click on "Invite" and you'll see all the records we loaded into the database a list.
+Click on "Invite" and you'll see all the records we loaded into the database as a list.
 
 .. image:: /_static/hello-admin-list.png
 
@@ -779,17 +797,17 @@ Lower down, choose which permissions to give this user. In this example, since t
 
 We're getting close. One problem, though. That ``localhost`` address we've been using isn't on the Internet. It only exists on your machine.
 
-There are numerous ways to deploy your Django application so other people can access it. You could use the `Apache <https://docs.djangoproject.com/en/1.7/howto/deployment/>`_ webserver. You could try a cloud service like `Heroku <https://devcenter.heroku.com/articles/getting-started-with-django>`_.
+There are numerous ways to deploy your Django application so other people can access it. You could use the `Apache <https://docs.djangoproject.com/en/1.10/howto/deployment/>`_ webserver. You could try a cloud service like `Heroku <https://devcenter.heroku.com/articles/getting-started-with-django>`_.
 
 But if all you need is for other people inside your office network (often referred to as an "Intranet") to log in, here's a simple trick that will work in most cases.
 
-Return to your command line and try this.
+Return to your command line, hit ``CTRL-C`` and try this.
 
 .. code-block:: bash
 
-  $ python manage.py runserver 0.0.0.0:8000
+      $ python manage.py runserver 0.0.0.0:8000
 
-Now all you need to do is find your computer's IP address. The method varies depending on your operating system. Good instructions are `available here <http://home.huck.psu.edu/it/how-to/how-to-ip-address>`_. Though it mostly boils down to opening a new command line terminal and typing in one of the following.
+Now all you need to do is find your computer's IP address and others in your office will soon be able to access it. The method varies depending on your operating system. Good instructions are `available here <http://home.huck.psu.edu/it/how-to/how-to-ip-address>`_. Though it mostly boils down to opening a new command line terminal and typing in one of the following.
 
 .. code-block:: bash
 
@@ -800,9 +818,18 @@ Now all you need to do is find your computer's IP address. The method varies dep
 
 Then within the code that comes out you'll see a series of numbers formatted something like 172.19.131.101 after a label like "inet" or "IPv4 Address".
 
-Copy and paste that into your browser to `http://xxx.xx.xxx.xx:8000/admin/ <http://XXX.YY.ZZZ.QQ:8000/admin/>`_ and see what happens. If your Django site appears, you're off to a good start.
+Copy and paste that into your clipboard. Open up the ``settings.py`` file and add it, along with localhost, to the empty ``ALLOWED_HOSTS`` setting. This list controls what web addresses are able to access your database.
 
-Now visit your colleagues computer across the newsroom and if the same address works, you're ready to roll.
+.. code-block:: python
+
+    ALLOWED_HOSTS = [
+        'localhost',
+        '192.168.1.79',
+    ]
+
+Save that file and then go to your browser and paste that same IP address into a pattern like `http://xxx.xx.xxx.xx:8000/admin/ <http://XXX.YY.ZZZ.QQ:8000/admin/>`_ and see what happens. If your Django site appears, you're off to a good start.
+
+Now visit your colleagues' computers across the newsroom and if the same address works. If it does, you're ready to roll.
 
 .. image:: /_static/hello-newsroom-permissions.png
 
