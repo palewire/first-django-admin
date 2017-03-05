@@ -240,7 +240,7 @@ There is a lot of `configuration <https://docs.djangoproject.com/en/1.10/intro/t
 
 The first step is creating your database, which will appear as a new `SQLite <https://en.wikipedia.org/wiki/SQLite>`_ file named ``db.sqlite3``.
 
-To do that, we will start using the ``manage.py` file created by ``startproject``. It is a utility belt we can use to make Django a wide range of things. The command we want now, ``migrate``, can create database tables.
+To do that, we will start using the ``manage.py`` file created by ``startproject``. It is a utility belt we can use to make Django a wide range of things. The command we want now, ``migrate``, can create database tables.
 
 .. code-block:: bash
 
@@ -263,7 +263,7 @@ Act 2: Hello models
 
 Now we create our app. In Django terms, an app is a collection of files that does something, like publish a blog or store public records. A project, like we made above, collects those apps and organizes them into a working website.
 
-You can create a new app with Django's ``startapp` command. Since we are aiming to make a list of people invited to join the academy, naming this one isn't too hard.
+You can create a new app with Django's ``startapp`` command. Since we are aiming to make a list of people invited to join the academy, naming this one isn't too hard.
 
 Return to your terminal and hit the combination of ``CTRL-C``, which will terminal your test server and return you to the command line. Then use our friend ``manage.py`` to create our app.
 
@@ -286,7 +286,7 @@ There should now be a new ``academy`` folder in your project. If you look inside
 
 We will only be using two of them in this tutorial. The file called ``models.py`` is where we will design our database tables. Another called ``admin.py`` is where we will configure the panels where reporters will be able to enrich the source data.
 
-But before we do any of that, we need to configure out project to include our new app. Use your text editor to open the file ``settings.py`` in the ``project`` directory. Add our app, ``academy``, to the ``INSTALLED_APPS`` list you find there.
+But before we do any of that, we need to configure our project to include our new app. Use your text editor to open the file ``settings.py`` in the ``project`` directory. Add our app, ``academy``, to the ``INSTALLED_APPS`` list you find there.
 
 .. code-block:: python
   :emphasize-lines: 8
@@ -303,11 +303,11 @@ But before we do any of that, we need to configure out project to include our ne
 
 .. note::
 
-    Python, like most programming language, is very strict. When you add a new word to a list, as we did above, it always needs to be followed by a comma and surrounded by quotes. The identatations are also very stict and need to be consistent from line to line. Also, lines starting with ``#`` or surrounding by `"""` quotes are comments that will not be run as code and are instead there only as documentation.
+    Python, like most programming languages, is very strict. When you add a new word to a list, as we did above, it always needs to be followed by a comma and surrounded by quotes. The indentations are also very stict and need to be consistent from line to line. Also, lines starting with ``#`` or surrounding by `"""` quotes are comments that will not be run as code and are instead there only as documentation.
 
 Next open up the ``models.py`` file in the ``academy`` app's directory. Here we will use Django's built-in `models <https://docs.djangoproject.com/en/1.10/topics/db/models/>`_ system to design a database table to hold the source data.
 
-Each table is defined using a Python `class <http://www.learnpython.org/en/Classes_and_Objects>`_ that inherits special powers `from Django <https://docs.djangoproject.com/en/dev/topics/db/models/>`_. Those special powers allow it to syncronize with an underlying database. Our work begins by creating our class and naming it after the data we'll put inside.
+Each table is defined using a Python `class <http://www.learnpython.org/en/Classes_and_Objects>`_ that inherits special powers `from Django <https://docs.djangoproject.com/en/dev/topics/db/models/>`_. Those special powers allow it to synchronize with an underlying database. Our work begins by creating our class and naming it after the data we'll put inside.
 
 .. code-block:: python
   :emphasize-lines: 6
@@ -345,7 +345,7 @@ Django has some `fancy tricks <https://docs.djangoproject.com/en/1.10/ref/models
 
     Watch out. You'll need to carefully indent your code according to Python's very `strict rules <http://www.diveintopython.net/getting_to_know_python/indenting_code.html>`_ for this to work.
 
-Now let's add a few more fields that we will ask the reporters to figure out and fill in. We'll use another Django trick, the ``choices`` option, to make some of them are multiple-choice fields rather than free text.
+Now let's add a few more fields that we will ask the reporters to figure out and fill in. We'll use another Django trick, the ``choices`` option, to make some of them multiple-choice fields rather than free text.
 
 First gender.
 
@@ -374,7 +374,7 @@ First gender.
 
 .. note::
 
-    When you create a choices list each option needs to have two values. The first one is what is written into the database, and is often more compact. the second one is what is displayed for user, and is often more verbose.
+    When you create a choices list each option needs to have two values. The first one is what is written into the database, and is often more compact. The second one is what is displayed for the user, and is often more verbose.
 
 Then the invitee's date of birth. Since this type of field will start off empty we need to instruct the database to: 1) allow null values with ``null=True`` and 2) allow entrants to leave it empty when they update records later with ``blank=True``.
 
@@ -481,7 +481,7 @@ Finally, an open-ended text field for reporters to leave notes about their decis
 
 Congratulations, you've written your first model. But it won't be created as a real table in your database until you run what Django calls a "migration." That's just a fancy word for syncing our models with our database.
 
-Make sure to save your ``models.py``file. Then we'll ``manage.py`` to prepare the changes necessary to create your new model.
+Make sure to save your ``models.py`` file. Then we'll ``manage.py`` to prepare the changes necessary to create your new model.
 
 .. code-block:: bash
 
@@ -557,13 +557,13 @@ Open it up and paste in the skeleton common to all management commands.
       def handle(self, *args, **options):
           print "Loading CSV"
 
-Running its is as simple as invoking its name with ``manage.py``.
+Running it is as simple as invoking its name with ``manage.py``.
 
 .. code-block:: bash
 
   $ python manage.py loadacademycsv
 
-Download `the source CSV file  <https://raw.githubusercontent.com/ireapps/first-django-admin/master/project/academy_invites_2014.csv>`_ from GitHub and store in your base directory next to ``manage.py``.
+Download `the source CSV file  <https://raw.githubusercontent.com/ireapps/first-django-admin/master/project/academy_invites_2014.csv>`_ from GitHub and store it in your base directory next to ``manage.py``.
 
 Return to the management command and introduce Python's built-in `csv module <https://docs.python.org/2/library/csv.html>`_, which can read and files CSV files.
 
@@ -578,7 +578,7 @@ Return to the management command and introduce Python's built-in `csv module <ht
       def handle(self, *args, **options):
           print "Loading CSV"
 
-Next add a variable beneath the print command that contains the path to where you've saved the CSV file. If you've saved it next to manage.py, that is as simple as starting off with "./".
+Next add a variable beneath the print command that contains the path to where you've saved the CSV file. If you've saved it next to ``manage.py``, that is as simple as starting off with "./".
 
 .. code-block:: python
   :emphasize-lines: 8
@@ -594,7 +594,7 @@ Next add a variable beneath the print command that contains the path to where yo
 
 .. note::
 
-    In case you don't already know a “variable” is a fancy computer programming word for a named shortcut where we save our work as we go.
+    In case you don't already know, a “variable” is a fancy computer programming word for a named shortcut where we save our work as we go.
 
 Now access the file at that path with Python's built-in ``open`` function.
 
