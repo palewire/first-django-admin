@@ -40,15 +40,11 @@ Prelude: Prerequisites
 Before you can begin, your computer needs the following tools installed
 and working.
 
-1. A `command-line
-   interface <https://en.wikipedia.org/wiki/Command-line_interface>`__
-   to interact with your computer
-2. A `text editor <https://en.wikipedia.org/wiki/Text_editor>`__ to work
-   with plain text files
-3. Version 2.7 of the
-   `Python <http://python.org/download/releases/2.7.6/>`__ programming
-   language
-4. The `pip <https://pip.pypa.io/en/latest/installing.html>`_ package manager and `virtualenv <http://www.virtualenv.org/en/latest/>`_ environment manager for Python
+1. A `command-line interface <https://en.wikipedia.org/wiki/Command-line_interface>`_ to interact with your computer
+2. A `text editor <https://en.wikipedia.org/wiki/Text_editor>`_ to work with plain text files
+3. Version 3.X of the `Python <https://www.python.org/downloads/>`_ programming language
+4. The `pipenv <https://pipenv.pypa.io/en/latest/>`_ package and virtual environment manager for Python
+5. `Git <http://git-scm.com/>`_ version control software and an account at `GitHub.com <http://www.github.com>`_
 
 .. warning::
 
@@ -79,24 +75,26 @@ programs are easy to find and some of the best ones are free, including
 those below.
 
 For Windows, I recommend installing
-`Notepad++ <http://notepad-plus-plus.org/>`__. For Apple computers, try
-`TextWrangler <http://www.barebones.com/products/textwrangler/download.html>`__.
+`Notepad++ <https://notepad-plus-plus.org/>`__. For Apple computers, try
+`Atom <https://atom.io/>`__.
 In Ubuntu Linux you can stick with the pre-installed
 `gedit <https://help.ubuntu.com/community/gedit>`__ text editor.
 
 Python
 ~~~~~~
 
-Python is a computer programming language, like many others you may have heard of like Ruby or PHP or Java. It is free and open source. To continue to with this class, you will need to have version 2.7 installed.
+Python is a computer programming language, like many others you may have heard of such as Ruby or PHP or Java. It is free and open source. We'll be installing Python 3 in a virtual environment, so it doesn't matter what version you have installed currently.
 
-For Apples
-^^^^^^^^^^
+For Mac
+^^^^^^^
 
-If you are using Mac OSX, Python version 2.7 is probably already installed and you can test to see what version, if any, is already available by typing the following into your terminal.
+If you are using Mac OSX, Python version 2.7 is probably already installed, but we'll be using Python 3. To install that, we'll be using `Homebrew <https://docs.python-guide.org/starting/install3/osx/#install3-osx>`_.
+
+To install Python via Homebrew, you can run the following code:
 
 .. code-block:: bash
 
-    $ python -V
+    $ brew install python
 
 .. note::
 
@@ -108,117 +106,60 @@ You should see something like this after you hit enter:
 .. code-block:: bash
 
     $ python -V
-    Python 2.7.12
+    Python 3.9.7
 
-If you get an error instead, Mac users should install Python by following `these instructions <http://docs.python-guide.org/en/latest/starting/install/osx/>`_ offered by The Hitchhikers Guide to Python.
-
-If your version is 2.7.11 or 2.7.13 or some other slight variation from what's above, that's okay. If it's Python 3, that's another issue and you should try to install Python 2.7 instead. If you continue with Python 3, this class may largely work, but you could encounter some small problems you'll need to sort out on your own.
 
 For Windows
 ^^^^^^^^^^^
 
-Just like Apple users, Windows people should open their command prompt and investigate whether Python is already installed.
+Windows people should follow the instructions `here <https://docs.python-guide.org/starting/install3/win/#install3-windows>`_.
 
-.. code-block:: bash
+.. _command-line-pipenv:
 
-    python -V
-
-You should see something like this after you hit enter:
-
-.. code-block:: bash
-
-    python -V
-    Python 2.7.12
-
-
-If not Windows users can find a similar installation guide `here <http://docs.python-guide.org/en/latest/starting/install/win/>`_ which will have you try downloading and installing Python from `here <https://www.python.org/downloads/release/python-2712/>`_. After that's done, ensure Python is installed by reopening the command prompt and running the command above again.
-
-.. _command-line-pip:
-
-pip and virtualenv
+pipenv
 ~~~~~~~~~~~~~~~~~~
 
-The `pip package manager <https://pip.pypa.io/en/latest/>`_
-makes it easy to install open-source libraries that
-expand what you're able to do with Python. Later, we will use it to install everything
-needed to create a working web application.
+The `pipenv package manager <https://pipenv.pypa.io/>`_ makes it easy to install open-source libraries that expand what you're able to do with Python. Later, we will use it to install everything needed to create a working web application.
 
-If you don't have it already, you can get pip by following
-`these instructions <https://pip.pypa.io/en/latest/installing.html>`_.s
-
-Verify pip is installed with the following command:
+Verify pipenv is installed with the following command:
 
 .. code-block:: bash
 
-    $ pip -V
+    $ pipenv -v
 
-The `virtualenv environment manager <http://www.virtualenv.org/en/latest/>`_
-makes it possible to create an isolated corner of your computer where all the different
-tools you use to build an application are sealed off.
-
-It might not be obvious why you need this, but it quickly becomes important when you need to juggle different tools
-for different projects on one computer. By developing your applications inside separate
-virtualenv environments, you can use different versions of the same third-party Python libraries without a conflict.
-You can also more easily recreate your project on another machine, handy when
-you want to copy your code to a server that publishes pages on the Internet.
-
-You can check if virtualenv is installed with the following command:
-
-.. code-block:: bash
-
-    $ virtualenv --version
-
-If you don't have virtualenv, install it with pip.
-
-.. code-block:: bash
-
-    # On Windows:
-    $ pip install virtualenv
-    # On a Mac or Linux you will need to install it as a superuser with the sudo command.
-    # When you are prompted for a password, use the same one that logs you into your computer
-    $ sudo pip install virtualenv
-
-If that doesn't work, `try following this advice <http://virtualenv.readthedocs.org/en/latest/installation.html>`_.
-
-.. _activate:
-
+If you get and error, that means you don't have pipenv installed. You can get it by following `these instructions <https://pipenv.pypa.io/en/latest/install/#pragmatic-installation-of-pipenv>`_.
 
 Act 1: Hello Django
 -------------------
 
-Start by creating a new development environment with virtualenv. Name it after our application.
+Start at our first-django-admin directory.
+
+.. code-block:: bash
+
+    $ mkdir first-django-admin
+    $ cd first-django-admin
+
+Create a new development environment with pipenv, specifying the version of python:
 
 .. code-block:: bash
 
     # You don't have to type the "$" It's just a generic symbol
     # geeks use to show they're working on the command line.
-    $ virtualenv first-django-admin
+    $ pipenv --python=python3
 
-Jump into the directory it created.
-
-.. code-block:: bash
-
-    $ cd first-django-admin
-
-Turn on the new virtualenv, which will instruct your terminal to only use those libraries installed
-inside its sealed space. You only need to create the virtualenv once, but you'll need to repeat these
-"activation" steps each time you return to working on this project.
+Then activate it (it's like turning on the power):
 
 .. code-block:: bash
 
-    # In Linux or Mac OSX try this...
-    $ . bin/activate
-    # In Windows it might take something more like...
-    $ cd Scripts
-    $ activate
-    $ cd ..
+    $ pipenv shell
 
-Use ``pip`` on the command line to install `Django <https://www.djangoproject.com/>`_, a Python "framework"
+
+Use ``pipenv`` on the command line to install `Django <https://www.djangoproject.com/>`_, a Python "framework"
 we'll use to put together our website.
 
 .. code-block:: bash
 
-    $ pip install Django
+    $ pipenv install Django
 
 Now use Django's ``django-admin`` command to create a new "project" that will be organized according to the framework's rules.
 
@@ -236,7 +177,7 @@ Now jump into the project and we'll start setting it up.
 
     Run the ``ls`` command (``dir`` on Windows), which lists the files in your current location. Wonder what all those weird files are in your new directory? We'll only need a couple for this tutorial, but you can read about all of them in the `official Django documentation <https://docs.djangoproject.com/en/1.10/intro/tutorial01/#creating-a-project>`_.
 
-There is a lot of `configuration <https://docs.djangoproject.com/en/1.10/intro/tutorial02/#database-setup>`_ that could be done at this point, but we're going to advance with all of the Django defaults in place.
+There is a lot of `configuration <https://docs.djangoproject.com/en/4.0/intro/tutorial02/#database-setup>`_ that could be done at this point, but we're going to advance with all of the Django defaults in place.
 
 The first step is creating your database, which will appear as a new `SQLite <https://en.wikipedia.org/wiki/SQLite>`_ file named ``db.sqlite3``.
 
@@ -305,14 +246,12 @@ But before we do any of that, we need to configure our project to include our ne
 
     Python, like most programming languages, is very strict. When you add a new word to a list, as we did above, it always needs to be followed by a comma and surrounded by quotes. The indentations are also very stict and need to be consistent from line to line. Also, lines starting with ``#`` or surrounding by `"""` quotes are comments that will not be run as code and are instead there only as documentation.
 
-Next open up the ``models.py`` file in the ``academy`` app's directory. Here we will use Django's built-in `models <https://docs.djangoproject.com/en/1.10/topics/db/models/>`_ system to design a database table to hold the source data.
+Next open up the ``models.py`` file in the ``academy`` app's directory. Here we will use Django's built-in `models <https://docs.djangoproject.com/en/4.0/topics/db/models/>`_ system to design a database table to hold the source data.
 
 Each table is defined using a Python `class <http://www.learnpython.org/en/Classes_and_Objects>`_ that inherits special powers `from Django <https://docs.djangoproject.com/en/dev/topics/db/models/>`_. Those special powers allow it to synchronize with an underlying database. Our work begins by creating our class and naming it after the data we'll put inside.
 
 .. code-block:: python
-  :emphasize-lines: 6
-
-  from __future__ import unicode_literals
+  :emphasize-lines: 4
 
   from django.db import models
 
@@ -325,14 +264,12 @@ Each table is defined using a Python `class <http://www.learnpython.org/en/Class
 
 Next, like any good database table, it needs some fields.
 
-If you open `the source CSV <https://github.com/ireapps/first-django-admin/blob/master/project/academy_invites_2014.csv>`_, you will see that is has only two columns: name and branch.
+If you open `the source CSV <https://github.com/dwillis/first-django-admin-umd/blob/master/project/academy_invites_2014.csv>`_, you will see that is has only two columns: name and branch.
 
-Django has some `fancy tricks <https://docs.djangoproject.com/en/1.10/ref/models/fields/>`_ for defining fields depending on what kind of data they hold. Now we'll use the ``CharField`` to expand our models to hold the name and branch data from our source. It just so happens, that CharFields have a maximum length that must always be set. We're going to pick a couple big numbers for that.
+Django has some `fancy tricks <https://docs.djangoproject.com/en/4.0/ref/models/fields/>`_ for defining fields depending on what kind of data they hold. Now we'll use the ``CharField`` to expand our models to hold the name and branch data from our source. It just so happens, that CharFields have a maximum length that must always be set. We're going to pick a couple big numbers for that.
 
 .. code-block:: python
-  :emphasize-lines: 7-8
-
-    from __future__ import unicode_literals
+  :emphasize-lines: 5-6
 
     from django.db import models
 
@@ -343,16 +280,14 @@ Django has some `fancy tricks <https://docs.djangoproject.com/en/1.10/ref/models
 
 .. note::
 
-    Watch out. You'll need to carefully indent your code according to Python's very `strict rules <http://www.diveintopython.net/getting_to_know_python/indenting_code.html>`_ for this to work.
+    Watch out. You'll need to carefully indent your code according to Python's very `strict rules <https://www.geeksforgeeks.org/indentation-in-python/>`_ for this to work.
 
 Now let's add a few more fields that we will ask the reporters to figure out and fill in. We'll use another Django trick, the ``choices`` option, to make some of them multiple-choice fields rather than free text.
 
 First gender.
 
 .. code-block:: python
-  :emphasize-lines: 9-20
-
-  from __future__ import unicode_literals
+  :emphasize-lines: 7-18
 
   from django.db import models
 
@@ -379,9 +314,7 @@ First gender.
 Then the invitee's date of birth. Since this type of field will start off empty we need to instruct the database to: 1) allow null values with ``null=True`` and 2) allow entrants to leave it empty when they update records later with ``blank=True``.
 
 .. code-block:: python
-  :emphasize-lines: 20
-
-  from __future__ import unicode_literals
+  :emphasize-lines: 18
 
   from django.db import models
 
@@ -405,9 +338,7 @@ Then the invitee's date of birth. Since this type of field will start off empty 
 Race.
 
 .. code-block:: python
-  :emphasize-lines: 21-34
-
-  from __future__ import unicode_literals
+  :emphasize-lines: 19-32
 
   from django.db import models
 
@@ -500,7 +431,7 @@ Act 3: Hello loader
 
 Our next challenge is to load the source CSV file into the model.
 
-We are going to do this using Django's system for `management commands <https://docs.djangoproject.com/en/1.10/howto/custom-management-commands/>`_. It allows us to make our own ``manage.py`` commands like ``migrate`` and ``startapp`` that take advantage of Django's bag of tricks and interact with the database.
+We are going to do this using Django's system for `management commands <https://docs.djangoproject.com/en/4.0/howto/custom-management-commands/>`_. It allows us to make our own ``manage.py`` commands like ``migrate`` and ``startapp`` that take advantage of Django's bag of tricks and interact with the database.
 
 To do this, add a ``management/commands`` directory in our academy app, complete with empty ``__init__.py`` files required by Python. You can do this in your operating system's file explorer, or on the command line. From a Linux or OSX prompt that would look something like this.
 
@@ -555,7 +486,7 @@ Open it up and paste in the skeleton common to all management commands.
   class Command(BaseCommand):
 
       def handle(self, *args, **options):
-          print "Loading CSV"
+          print("Loading CSV")
 
 Running it is as simple as invoking its name with ``manage.py``.
 
@@ -563,9 +494,9 @@ Running it is as simple as invoking its name with ``manage.py``.
 
   $ python manage.py loadacademycsv
 
-Download `the source CSV file  <https://raw.githubusercontent.com/ireapps/first-django-admin/master/project/academy_invites_2014.csv>`_ from GitHub and store it in your base directory next to ``manage.py``.
+Download `the source CSV file  <https://raw.githubusercontent.com/dwillis/first-django-admin-umd/master/project/academy_invites_2014.csv>`_ from GitHub and store it in your base directory next to ``manage.py``.
 
-Return to the management command and introduce Python's built-in `csv module <https://docs.python.org/2/library/csv.html>`_, which can read and files CSV files.
+Return to the management command and introduce Python's built-in `csv module <https://docs.python.org/3/library/csv.html>`_, which can read and files CSV files.
 
 .. code-block:: python
   :emphasize-lines: 1
@@ -797,7 +728,7 @@ Lower down, choose which permissions to give this user. In this example, since t
 
 We're getting close. One problem, though. That ``localhost`` address we've been using isn't on the Internet. It only exists on your machine.
 
-There are numerous ways to deploy your Django application so other people can access it. You could use the `Apache <https://docs.djangoproject.com/en/1.10/howto/deployment/>`_ webserver. You could try a cloud service like `Heroku <https://devcenter.heroku.com/articles/getting-started-with-django>`_.
+There are numerous ways to deploy your Django application so other people can access it. You could use the `Apache <https://docs.djangoproject.com/en/4.0/howto/deployment/>`_ webserver. You could try a cloud service like `Heroku <https://devcenter.heroku.com/articles/getting-started-with-django>`_.
 
 But if all you need is for other people inside your office network (often referred to as an "Intranet") to log in, here's a simple trick that will work in most cases.
 
@@ -955,7 +886,7 @@ Now fire up your runserver again and check out the invite list:
 
 .. image:: /_static/hello-newsroom-nones.png
 
-That's a whole lot of Nones though, and do you really want to go into each page and select the name from a dropdown to assign it? No, you do not. Let's make one quick change to the ``admin.py`` file to speed this up. We are going to use a feature called ``list_editable`` to make changes directly from the invite list:
+That's a whole lot of blanks though, and do you really want to go into each page and select the name from a dropdown to assign it? No, you do not. Let's make one quick change to the ``admin.py`` file to speed this up. We are going to use a feature called ``list_editable`` to make changes directly from the invite list:
 
 .. code-block:: python
   :emphasize-lines: 7
@@ -1019,7 +950,7 @@ Open it up and paste in the barebones of a management command.
   class Command(BaseCommand):
 
       def handle(self, *args, **options):
-          print "Dumping CSV"
+          print("Dumping CSV")
 
 Import our Invite model and create a loop that runs through all the records
 and prints out each field.
@@ -1036,7 +967,7 @@ and prints out each field.
           print "Dumping CSV"
           for obj in Invite.objects.all():
               row = [obj.name, obj.branch, obj.gender, obj.date_of_birth, obj.race, obj.notes, obj.reporter]
-              print row
+              print(row)
 
 Save the file and run the command. You should see all the data printed out in lists.
 
@@ -1060,7 +991,7 @@ Now introduce the csv module to output those rows to a new file.
       def handle(self, *args, **options):
           print "Dumping CSV"
           csv_path = os.path.join(settings.BASE_DIR, "dump.csv")
-          csv_file = open(csv_path, 'wb')
+          csv_file = open(csv_path, 'w')
           csv_writer = csv.writer(csv_file)
           csv_writer.writerow(['name', 'branch', 'gender', 'date_of_birth', 'race', 'notes', 'reporter'])
           for obj in Invite.objects.all():
