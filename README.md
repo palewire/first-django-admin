@@ -6,5 +6,5 @@ You will learn just enough about the [Django](https://www.djangoproject.com/) fr
 
 This tutorial uses Python 3 and Django 4.
 
-* Documentation: [first-django-admin-umd.readthedocs.org/](http://first-django-admin-umd.readthedocs.org/)
-* Issues: [github.com/dwillis/first-django-admin-umd/issues/](http://github.com/dwillis/first-django-admin-umd/issues/)
+* Documentation: [first-django-admin.readthedocs.org/](http://first-django-admin.readthedocs.org/)
+* Issues: [github.com/palewire/first-django-admin/issues/](http://github.com/palewire/first-django-admin/issues/)

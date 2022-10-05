@@ -94,7 +94,7 @@ To install Python via Homebrew, you can run the following code:
 
 .. code-block:: bash
 
-    $ brew install python
+    brew install python
 
 .. note::
 
@@ -105,7 +105,7 @@ You should see something like this after you hit enter:
 
 .. code-block:: bash
 
-    $ python -V
+    python -V
     Python 3.9.7
 
 
@@ -125,7 +125,7 @@ Verify pipenv is installed with the following command:
 
 .. code-block:: bash
 
-    $ pipenv -v
+    pipenv -v
 
 If you get and error, that means you don't have pipenv installed. You can get it by following `these instructions <https://pipenv.pypa.io/en/latest/install/#pragmatic-installation-of-pipenv>`_.
 
@@ -136,22 +136,20 @@ Start at our first-django-admin directory.
 
 .. code-block:: bash
 
-    $ mkdir first-django-admin
-    $ cd first-django-admin
+    mkdir first-django-admin
+    cd first-django-admin
 
 Create a new development environment with pipenv, specifying the version of python:
 
 .. code-block:: bash
 
-    # You don't have to type the "$" It's just a generic symbol
-    # geeks use to show they're working on the command line.
-    $ pipenv --python=python3
+    pipenv --python=python3
 
 Then activate it (it's like turning on the power):
 
 .. code-block:: bash
 
-    $ pipenv shell
+    pipenv shell
 
 
 Use ``pipenv`` on the command line to install `Django <https://www.djangoproject.com/>`_, a Python "framework"
@@ -159,19 +157,19 @@ we'll use to put together our website.
 
 .. code-block:: bash
 
-    $ pipenv install Django
+    pipenv install Django
 
 Now use Django's ``django-admin`` command to create a new "project" that will be organized according to the framework's rules.
 
 .. code-block:: bash
 
-    $ django-admin startproject project
+    django-admin startproject project
 
 Now jump into the project and we'll start setting it up.
 
 .. code-block:: bash
 
-    $ cd project
+    cd project
 
 .. note::
 
@@ -185,13 +183,13 @@ To do that, we will start using the ``manage.py`` file created by ``startproject
 
 .. code-block:: bash
 
-    $ python manage.py migrate
+    python manage.py migrate
 
 Fire up Django's built-in web server.
 
 .. code-block:: bash
 
-    $ python manage.py runserver
+    python manage.py runserver
 
 Visit `localhost:8000 <http://localhost:8000>`_ in your browser to see Django in action. Here's what you should see.
 
@@ -210,7 +208,7 @@ Return to your terminal and hit the combination of ``CTRL-C``, which will termin
 
 .. code-block:: bash
 
-   $ python manage.py startapp academy
+   python manage.py startapp academy
 
 There should now be a new ``academy`` folder in your project. If you look inside you will see that Django created a series of files common to every app.
 
@@ -264,7 +262,7 @@ Each table is defined using a Python `class <http://www.learnpython.org/en/Class
 
 Next, like any good database table, it needs some fields.
 
-If you open `the source CSV <https://github.com/dwillis/first-django-admin-umd/blob/master/project/academy_invites_2014.csv>`_, you will see that is has only two columns: name and branch.
+If you open `the source CSV <https://github.com/palewire/first-django-admin/blob/master/project/academy_invites_2014.csv>`_, you will see that is has only two columns: name and branch.
 
 Django has some `fancy tricks <https://docs.djangoproject.com/en/4.0/ref/models/fields/>`_ for defining fields depending on what kind of data they hold. Now we'll use the ``CharField`` to expand our models to hold the name and branch data from our source. It just so happens, that CharFields have a maximum length that must always be set. We're going to pick a couple big numbers for that.
 
@@ -416,13 +414,13 @@ Make sure to save your ``models.py`` file. Then we'll ``manage.py`` to prepare t
 
 .. code-block:: bash
 
-    $ python manage.py makemigrations academy
+    python manage.py makemigrations academy
 
 Now run the ``migrate`` command to execute it.
 
 .. code-block:: bash
 
-    $ python manage.py migrate academy
+    python manage.py migrate academy
 
 That's it. You've made your database table.
 
@@ -438,18 +436,18 @@ To do this, add a ``management/commands`` directory in our academy app, complete
 .. code-block:: bash
 
   # The -p flag here makes both new directories
-  $ mkdir -p academy/management/commands
+  mkdir -p academy/management/commands
   # This creates the empty files on Macs or in Linux
-  $ touch academy/management/__init__.py
-  $ touch academy/management/commands/__init__.py
+  touch academy/management/__init__.py
+  touch academy/management/commands/__init__.py
 
 From Windows something more like this:
 
 .. code-block:: bash
 
   # If you're in Windows create them with your text editor
-  $ start notepad++ academy/management/__init__.py
-  $ start notepad++ academy/management/commands/__init__.py
+  start notepad++ academy/management/__init__.py
+  start notepad++ academy/management/commands/__init__.py
 
 When you're done the app's directory should look something like this.
 
@@ -473,9 +471,9 @@ Create a new file in the ``management/commands`` directory where the new command
 .. code-block:: bash
 
   # Mac or Linux
-  $ touch academy/management/commands/loadacademycsv.py
+  touch academy/management/commands/loadacademycsv.py
   # Windows
-  $ start notepad++ academy/management/commands/loadacademycsv.py
+  start notepad++ academy/management/commands/loadacademycsv.py
 
 Open it up and paste in the skeleton common to all management commands.
 
@@ -492,9 +490,9 @@ Running it is as simple as invoking its name with ``manage.py``.
 
 .. code-block:: bash
 
-  $ python manage.py loadacademycsv
+  python manage.py loadacademycsv
 
-Download `the source CSV file  <https://raw.githubusercontent.com/dwillis/first-django-admin-umd/master/project/academy_invites_2014.csv>`_ from GitHub and store it in your base directory next to ``manage.py``.
+Download `the source CSV file  <https://raw.githubusercontent.com/palewire/first-django-admin/master/project/academy_invites_2014.csv>`_ from GitHub and store it in your base directory next to ``manage.py``.
 
 Return to the management command and introduce Python's built-in `csv module <https://docs.python.org/3/library/csv.html>`_, which can read and files CSV files.
 
@@ -580,7 +578,7 @@ Run it to see what we mean.
 
 .. code-block:: bash
 
-  $ python manage.py loadacademycsv
+  python manage.py loadacademycsv
 
 Import our model into the command and use it to save the CSV records to the database.
 
@@ -609,7 +607,7 @@ Run it again and you've done it. The CSV is loaded into the database.
 
 .. code-block:: bash
 
-  $ python manage.py loadacademycsv
+  python manage.py loadacademycsv
 
 Act 4: Hello admin
 ------------------
@@ -618,13 +616,13 @@ One of Django's unique features is that it comes with a custom administration th
 
 .. code-block:: bash
 
-    $ python manage.py createsuperuser
+    python manage.py createsuperuser
 
 Then fire up the Django test server.
 
 .. code-block:: bash
 
-    $ python manage.py runserver
+    python manage.py runserver
 
 And visit `localhost:8000/admin/ <http://localhost:8000/admin/>`_ and log in using the credentials you just created.
 
@@ -736,16 +734,16 @@ Return to your command line, hit ``CTRL-C`` and try this.
 
 .. code-block:: bash
 
-      $ python manage.py runserver 0.0.0.0:8000
+    python manage.py runserver 0.0.0.0:8000
 
 Now all you need to do is find your computer's IP address and others in your office will soon be able to access it. The method varies depending on your operating system. Good instructions are `available here <http://home.huck.psu.edu/it/how-to/how-to-ip-address>`_. Though it mostly boils down to opening a new command line terminal and typing in one of the following.
 
 .. code-block:: bash
 
   # In OSX or Linux
-  $ ifconfig
+  ifconfig
   # In Windows
-  $ ipconfig
+  ipconfig
 
 Then within the code that comes out you'll see a series of numbers formatted something like 172.19.131.101 after a label like "inet" or "IPv4 Address".
 
@@ -826,7 +824,7 @@ Great. Save it and let's run:
 
 .. code-block:: bash
 
-  $ python manage.py runserver
+  python manage.py runserver
 
 Now go to `http://localhost:8000/admin/ <http://localhost:8000/admin/>`_ and click on 'Invites.' You should see this:
 
@@ -839,16 +837,16 @@ Thankfully, in newer versions of Django, this feature is built in. Kill your ``r
 .. code-block:: bash
 
   # Create a migration
-  $ python manage.py makemigrations academy
+  python manage.py makemigrations academy
 
 This creates a file that says we want to add a reporter field to our database.  Let's check to see what we did. List the contents of ``academy/migrations/``
 
 .. code-block:: bash
 
   # In OSX or Linux
-  $ ls academy/migrations/
+  ls academy/migrations/
   # In Windows
-  $ dir academy/migrations
+  dir academy/migrations
 
 You should see that there are two migration files there: ``0001_initial.py`` and ``0002_invite_reporter.py``. When you created your table before, you ran the ``makemigrations`` command as well, which created the initial file. Every time you make a migration, Django will add another file to this folder.
 
@@ -861,7 +859,7 @@ Now we have to apply the migration. Your changes won't be applied to the databas
 .. code-block:: bash
 
   # Actually apply the migrations
-  $ python manage.py migrate academy
+  python manage.py migrate academy
 
 Excellent. Run your server and check out an invite now. You should see a dropdown like this:
 
@@ -937,9 +935,9 @@ Here's how you can get the data back out as a CSV. We'll start by creating a new
 .. code-block:: bash
 
   # Mac or Linux
-  $ touch academy/management/commands/dumpacademycsv.py
+  touch academy/management/commands/dumpacademycsv.py
   # Windows
-  $ start notepad++ academy/management/commands/dumpacademycsv.py
+  start notepad++ academy/management/commands/dumpacademycsv.py
 
 Open it up and paste in the barebones of a management command.
 
@@ -973,7 +971,7 @@ Save the file and run the command. You should see all the data printed out in li
 
 .. code-block:: python
 
-  $ python manage.py dumpacademycsv
+  python manage.py dumpacademycsv
 
 Now introduce the csv module to output those rows to a new file.
 
@@ -1002,6 +1000,6 @@ Run our new command once more.
 
 .. code-block:: python
 
-  $ python manage.py dumpacademycsv
+  python manage.py dumpacademycsv
 
 Now open up ``dump.csv`` in your base directory and your export should be good to go.
