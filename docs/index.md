@@ -26,6 +26,4 @@ dumper
 
 ## About the authors
 
-This guide was developed by [Ben Welsh](http://palewi.re/who-is-ben-welsh/) and Ken Schwencke
-for a workshop [on March 8](http://ire.org/conferences/nicar2015/hands-on-training/) at
-the 2015 conference of the National Institute for Computer-Assisted Reporting (NICAR) in Atlanta. In 2021, it was updated by University of Maryland professor Derek Willis to support the latest Python tools.
+This guide was developed by [Ben Welsh](http://palewi.re/who-is-ben-welsh/) and Ken Schwencke for a workshop [on March 8](http://ire.org/conferences/nicar2015/hands-on-training/) at the 2015 conference of the National Institute for Computer-Assisted Reporting (NICAR) in Atlanta. In 2021, it was updated by University of Maryland professor [Derek Willis](http://thescoop.org/about/) to support the latest Python tools.
