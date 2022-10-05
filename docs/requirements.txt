@@ -1,15 +1,2 @@
-Jinja2
-MarkupSafe
-PyYAML
-Pygments
-Sphinx
-argh
-argparse
-backports.ssl-match-hostname
-certifi
-docutils
-livereload
-pathtools
-sphinx-autobuild
-tornado
-watchdog
+mkdocs
+mkdocs-redirects

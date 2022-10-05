@@ -1,0 +1,5 @@
+site_name: first-django-admin
+plugins:
+    - redirects:
+        redirect_maps:
+            'index.md': 'https://palewi.re/docs/first-django-admin/'
