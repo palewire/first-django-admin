@@ -16,7 +16,7 @@ source_suffix = ".rst"
 master_doc = "index"
 html_extra_path = ["_extra"]
 
-project = "first-django-admin"
+project = "First Django Admin"
 year = datetime.now().year
 copyright = f"{year} Ben Welsh"
 
@@ -33,7 +33,7 @@ html_sidebars = {
     ]
 }
 html_theme_options = {
-    "canonical_url": f"https://palewi.re/docs/{project}/",
+    "canonical_url": f"https://palewi.re/docs/first-django-admin/",
     "show_powered_by": False,
     "show_relbar_bottom": True,
 }
