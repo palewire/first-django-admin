@@ -12,7 +12,6 @@ You will learn just enough about the [Django](https://www.djangoproject.com/) fr
 ```{toctree}
 :maxdepth: 1
 :name: mastertoc
-:numbered:
 
 what
 prereqs
