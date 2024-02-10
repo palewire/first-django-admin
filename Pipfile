@@ -21,6 +21,7 @@ PyYAML = "*"
 Pygments = "*"
 "backports.ssl_match_hostname" = "*"
 sphinx-palewire-theme = "*"
+myst-parser = "*"
 
 [dev-packages]
 
