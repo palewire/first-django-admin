@@ -1,6 +1,3 @@
-```{include} _templates/nav.html
-```
-
 # Act 2: Hello models
 
 Now we create our app. In Django terms, an app is a collection of files that does something, like publish a blog or store public records. A project, like we made above, collects those apps and organizes them into a working website.

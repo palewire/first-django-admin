@@ -1,6 +1,3 @@
-```{include} _templates/nav.html
-```
-
 # Act 5: Hello newsroom
 
 Now you're ready to get other people involved. The first thing to do is create additional users for your colleagues. Return to [localhost:8000/admin/](http://localhost:8000/admin/) and click the plus button to the right of the "Users" link.

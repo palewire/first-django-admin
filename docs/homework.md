@@ -1,6 +1,3 @@
-```{include} _templates/nav.html
-```
-
 # Act 6: Hello homework
 
 There are two constants in this kind of work: 1) Your models will change. 2) Reporters need to be told what to do.

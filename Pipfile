@@ -20,6 +20,7 @@ MarkupSafe = "*"
 PyYAML = "*"
 Pygments = "*"
 "backports.ssl_match_hostname" = "*"
+sphinx-palewire-theme = "*"
 
 [dev-packages]
 

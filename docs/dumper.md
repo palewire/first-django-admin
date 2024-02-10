@@ -1,6 +1,3 @@
-```{include} _templates/nav.html
-```
-
 # Epilogue: Hello dumper
 
 Alright, so let's assume you work with some industrious reporters. They roll through all the records and you've got the gender, race and age entered for everybody in the database.

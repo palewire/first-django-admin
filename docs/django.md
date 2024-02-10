@@ -1,6 +1,3 @@
-```{include} _templates/nav.html
-```
-
 # Act 1: Hello Django
 
 Start at our first-django-admin directory.

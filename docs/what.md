@@ -1,6 +1,3 @@
-```{include} _templates/nav.html
-```
-
 # What you will make
 
 This tutorial will guide you through creating a custom Django administration panel

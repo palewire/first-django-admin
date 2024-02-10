@@ -1,6 +1,3 @@
-```{include} _templates/nav.html
-```
-
 # Act 4: Hello admin
 
 One of Django's unique features is that it comes with a custom administration that allows users to view, edit and create records. To see it in action, create a new superuser with permission to edit all records.

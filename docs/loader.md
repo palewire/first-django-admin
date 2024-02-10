@@ -1,6 +1,3 @@
-```{include} _templates/nav.html
-```
-
 # Act 3: Hello loader
 
 Our next challenge is to load the source CSV file into the model.
