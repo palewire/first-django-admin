@@ -69,7 +69,7 @@ jobs:
         uses: datadesk/delivery-deploy-action@v1
         with:
           bucket: ${{ secrets.PALEWIRE_DOCS_AWS_BUCKET }}
-          base-path: first-pull-request
+          base-path: first-django-admin
           dir: ./docs/
           should-cache: false
           use-accelerate-endpoint: false
