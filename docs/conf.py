@@ -14,7 +14,6 @@ extensions = [
 templates_path = ["_templates"]
 source_suffix = ".md"
 master_doc = "index"
-html_extra_path = ["_extra"]
 
 project = "First Django Admin"
 year = datetime.now().year
