@@ -16,7 +16,6 @@ dependencies = [
     "certifi",
     "docutils",
     "livereload",
-    "pathtools",
     "tornado",
     "watchdog",
     "Jinja2",
