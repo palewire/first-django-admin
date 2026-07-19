@@ -64,7 +64,7 @@ Don't know what a class is? Don't stress out about it. It's a little tricky to e
 
 Next, like any good database table, it needs some fields.
 
-If you open [the source CSV](https://github.com/palewire/first-django-admin/blob/master/project/academy_invites_2014.csv), you will see that is has only two columns: name and branch.
+If you open [the source CSV](https://github.com/palewire/first-django-admin/blob/master/project/academy_invites_2014.csv), you will see that it has only two columns: name and branch.
 
 Django has some [fancy tricks](https://docs.djangoproject.com/en/4.0/ref/models/fields/) for defining fields depending on what kind of data they hold. Now we'll use the `CharField` to expand our models to hold the name and branch data from our source. It just so happens, that CharFields have a maximum length that must always be set. We're going to pick a couple big numbers for that.
 
