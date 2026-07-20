@@ -7,23 +7,17 @@ mkdir first-django-admin
 cd first-django-admin
 ```
 
-Create a new development environment with pipenv, specifying the version of python:
+Create a new development environment with uv, specifying Python 3.13:
 
 ```bash
-pipenv --python=python3
+uv init --python 3.13
 ```
 
-Then activate it (it's like turning on the power):
-
-```bash
-pipenv shell
-```
-
-Use `pipenv` on the command line to install [Django](https://www.djangoproject.com/), a Python "framework"
+Use `uv` on the command line to install [Django](https://www.djangoproject.com/), a Python "framework"
 we'll use to put together our website.
 
 ```bash
-pipenv install Django
+uv add Django
 ```
 
 Now use Django's `django-admin` command to create a new "project" that will be organized according to the framework's rules.
