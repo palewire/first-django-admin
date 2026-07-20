@@ -40,7 +40,7 @@ There is a lot of [configuration](https://docs.djangoproject.com/en/4.0/intro/tu
 
 The first step is creating your database, which will appear as a new [SQLite](https://en.wikipedia.org/wiki/SQLite) file named `db.sqlite3`.
 
-To do that, we will start using the `manage.py` file created by `startproject`. It is a utility belt we can use to make Django a wide range of things. The command we want now, `migrate`, can create database tables.
+To do that, we will start using the `manage.py` file created by `startproject`. It is a utility belt we can use to make Django do a wide range of things. The command we want now, `migrate`, can create database tables.
 
 ```bash
 python manage.py migrate
