@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools >= 61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "first-django-admin"
+version = "1.0.0"
+description = "A step-by-step guide to creating a simple web application that empowers you to enlist reporters in data entry and refinement."
+readme = "README.md"
+requires-python = "==3.13.*"
+license = "GPL-3.0-or-later"
+dependencies = [
+    "Django",
+    "argh",
+    "argparse",
+    "certifi",
+    "docutils",
+    "livereload",
+    "tornado",
+    "watchdog",
+    "Jinja2",
+    "MarkupSafe",
+    "PyYAML",
+    "Pygments",
+    "backports.ssl_match_hostname",
+    "sphinx",
+    "sphinx-autobuild",
+    "myst-parser",
+    "sphinx-palewire-theme",
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.13",
+]
+
+[tool.setuptools]
+packages = []

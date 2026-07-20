@@ -1,4 +1,6 @@
+UV := uv run
+
 .PHONY: docs
 
 docs:
-	cd docs && make livehtml
+	cd docs && $(UV) make livehtml
