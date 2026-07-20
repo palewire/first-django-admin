@@ -6,7 +6,7 @@ and working.
 1. A [command-line interface](https://en.wikipedia.org/wiki/Command-line_interface) to interact with your computer
 2. A [text editor](https://en.wikipedia.org/wiki/Text_editor) to work with plain text files
 3. Version 3.X of the [Python](https://www.python.org/downloads/) programming language
-4. The [pipenv](https://pipenv.pypa.io/en/latest/) package and virtual environment manager for Python
+4. The [uv](https://docs.astral.sh/uv/) package and virtual environment manager for Python
 5. [Git](http://git-scm.com/) version control software and an account at [GitHub.com](http://www.github.com)
 
 :::{warning}
@@ -63,23 +63,23 @@ You should see something like this after you hit enter:
 
 ```bash
 python -V
-Python 3.9.7
+Python 3.13
 ```
 
 ### For Windows
 
 Windows people should follow the instructions [here](https://docs.python-guide.org/starting/install3/win/#install3-windows).
 
-(command-line-pipenv)=
+(command-line-uv)=
 
-## pipenv
+## uv
 
-The [pipenv package manager](https://pipenv.pypa.io/) makes it easy to install open-source libraries that expand what you're able to do with Python. Later, we will use it to install everything needed to create a working web application.
+The [uv package manager](https://docs.astral.sh/uv/) makes it easy to install open-source libraries that expand what you're able to do with Python. Later, we will use it to install everything needed to create a working web application.
 
-Verify pipenv is installed with the following command:
+Verify uv is installed with the following command:
 
 ```bash
-pipenv -v
+uv --version
 ```
 
-If you get and error, that means you don't have pipenv installed. You can get it by following [these instructions](https://pipenv.pypa.io/en/latest/install/#pragmatic-installation-of-pipenv).
+If you get an error, that means you don't have uv installed. You can get it by following [these instructions](https://docs.astral.sh/uv/getting-started/installation/).

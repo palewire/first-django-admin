@@ -7,23 +7,17 @@ mkdir first-django-admin
 cd first-django-admin
 ```
 
-Create a new development environment with pipenv, specifying the version of python:
+Create a new development environment with uv, specifying Python 3.13:
 
 ```bash
-pipenv --python=python3
+uv init --python 3.13
 ```
 
-Then activate it (it's like turning on the power):
-
-```bash
-pipenv shell
-```
-
-Use `pipenv` on the command line to install [Django](https://www.djangoproject.com/), a Python "framework"
+Use `uv` on the command line to install [Django](https://www.djangoproject.com/), a Python "framework"
 we'll use to put together our website.
 
 ```bash
-pipenv install Django
+uv add Django
 ```
 
 Now use Django's `django-admin` command to create a new "project" that will be organized according to the framework's rules.
@@ -46,7 +40,7 @@ There is a lot of [configuration](https://docs.djangoproject.com/en/4.0/intro/tu
 
 The first step is creating your database, which will appear as a new [SQLite](https://en.wikipedia.org/wiki/SQLite) file named `db.sqlite3`.
 
-To do that, we will start using the `manage.py` file created by `startproject`. It is a utility belt we can use to make Django a wide range of things. The command we want now, `migrate`, can create database tables.
+To do that, we will start using the `manage.py` file created by `startproject`. It is a utility belt we can use to make Django do a wide range of things. The command we want now, `migrate`, can create database tables.
 
 ```bash
 python manage.py migrate

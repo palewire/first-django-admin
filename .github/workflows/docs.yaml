@@ -6,6 +6,11 @@ on:
     - main
   workflow_dispatch:
 
+  pull_request:
+
+permissions:
+  contents: read
+
 jobs:
   build:
     name: Build
@@ -13,33 +18,31 @@ jobs:
     steps:
       - id: checkout
         name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
-      - id: setup-python
-        name: Setup Python
-        uses: actions/setup-python@v5
+      - id: install-uv
+        name: Install uv
+        uses: astral-sh/setup-uv@v8.3.2
         with:
-          python-version: '3.9'
-          cache: 'pipenv'
-
-      - id: install-pipenv
-        name: Install pipenv
-        run: curl https://raw.githubusercontent.com/pypa/pipenv/master/get-pipenv.py | python
-        shell: bash
-
+          version: "0.11.29"
+          enable-cache: true
+      
+      - id: install-python
+        name: Install Python
+        run: uv python install 3.13
       - id: install-python-dependencies
         name: Install Python dependencies
-        run: pipenv sync --dev
+        run: uv sync --all-groups --locked
         shell: bash
 
       - id: build-sphinx-documentation
         name: Build Sphinx documentation
-        run: pipenv run sphinx-build -b html ./docs _build
+        run: uv run sphinx-build -b html ./docs _build
         shell: bash
 
       - id: upload-release-candidate
         name: Upload release candidate
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: release-candidate
           path: _build/
@@ -51,14 +54,14 @@ jobs:
     if: ${{ github.ref_name == 'main' }}
     steps:
       - name: Download release candidate
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: release-candidate
           path: ./docs/
 
       - id: configure-aws
         name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v4
+        uses: aws-actions/configure-aws-credentials@v6
         with:
           aws-access-key-id: ${{ secrets.PALEWIRE_DOCS_AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.PALEWIRE_DOCS_AWS_SECRET_ACCESS_KEY }}
